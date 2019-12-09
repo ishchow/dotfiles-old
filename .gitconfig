@@ -1,0 +1,12 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+	name = Ishaat Chowdhury
+	email = ishaat@ualberta.ca
+	signingkey = 00D0F0DD9EF555BE
+[pager]
+	branch = false
+[gpg]
+	program = /usr/bin/gpg
+[commit]
+	gpgsign = true
