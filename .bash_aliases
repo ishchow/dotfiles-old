@@ -1,3 +1,6 @@
+# sudo
+alias sudo='sudo '
+
 # git
 
 alias gs="git status"
@@ -15,3 +18,4 @@ alias zse="zypper se"
 alias zdup="zypper dup"
 alias zar="zypper ar"
 alias zrr="zypper rr"
+alias zref="zypper ref"
