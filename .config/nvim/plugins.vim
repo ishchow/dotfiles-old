@@ -9,4 +9,5 @@ endif
 call plug#begin(stdpath('data') . '/plugged')
     Plug 'drewtempelmeyer/palenight.vim'
     Plug 'itchyny/lightline.vim'
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
