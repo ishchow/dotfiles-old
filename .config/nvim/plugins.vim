@@ -7,7 +7,7 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin(stdpath('data') . '/plugged')
-    Plug 'drewtempelmeyer/palenight.vim'
+    Plug 'joshdick/onedark.vim'
     Plug 'itchyny/lightline.vim'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()

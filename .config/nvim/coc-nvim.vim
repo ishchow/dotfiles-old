@@ -128,3 +128,11 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 " Show explorer
 nmap ge :CocCommand explorer<CR>
+
+" Extensions
+let g:coc_global_extensions = [
+    \ 'coc-json',
+    \ 'coc-explorer',
+    \ 'coc-snippets',
+    \ 'coc-pairs',
+    \]
