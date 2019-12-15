@@ -3,16 +3,16 @@ source ~/.config/nvim/plugins.vim
 source ~/.config/nvim/coc-nvim.vim
 source ~/.config/nvim/settings.vim
 
-set background=dark
+" Colorscheme
 syntax on
-colorscheme onedark
+colorscheme gruvbox 
 
 function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
 endfunction
 
 let g:lightline = {
-      \ 'colorscheme': 'onedark',
+      \ 'colorscheme': 'gruvbox',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]

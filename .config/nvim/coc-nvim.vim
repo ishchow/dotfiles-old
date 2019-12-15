@@ -126,8 +126,12 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
 " Show explorer
-nmap ge :CocCommand explorer<CR>
+nmap ge :CocCommand explorer
+    \ --toggle
+    \ --sources=buffer+,file+
+    \ --file-columns=git,selection,clip,diagnosticError,indent,icon,filename,size,modified,readonly <CR>
 
 " Extensions
 let g:coc_global_extensions = [
@@ -135,4 +139,9 @@ let g:coc_global_extensions = [
     \ 'coc-explorer',
     \ 'coc-snippets',
     \ 'coc-pairs',
+    \ 'coc-tsserver',
+    \ 'coc-html',
+    \ 'coc-css',
+    \ 'coc-yaml',
+    \ 'coc-highlight',
     \]

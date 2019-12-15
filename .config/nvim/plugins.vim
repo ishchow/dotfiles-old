@@ -8,6 +8,10 @@ endif
 
 call plug#begin(stdpath('data') . '/plugged')
     Plug 'joshdick/onedark.vim'
+    Plug 'morhetz/gruvbox'
     Plug 'itchyny/lightline.vim'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'cespare/vim-toml'
+    Plug 'airblade/vim-gitgutter'
 call plug#end()
+
