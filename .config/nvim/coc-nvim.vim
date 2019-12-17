@@ -127,6 +127,9 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
+" Show files list with ctrl-p
+nmap <C-p> :CocList files<CR>
+
 " Show explorer
 nmap ge :CocCommand explorer
     \ --toggle
@@ -134,7 +137,7 @@ nmap ge :CocCommand explorer
     \ --file-columns=git,selection,clip,diagnosticError,indent,icon,filename,size,modified,readonly <CR>
 
 " Extensions
-let g:coc_global_extensions = [
+let g:coc_global_extensions = [ 
     \ 'coc-json',
     \ 'coc-explorer',
     \ 'coc-snippets',
@@ -144,4 +147,7 @@ let g:coc_global_extensions = [
     \ 'coc-css',
     \ 'coc-yaml',
     \ 'coc-highlight',
+    \ 'coc-lists',
+    \ 'coc-git',
+    \ 'coc-yank'
     \]

@@ -7,6 +7,7 @@ source ~/.config/nvim/settings.vim
 syntax on
 colorscheme gruvbox 
 
+" Lightline configuration
 function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
 endfunction
