@@ -133,3 +133,8 @@ unset __conda_setup
 
 export GPG_TTY=$(tty)
 source <(gopass completion bash)
+
+# Virtualenv wrapper
+export WORKON_HOME=~/.venvs
+export VIRTUALENVWRAPPER_PYTHON=$(which python3)
+source $(which virtualenvwrapper.sh)
