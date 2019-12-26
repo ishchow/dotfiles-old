@@ -17,5 +17,14 @@ call plug#begin(stdpath('data') . '/plugged')
 
     " Extra syntax highlighting for toml
     Plug 'cespare/vim-toml'
+
+    " Comments
+    Plug 'tomtom/tcomment_vim'
+
+    " Automatically clear search highlight after cursor moves
+    Plug 'haya14busa/is.vim'
+
+    " Modify * to also work with visual selections.
+    Plug 'nelstrom/vim-visual-star-search'
 call plug#end()
 

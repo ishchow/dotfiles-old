@@ -136,6 +136,21 @@ nmap ge :CocCommand explorer
     \ --sources=buffer+,file+
     \ --file-columns=git,selection,clip,diagnosticError,indent,icon,filename,size,modified,readonly <CR>
 
+" grep word under cursor
+command! -nargs=+ -complete=custom,s:GrepArgs Rg exe 'CocList grep '.<q-args>
+
+function! s:GrepArgs(...)
+  let list = ['-S', '-smartcase', '-i', '-ignorecase', '-w', '-word',
+        \ '-e', '-regex', '-u', '-skip-vcs-ignores', '-t', '-extension']
+  return join(list, "\n")
+endfunction
+
+" Keymapping for grep word under cursor with interactive mode
+nnoremap <silent> <Leader>cf :exe 'CocList -I --input='.expand('<cword>').' grep'<CR>
+
+" Keymapping for grep word under cursor with interactive mode
+nnoremap <silent> <Leader>c :exe 'CocList -I --interactive grep'<CR>
+
 " Extensions
 let g:coc_global_extensions = [ 
     \ 'coc-json',
@@ -149,5 +164,6 @@ let g:coc_global_extensions = [
     \ 'coc-highlight',
     \ 'coc-lists',
     \ 'coc-git',
-    \ 'coc-yank'
+    \ 'coc-yank',
+    \ 'coc-python'
     \]
