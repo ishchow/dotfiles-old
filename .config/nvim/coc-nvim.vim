@@ -151,6 +151,9 @@ nnoremap <silent> <Leader>cf :exe 'CocList -I --input='.expand('<cword>').' grep
 " Keymapping for grep word under cursor with interactive mode
 nnoremap <silent> <Leader>c :exe 'CocList -I --interactive grep'<CR>
 
+" Add command for prettier
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
 " Extensions
 let g:coc_global_extensions = [ 
     \ 'coc-json',
@@ -165,5 +168,8 @@ let g:coc_global_extensions = [
     \ 'coc-lists',
     \ 'coc-git',
     \ 'coc-yank',
-    \ 'coc-python'
+    \ 'coc-python',
+    \ 'coc-emmet',
+    \ 'coc-prettier'
     \]
+

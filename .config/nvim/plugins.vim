@@ -26,5 +26,8 @@ call plug#begin(stdpath('data') . '/plugged')
 
     " Modify * to also work with visual selections.
     Plug 'nelstrom/vim-visual-star-search'
+   
+    " Handle multi-file find and replace.
+    Plug 'mhinz/vim-grepper'
 call plug#end()
 
