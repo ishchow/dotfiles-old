@@ -136,5 +136,5 @@ source <(gopass completion bash)
 
 # Virtualenv wrapper
 export WORKON_HOME=~/.venvs
-export VIRTUALENVWRAPPER_PYTHON=$(which python3)
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 source $(which virtualenvwrapper.sh)

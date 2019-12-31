@@ -9,6 +9,7 @@ alias grb="git rebase"
 alias grbi="git rebase -i"
 alias gsuir="git submodule update --init --recursive"
 alias rebom="git checkout master && git pull && git checkout - && git rebase master"
+alias gpuoh="git push -u origin HEAD"
 
 # zypper
 
