@@ -29,5 +29,17 @@ call plug#begin(stdpath('data') . '/plugged')
    
     " Handle multi-file find and replace.
     Plug 'mhinz/vim-grepper'
+
+    " Quotes/Paranthesizing
+    Plug 'tpope/vim-surround'
+
+    " Todo txt plugin 
+    Plug 'https://gitlab.com/dbeniamine/todo.txt-vim.git'
+    
+    " File Explorer
+    Plug 'preservim/nerdtree'    
+    
+    " VS Code like icons for file explorer and other plugins
+    Plug 'ryanoasis/vim-devicons'
 call plug#end()
 

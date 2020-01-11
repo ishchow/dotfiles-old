@@ -4,6 +4,7 @@ set relativenumber             " Show relative line numbers
 set clipboard+=unnamedplus     " Yank to system clipboard
 set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 let mapleader=","
+let maplocalleader = "\\"
 
 " Press * to search for the term under the cursor or a visual selection and
 " then press a key below to replace all instances of it in the current file.
@@ -21,6 +22,15 @@ xnoremap <Leader>rc :s///gc<Left><Left><Left>
 " for replacing a few instances of the term (comparable to multiple cursors).
 nnoremap <silent> s* :let @/='\<'.expand('<cword>').'\>'<CR>cgn
 xnoremap <silent> s* "sy:let @/=@s<CR>cgn
+
+" Use todo#Complete as the omni complete function for todo files
+au filetype todo setlocal omnifunc=todo#Complete
+
+" Auto complete projects
+au filetype todo imap <buffer> + +<C-X><C-O>
+
+" Auto complete contexts
+au filetype todo imap <buffer> @ @<C-X><C-O>
 
 " Colorscheme
 syntax on
@@ -42,6 +52,11 @@ let g:lightline = {
       \   'currentfunction': 'CocCurrentFunction'
       \ },
       \ }
+
+" .............................................................................
+" NerdTree
+" .............................................................................
+nnoremap <C-n> :NERDTreeToggle<CR>
 
 " .............................................................................
 " mhinz/vim-grepper
