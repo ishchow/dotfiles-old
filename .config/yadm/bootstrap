@@ -1,0 +1,19 @@
+#/bin/bash
+
+# Install Stuff
+echo "Installing Core Dev Tools"
+sudo zypper ref
+sudo zypper in \
+    ripgrep \
+    ripgrep-bash-completion \
+    bat \
+    neovim \
+    python2-neovim \
+    python3-neovim \
+    tmux
+
+# Bootstrap NeoVim
+if which nvim >/dev/null 2>&1; then
+  echo "Bootstraping NeoVim"
+  nvim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
+fi
