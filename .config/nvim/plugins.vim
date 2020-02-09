@@ -38,8 +38,5 @@ call plug#begin(stdpath('data') . '/plugged')
     
     " File Explorer
     Plug 'preservim/nerdtree'    
-    
-    " VS Code like icons for file explorer and other plugins
-    Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
