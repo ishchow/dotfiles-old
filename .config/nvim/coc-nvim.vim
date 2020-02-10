@@ -127,15 +127,6 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-" Show files list with ctrl-p
-nmap <C-p> :CocList files<CR>
-
-" " Show explorer
-" nmap ge :CocCommand explorer
-"     \ --toggle
-"     \ --sources=buffer+,file+
-"     \ --file-columns=git,selection,clip,diagnosticError,indent,icon,filename,size,modified,readonly <CR>
-
 " grep word under cursor
 command! -nargs=+ -complete=custom,s:GrepArgs Rg exe 'CocList grep '.<q-args>
 

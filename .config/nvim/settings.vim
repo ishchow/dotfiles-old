@@ -1,10 +1,9 @@
-" Show current line number
-set number
+set number                     " Show current line number
 set relativenumber             " Show relative line numbers
 set clipboard+=unnamedplus     " Yank to system clipboard
-set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
-let mapleader=","
-let maplocalleader = "\\"
+set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab " Set tab to spaces, tab width 4
+let mapleader=","              " Sets <Leader> to ,
+let maplocalleader = "\\"      " Sets <LocalLeader> to \
 
 " Press * to search for the term under the cursor or a visual selection and
 " then press a key below to replace all instances of it in the current file.
@@ -59,13 +58,19 @@ let g:lightline = {
 nnoremap <C-n> :NERDTreeToggle<CR>
 
 " .............................................................................
+" fzf-preview
+" .............................................................................
+nmap <C-p> :FzfPreviewDirectoryFiles<CR>
+nmap <C-b> :FzfPreviewBuffers<CR>
+
+" Use vim-devicons
+let g:fzf_preview_use_dev_icons = 1
+
+" .............................................................................
 " mhinz/vim-grepper
 " .............................................................................
-
 let g:grepper={}
 let g:grepper.tools=["rg"]
-
-xmap gr <plug>(GrepperOperator)
 
 " After searching for text, press this mapping to do a project wide find and
 " replace. It's similar to <leader>r except this one applies to all matches

@@ -138,3 +138,5 @@ source <(gopass completion bash)
 export WORKON_HOME=~/.venvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 source $(which virtualenvwrapper.sh)
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

@@ -38,5 +38,14 @@ call plug#begin(stdpath('data') . '/plugged')
     
     " File Explorer
     Plug 'preservim/nerdtree'    
+    
+    " fzf: fuzzy search
+    Plug '~/.fzf'
+
+    " Preview fzf search results in floating window
+    Plug 'yuki-ycino/fzf-preview.vim'
+
+    " Dev icons
+    Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
