@@ -11,10 +11,12 @@ sudo zypper in \
     neovim \
     python2-neovim \
     python3-neovim \
+    exa \
+    ruby \
+    python \
+    python3 \
     tmux
 
-# Bootstrap NeoVim
-if which nvim >/dev/null 2>&1; then
-  echo "Bootstraping NeoVim"
-  nvim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
-fi
+# Install fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install --all
