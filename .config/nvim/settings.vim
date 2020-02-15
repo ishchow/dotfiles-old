@@ -31,9 +31,17 @@ au filetype todo imap <buffer> + +<C-X><C-O>
 " Auto complete contexts
 au filetype todo imap <buffer> @ @<C-X><C-O>
 
-" Colorscheme
+" Set true colors
+if (has("termguicolors"))
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
+" Set Colorscheme
 syntax on
-colorscheme gruvbox 
+" set background=dark
+colorscheme nord
 
 " Lightline configuration
 function! CocCurrentFunction()
@@ -41,7 +49,7 @@ function! CocCurrentFunction()
 endfunction
 
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
+      \ 'colorscheme': 'nord',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
@@ -51,6 +59,9 @@ let g:lightline = {
       \   'currentfunction': 'CocCurrentFunction'
       \ },
       \ }
+
+" Show vertical line for code indented with tabs
+set list lcs=tab:\|\ " (here is a space)
 
 " .............................................................................
 " NerdTree
@@ -64,7 +75,8 @@ nmap <C-p> :FzfPreviewDirectoryFiles<CR>
 nmap <C-b> :FzfPreviewBuffers<CR>
 
 " Use vim-devicons
-let g:fzf_preview_use_dev_icons = 1
+let g:fzf_preview_use_dev_icons = 0
+let g:fzf_preview_command = 'bat --color=always --style=grid {0}' " Installed bat
 
 " .............................................................................
 " mhinz/vim-grepper

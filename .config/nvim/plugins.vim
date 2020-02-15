@@ -6,8 +6,16 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin(stdpath('data') . '/plugged')
-    " Colorscheme
+    " #### Colorschemes ####
     Plug 'morhetz/gruvbox'
+    Plug 'mhartington/oceanic-next'
+    Plug 'rakr/vim-one'
+    Plug 'arcticicestudio/nord-vim'
+    Plug 'sonph/onehalf', {'rtp': 'vim/'}
+    Plug 'drewtempelmeyer/palenight.vim'
+
+    " Display thin vertical lines for indents
+    Plug 'Yggdroot/indentLine'
 
     " Status bar
     Plug 'itchyny/lightline.vim'
@@ -47,5 +55,11 @@ call plug#begin(stdpath('data') . '/plugged')
 
     " Dev icons
     Plug 'ryanoasis/vim-devicons'
+
+    " Allow vim to open file at specific line
+    Plug 'wsdjeg/vim-fetch'
+
+    " Jump to line on quickfix window
+    Plug 'rbtnn/vim-jumptoline'
 call plug#end()
 
