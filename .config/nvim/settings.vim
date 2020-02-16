@@ -37,6 +37,7 @@ if (has("termguicolors"))
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif
+" let g:palenight_termcolors=16
 
 " Set Colorscheme
 syntax on
@@ -76,7 +77,6 @@ nmap <C-b> :FzfPreviewBuffers<CR>
 
 " Use vim-devicons
 let g:fzf_preview_use_dev_icons = 0
-let g:fzf_preview_command = 'bat --color=always --style=grid {0}' " Installed bat
 
 " .............................................................................
 " mhinz/vim-grepper
