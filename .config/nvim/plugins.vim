@@ -8,27 +8,26 @@ endif
 call plug#begin(stdpath('data') . '/plugged')
     " #### Colorschemes ####
     Plug 'morhetz/gruvbox'
-    Plug 'mhartington/oceanic-next'
-    Plug 'rakr/vim-one'
     Plug 'arcticicestudio/nord-vim'
-    Plug 'sonph/onehalf', {'rtp': 'vim/'}
-    Plug 'drewtempelmeyer/palenight.vim'
-
+    
+    " #### Cosmetic Stuff ####
     " Display thin vertical lines for indents
     Plug 'Yggdroot/indentLine'
-
+    
     " Status bar
     Plug 'itchyny/lightline.vim'
 
+    " Dev icons
+    Plug 'ryanoasis/vim-devicons'
+    
+    " #### Language Servers and Syntax Highlighting ####
     " Language servers and other vscode like extensions
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
     " Extra syntax highlighting for toml
     Plug 'cespare/vim-toml'
 
-    " Comments
-    Plug 'tomtom/tcomment_vim'
-
+    " #### Search ####
     " Automatically clear search highlight after cursor moves
     Plug 'haya14busa/is.vim'
 
@@ -38,12 +37,9 @@ call plug#begin(stdpath('data') . '/plugged')
     " Handle multi-file find and replace.
     Plug 'mhinz/vim-grepper'
 
-    " Quotes/Paranthesizing
-    Plug 'tpope/vim-surround'
+    " Comments
+    Plug 'tomtom/tcomment_vim'
 
-    " Todo txt plugin 
-    Plug 'https://gitlab.com/dbeniamine/todo.txt-vim.git'
-    
     " File Explorer
     Plug 'preservim/nerdtree'    
     
@@ -53,13 +49,17 @@ call plug#begin(stdpath('data') . '/plugged')
     " Preview fzf search results in floating window
     Plug 'yuki-ycino/fzf-preview.vim'
 
-    " Dev icons
-    Plug 'ryanoasis/vim-devicons'
-
+    " #### Other ####
     " Allow vim to open file at specific line
     Plug 'wsdjeg/vim-fetch'
 
     " Jump to line on quickfix window
     Plug 'rbtnn/vim-jumptoline'
+    "
+    " Quotes/Paranthesizing
+    Plug 'tpope/vim-surround'
+
+    " Todo txt plugin 
+    Plug 'https://gitlab.com/dbeniamine/todo.txt-vim.git'
 call plug#end()
 
