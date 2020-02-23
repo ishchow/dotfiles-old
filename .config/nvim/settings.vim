@@ -65,9 +65,9 @@ let g:lightline = {
 set list lcs=tab:\|\ " (here is a space)
 
 " .............................................................................
-" NerdTree
+" voldikss/vim-floaterm
 " .............................................................................
-nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <C-n> :FloatermNew fff<CR>
 
 " .............................................................................
 " fzf-preview

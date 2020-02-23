@@ -16,9 +16,6 @@ call plug#begin(stdpath('data') . '/plugged')
     
     " Status bar
     Plug 'itchyny/lightline.vim'
-
-    " Dev icons
-    Plug 'ryanoasis/vim-devicons'
     
     " #### Language Servers and Syntax Highlighting ####
     " Language servers and other vscode like extensions
@@ -36,14 +33,9 @@ call plug#begin(stdpath('data') . '/plugged')
    
     " Handle multi-file find and replace.
     Plug 'mhinz/vim-grepper'
-
-    " Comments
-    Plug 'tomtom/tcomment_vim'
-
-    " File Explorer
-    Plug 'preservim/nerdtree'    
     
     " fzf: fuzzy search
+    " Used by fzf-preview
     Plug '~/.fzf'
 
     " Preview fzf search results in floating window
@@ -51,9 +43,14 @@ call plug#begin(stdpath('data') . '/plugged')
 
     " #### Other ####
     " Allow vim to open file at specific line
+    " Needed by fzf-preview
     Plug 'wsdjeg/vim-fetch'
 
+    " Comments
+    Plug 'tomtom/tcomment_vim'
+
     " Jump to line on quickfix window
+    " Needed by fzf-preview
     Plug 'rbtnn/vim-jumptoline'
     "
     " Quotes/Paranthesizing
@@ -61,5 +58,8 @@ call plug#begin(stdpath('data') . '/plugged')
 
     " Todo txt plugin 
     Plug 'https://gitlab.com/dbeniamine/todo.txt-vim.git'
+
+    " Create floating terminals
+    Plug 'voldikss/vim-floaterm'
 call plug#end()
 
