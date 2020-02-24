@@ -19,8 +19,15 @@ sudo zypper in \
     tmux
 
 # Install fzf
+echo "Installing fzf"
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --all
 
 # Install tmux plugin manager
+echo "Installing tmux plugin manager (tpm)"
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+# Install fff
+echo "Installing fast file finder (fff)"
+git clone https://github.com/dylanaraps/fff
+sudo make install
