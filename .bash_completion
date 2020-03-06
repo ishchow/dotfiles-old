@@ -1,0 +1,8 @@
+# complete_alias
+source ~/.bash_completion.d/complete_alias
+
+# Complete all aliases
+for a in $(grep -oP "(?<=alias ).*(?=\=)" .bash_aliases)
+do
+    complete -F _complete_alias ${a}
+done
