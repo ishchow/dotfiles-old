@@ -48,3 +48,6 @@ alias zdup="zypper dup"
 alias zar="zypper ar"
 alias zrr="zypper rr"
 alias zref="zypper ref"
+
+#### cat ####
+alias cat="bat"
