@@ -25,8 +25,8 @@ echo "Installing tmux plugin manager (tpm)"
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 echo "Installing fast file finder (fff)"
-git clone https://github.com/dylanaraps/fff
-sudo make install
+git clone https://github.com/dylanaraps/fff ~/.fff
+sudo make -C ~/.fff install
 
 echo "Installing complete-alias"
 mkdir ~/.bash_completion.d
