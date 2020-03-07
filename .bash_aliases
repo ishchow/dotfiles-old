@@ -17,8 +17,8 @@ alias gcm="git commit -m"
 alias gca="git commit --amend"
 # git rebase
 alias grb="git rebase"
-alias grbi="git rebase -i"
-alias grbioh="git rebase -i origin/HEAD"
+alias grbi="git rebase -i --autosquash"
+alias grbioh="git rebase -i --autosquash origin/HEAD"
 alias rebom="git checkout master && git pull && git checkout - && git rebase master"
 # git submodule
 alias gsuir="git submodule update --init --recursive"
@@ -35,7 +35,7 @@ alias gad="git add ."
 alias grs="git reset"
 alias grsh="git reset --hard"
 # git log
-alias gl="git log"
+alias gl="git log --oneline --decorate"
 # git revert
 alias grv="git revert"
 
