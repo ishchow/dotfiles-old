@@ -38,7 +38,15 @@ alias grsh="git reset --hard"
 alias gl="git log --oneline --decorate"
 # git revert
 alias grv="git revert"
-
+# git clean
+alias gcl="git clean"
+alias gclnfd="git clean -nfd"
+alias gclfd="git clean -fd"
+alias gclnf="git clean -nf"
+alias gclf="git clean -f"
+# move to root
+alias groot="git rev-parse --show-toplevel"
+alias cdroot="cd $(git rev-parse --show-toplevel)"
 
 ##### zypper ####
 alias zin="zypper in"

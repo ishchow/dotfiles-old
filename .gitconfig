@@ -12,3 +12,5 @@
 	gpgsign = true
 [rebase]
 	autosquash = true
+[alias]
+	root = rev-parse --show-toplevel
