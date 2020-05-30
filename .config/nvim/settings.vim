@@ -4,6 +4,7 @@ set clipboard+=unnamedplus     " Yank to system clipboard
 set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab " Set tab to spaces, tab width 4
 let mapleader=","              " Sets <Leader> to ,
 let maplocalleader = "\\"      " Sets <LocalLeader> to \
+set autoread                   " Automatically refreshes files
 
 " Press * to search for the term under the cursor or a visual selection and
 " then press a key below to replace all instances of it in the current file.
@@ -30,6 +31,11 @@ au filetype todo imap <buffer> + +<C-X><C-O>
 
 " Auto complete contexts
 au filetype todo imap <buffer> @ @<C-X><C-O>
+
+" Jinja/Nunjucks syntax highlighting
+" au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm,*.njk set ft=jinja
+call tcomment#type#Define('nunjucks', '{# %s#}')
+au BufNewFile,BufRead *.njk setf nunjucks
 
 " Set true colors
 if (has("termguicolors"))

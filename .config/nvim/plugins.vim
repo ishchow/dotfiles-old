@@ -24,6 +24,9 @@ call plug#begin(stdpath('data') . '/plugged')
     " Extra syntax highlighting for toml
     Plug 'cespare/vim-toml'
 
+    " Jinja/Nunjucks Template Highlighting
+    Plug 'lepture/vim-jinja'
+
     " #### Search ####
     " Automatically clear search highlight after cursor moves
     Plug 'haya14busa/is.vim'

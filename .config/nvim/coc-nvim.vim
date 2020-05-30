@@ -161,6 +161,7 @@ let g:coc_global_extensions = [
     \ 'coc-python',
     \ 'coc-emmet',
     \ 'coc-prettier',
-    \ 'coc-docker'
+    \ 'coc-docker',
+    \ 'coc-tailwindcss'
     \]
 

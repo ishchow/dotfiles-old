@@ -12,7 +12,7 @@ Theme=breeze-dark
 Enabled=true
 
 [Style]
-Font=Noto Sans 16
+Font=Sans 10
 
 [Colors]
 Background=#111111
