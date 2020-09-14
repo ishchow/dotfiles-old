@@ -1,7 +1,9 @@
 #/bin/bash
 
+echo "Updating system"
+sudo zypper ref && sudo zypper dup
+
 echo "Installing Core Dev Tools"
-sudo zypper ref
 sudo zypper install -t pattern devel_basis
 sudo zypper in \
     ripgrep \
