@@ -1,8 +1,4 @@
 # This is Git's per-user configuration file.
-[user]
-# Please adapt and uncomment the following lines:
-	name = Ishaat Chowdhury
-	email = ishaat@ualberta.ca
 [pager]
 	branch = false
 [gpg]
@@ -11,3 +7,5 @@
 	autosquash = true
 [alias]
 	root = rev-parse --show-toplevel
+[include]
+    path = .gitconfig.local
