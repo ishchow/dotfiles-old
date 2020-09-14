@@ -10,7 +10,6 @@ sudo zypper in \
     ripgrep-bash-completion \
     bat \
     neovim \
-    python2-neovim \
     python3-neovim \
     nodejs-default \
     npm \
@@ -24,20 +23,30 @@ sudo zypper in \
     tig \
     tmux
 
-echo "Installing fzf"
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install --all
+if ! command -v fzf &> /dev/null; then
+    echo "Installing fzf"
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install --all
+fi
 
-echo "Installing tmux plugin manager (tpm)"
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+if [ ! -d ~/.tmux/plugins/tpm ]; then
+    echo "Installing tmux plugin manager (tpm)"
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
 
-echo "Installing fast file finder (fff)"
-git clone https://github.com/dylanaraps/fff ~/.fff
-sudo make -C ~/.fff install
+if ! command -v fff &> /dev/null; then
+    echo "Installing fast file finder (fff)"
+    git clone https://github.com/dylanaraps/fff ~/.fff
+    sudo make -C ~/.fff install
+fi
 
-echo "Installing complete-alias"
-mkdir ~/.bash_completion.d
-curl https://raw.githubusercontent.com/cykerway/complete-alias/master/complete_alias > ~/.bash_completion.d/complete_alias
+if [ ! -f ~/.bash_completion.d/complete_alias ]; then
+    echo "Installing complete-alias"
+    mkdir ~/.bash_completion.d
+    curl https://raw.githubusercontent.com/cykerway/complete-alias/master/complete_alias > ~/.bash_completion.d/complete_alias
+fi
 
-echo "Installing neovim npm remote plugin"
-sudo npm install -g neovim
+if ! npm list --depth 1 --global neovim > /dev/null 2>&1; then
+    echo "Installing neovim npm remote plugin"
+    sudo npm install -g neovim
+fi
