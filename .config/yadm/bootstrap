@@ -10,6 +10,9 @@ sudo zypper in \
     neovim \
     python2-neovim \
     python3-neovim \
+    nodejs-default \
+    npm \
+    yarn \
     exa \
     ruby \
     python \
@@ -33,3 +36,6 @@ sudo make -C ~/.fff install
 echo "Installing complete-alias"
 mkdir ~/.bash_completion.d
 curl https://raw.githubusercontent.com/cykerway/complete-alias/master/complete_alias > ~/.bash_completion.d/complete_alias
+
+echo "Installing neovim npm remote plugin"
+sudo npm install -g neovim

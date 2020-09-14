@@ -116,23 +116,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/ishaat/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/ishaat/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/ishaat/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/ishaat/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
 export GPG_TTY=$(tty)
-source <(gopass completion bash)
+# source <(gopass completion bash)
 
 # Virtualenv wrapper
 export WORKON_HOME=~/.venvs
@@ -144,3 +129,21 @@ source $(which virtualenvwrapper.sh)
 
 export VISUAL=nvim
 export EDITOR="$VISUAL"
+
+# checks to see if we are in a windows or linux dir
+function isWinDir {
+  case $PWD/ in
+      /mnt/*) return $(true);;
+      *) return $(false);;
+    esac
+}
+
+# wrap the git command to either run windows git or linux
+function git {
+  if isWinDir
+    then
+        git.exe "$@"
+      else
+          /usr/bin/git "$@"
+        fi
+    }

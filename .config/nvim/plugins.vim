@@ -42,7 +42,7 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug '~/.fzf'
 
     " Preview fzf search results in floating window
-    Plug 'yuki-ycino/fzf-preview.vim'
+    Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release', 'do': ':UpdateRemotePlugins' }
 
     " #### Other ####
     " Allow vim to open file at specific line
