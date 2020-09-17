@@ -20,6 +20,7 @@ alias gco="git checkout"
 alias gcob="git checkout -b"
 # git rebase
 alias grb="git rebase"
+alias grbom="git fetch && git rebase origin/master"
 alias grbi="git rebase -i --autosquash"
 alias grbioh="git rebase -i --autosquash origin/$(git rev-parse --abbrev-ref HEAD)"
 alias rebom="git checkout master && git pull && git checkout - && git rebase master"
@@ -39,6 +40,7 @@ alias gad="git add ."
 # git reset
 alias grs="git reset"
 alias grsh="git reset --hard"
+alias grshoh="git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)"
 # git log
 alias gl="git log --oneline --decorate"
 # git revert
