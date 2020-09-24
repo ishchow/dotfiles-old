@@ -50,3 +50,10 @@ if ! npm list --depth 1 --global neovim > /dev/null 2>&1; then
     echo "Installing neovim npm remote plugin"
     sudo npm install -g neovim
 fi
+
+if ! command -v lazygit &> /dev/null; then
+    echo "Installing lazygit"
+    sudo zypper ar https://download.opensuse.org/repositories/home:Dead_Mozay/openSUSE_Tumbleweed/home:Dead_Mozay.repo
+    sudo zypper ref
+    sudo zypper in lazygit
+fi

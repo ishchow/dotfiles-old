@@ -52,6 +52,13 @@ alias gclnfd="git clean -nfd"
 alias gclfd="git clean -fd"
 alias gclnf="git clean -nf"
 alias gclf="git clean -f"
+# git diff
+alias gdf="git diff"
+alias gdfh="git diff HEAD"
+alias gdfom="git diff origin/master"
+alias gdfoh="git diff origin/HEAD"
+# git reflog
+alias grfl="git reflog"
 # move to root
 alias groot="git rev-parse --show-toplevel"
 alias cdgroot="cd $(git rev-parse --show-toplevel)"
@@ -67,3 +74,6 @@ alias zref="zypper ref"
 
 #### cat ####
 alias cat="bat"
+
+#### lazygit ####
+alias lg="lazygit"
