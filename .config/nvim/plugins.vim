@@ -6,6 +6,11 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin(stdpath('data') . '/plugged')
+    " ### LSP ###
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'nvim-lua/completion-nvim'
+    Plug 'nvim-lua/diagnostic-nvim'
+
     " #### Colorschemes ####
     Plug 'morhetz/gruvbox'
     Plug 'arcticicestudio/nord-vim'
@@ -29,13 +34,12 @@ call plug#begin(stdpath('data') . '/plugged')
    
     " Handle multi-file find and replace.
     Plug 'mhinz/vim-grepper'
-    
-    " fzf: fuzzy search
-    " Used by fzf-preview
+
+    " Fzf
     Plug '~/.fzf'
 
     " Preview fzf search results in floating window
-    Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release', 'do': ':UpdateRemotePlugins' }
+    Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'master', 'do': ':UpdateRemotePlugins' }
 
     " #### Other ####
     " Allow vim to open file at specific line

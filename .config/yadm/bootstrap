@@ -22,6 +22,15 @@ sudo zypper in \
     tig \
     tmux
 
+if ! command -v dotnet &> /dev/null; then
+    echo "Installing dotnet"
+    sudo zypper install libicu67
+    sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+    wget https://packages.microsoft.com/config/opensuse/15/prod.repo
+    sudo mv prod.repo /etc/zypp/repos.d/microsoft-prod.repo
+    sudo chown root:root /etc/zypp/repos.d/microsoft-prod.repo
+fi
+
 if ! command -v nvim &> /dev/null; then
     echo "Installing neovim nightly"
     mkdir -p ~/.local/bin

@@ -78,6 +78,8 @@ nmap <C-b> :FzfPreviewBuffers<CR>
 
 " Use vim-devicons
 let g:fzf_preview_use_dev_icons = 0
+let g:fzf_preview_command = 'cat'
+" let g:fzf_preview_command = 'bat --color=always --plain {-1}'
 
 " .............................................................................
 " mhinz/vim-grepper
