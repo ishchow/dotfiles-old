@@ -3,14 +3,13 @@
 echo "Updating system"
 sudo zypper ref && sudo zypper dup
 
-echo "Installing Core Dev Tools"
+echo "Installing core dev tools"
 sudo zypper install -t pattern devel_basis
 sudo zypper in \
+    wget \
     ripgrep \
     ripgrep-bash-completion \
     bat \
-    neovim \
-    python3-neovim \
     nodejs-default \
     npm \
     yarn \
@@ -22,6 +21,18 @@ sudo zypper in \
     hub \
     tig \
     tmux
+
+if ! command -v nvim &> /dev/null; then
+    echo "Installing neovim nightly"
+    mkdir -p ~/.local/bin
+    wget -O nvim https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+    sudo chmod u+x nvim
+fi
+
+if ! python3 -c "import pynvim" &> /dev/null; then
+    echo "Installing NeoVim python remote plugin"
+    sudo pip3 install pynvim
+fi
 
 if ! command -v fzf &> /dev/null; then
     echo "Installing fzf"
@@ -42,11 +53,11 @@ fi
 
 if [ ! -f ~/.bash_completion.d/complete_alias ]; then
     echo "Installing complete-alias"
-    mkdir ~/.bash_completion.d
+    mkdir -p ~/.bash_completion.d
     curl https://raw.githubusercontent.com/cykerway/complete-alias/master/complete_alias > ~/.bash_completion.d/complete_alias
 fi
 
-if ! npm list --depth 1 --global neovim > /dev/null 2>&1; then
+if ! npm list --depth 1 --global neovim &> /dev/null; then
     echo "Installing neovim npm remote plugin"
     sudo npm install -g neovim
 fi
