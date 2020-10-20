@@ -1,5 +1,6 @@
-# complete_alias
-source ~/.bash_completion.d/complete_alias
+for bcfile in ~/.bash_completion.d/* ; do
+    . $bcfile
+done
 
 # Complete all aliases
 for a in $(grep -oP "(?<=alias ).*(?=\=)" ~/.bash_aliases)

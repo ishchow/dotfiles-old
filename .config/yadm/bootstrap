@@ -60,12 +60,6 @@ if ! command -v fff &> /dev/null; then
     sudo make -C ~/.fff install
 fi
 
-if [ ! -f ~/.bash_completion.d/complete_alias ]; then
-    echo "Installing complete-alias"
-    mkdir -p ~/.bash_completion.d
-    curl https://raw.githubusercontent.com/cykerway/complete-alias/master/complete_alias > ~/.bash_completion.d/complete_alias
-fi
-
 if ! npm list --depth 1 --global neovim &> /dev/null; then
     echo "Installing neovim npm remote plugin"
     sudo npm install -g neovim
