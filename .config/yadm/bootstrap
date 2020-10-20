@@ -7,6 +7,7 @@ echo "Installing core dev tools"
 sudo zypper install -t pattern devel_basis
 sudo zypper in \
     wget \
+    fuse \
     ripgrep \
     ripgrep-bash-completion \
     bat \
