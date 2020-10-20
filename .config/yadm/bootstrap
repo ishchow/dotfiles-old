@@ -16,7 +16,9 @@ sudo zypper in \
     exa \
     ruby \
     python \
+    python2-pip \
     python3 \
+    python3-pip \
     git \
     hub \
     tig \
@@ -24,18 +26,18 @@ sudo zypper in \
 
 if ! command -v dotnet &> /dev/null; then
     echo "Installing dotnet"
-    sudo zypper install libicu67
     sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
     wget https://packages.microsoft.com/config/opensuse/15/prod.repo
     sudo mv prod.repo /etc/zypp/repos.d/microsoft-prod.repo
     sudo chown root:root /etc/zypp/repos.d/microsoft-prod.repo
+    sudo zypper install libicu67 aspnetcore-runtime-3.1
 fi
 
 if ! command -v nvim &> /dev/null; then
     echo "Installing neovim nightly"
-    mkdir -p ~/.local/bin
-    wget -O nvim https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
-    sudo chmod u+x nvim
+    mkdir -p ~/bin
+    wget -O ~/bin/nvim https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+    sudo chmod u+x ~/bin/nvim
 fi
 
 if ! python3 -c "import pynvim" &> /dev/null; then
