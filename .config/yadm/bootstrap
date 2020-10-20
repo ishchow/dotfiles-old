@@ -35,10 +35,15 @@ if ! command -v dotnet &> /dev/null; then
 fi
 
 if ! command -v nvim &> /dev/null; then
-    echo "Installing neovim nightly"
-    mkdir -p ~/bin
-    wget -O ~/bin/nvim https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
-    sudo chmod u+x ~/bin/nvim
+    if [[ ! -z "$WSL_DISTRO_NAME" ]]; then
+        echo "Installing Neovim"
+        sudo zypper in neovim python3-neovim
+    else
+        echo "Installing neovim nightly"
+        mkdir -p ~/bin
+        wget -O ~/bin/nvim https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+        sudo chmod u+x ~/bin/nvim
+    fi
 fi
 
 if ! python3 -c "import pynvim" &> /dev/null; then
