@@ -22,7 +22,10 @@ alias gcob="git checkout -b"
 alias grb="git rebase"
 alias grbom="git fetch && git rebase origin/master"
 alias grbi="git rebase -i --autosquash"
-alias grbioh="git rebase -i --autosquash origin/$(git rev-parse --abbrev-ref HEAD)"
+alias grbioh="git rebase -i --autosquash origin/HEAD"
+alias grbiob="git rebase -i --autosquash origin/$(git branch --show-current)"
+alias grba="git rebase --abort"
+alias grbc="git rebase --continue"
 alias rebom="git checkout master && git pull && git checkout - && git rebase master"
 # git submodule
 alias gsuir="git submodule update --init --recursive"
@@ -57,8 +60,16 @@ alias gdf="git diff"
 alias gdfh="git diff HEAD"
 alias gdfom="git diff origin/master"
 alias gdfoh="git diff origin/HEAD"
+# git cherry-pick
+alias gcp="git cherry-pick"
 # git reflog
 alias grfl="git reflog"
+# git stash
+alias gst="git stash"
+alias gsta="git stash apply"
+alias gstl="git stash list"
+alias gstp="git stash pop"
+alias gstd="git stash drop"
 # move to root
 alias groot="git rev-parse --show-toplevel"
 alias cdgroot="cd $(git rev-parse --show-toplevel)"
