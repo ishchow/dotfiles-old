@@ -6,10 +6,12 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin(stdpath('data') . '/plugged')
-    " ### LSP ###
-    Plug 'neovim/nvim-lspconfig'
-    Plug 'nvim-lua/completion-nvim'
-    Plug 'nvim-lua/diagnostic-nvim'
+    if has('nvim-0.5')
+        " ### LSP ###
+        Plug 'neovim/nvim-lspconfig'
+        Plug 'nvim-lua/completion-nvim'
+        Plug 'nvim-lua/diagnostic-nvim'
+    endif
 
     " #### Colorschemes ####
     Plug 'morhetz/gruvbox'
