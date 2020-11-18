@@ -1,10 +1,10 @@
 #/bin/bash
 
 echo "Updating system"
-sudo zypper ref && sudo zypper dup
+sudo zypper ref && sudo zypper dup -y
 
 echo "Installing core dev tools"
-sudo zypper install -t pattern devel_basis
+sudo zypper in -y -t pattern devel_basis
 sudo zypper in -y \
     wget \
     fuse \
@@ -20,6 +20,7 @@ sudo zypper in -y \
     python2-pip \
     python3 \
     python3-pip \
+    python3-virtualenvwrapper \
     git \
     hub \
     tig \
@@ -78,4 +79,17 @@ if ! command -v lazygit &> /dev/null; then
     sudo zypper ar https://download.opensuse.org/repositories/home:Dead_Mozay/openSUSE_Tumbleweed/home:Dead_Mozay.repo
     sudo zypper ref
     sudo zypper in -y lazygit
+fi
+
+if [ ! -d ~/projects ]; then
+    echo "Creating projects folder"
+    mkdir -p ~/projects
+fi
+
+if [ ! -d ~/notes ]; then
+    echo "Creating notes folder"
+    mkdir -p ~/notes
+
+    echo "Cloning personal notes"
+    git clone git@github.com:ishchow/notes-personal.git ~/notes/personal
 fi

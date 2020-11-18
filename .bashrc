@@ -102,7 +102,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+    source ~/.bash_aliases
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -118,11 +118,6 @@ fi
 
 export GPG_TTY=$(tty)
 # source <(gopass completion bash)
-
-# Virtualenv wrapper
-export WORKON_HOME=~/.venvs
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-source $(which virtualenvwrapper.sh)
 
 # FZF
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
