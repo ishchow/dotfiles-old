@@ -22,17 +22,19 @@ alias gcob="git checkout -b"
 alias grb="git rebase"
 alias grbom="git fetch && git rebase origin/master"
 alias grbi="git rebase -i --autosquash"
-alias grbioh="git rebase -i --autosquash origin/HEAD"
+alias grbioh="git rebase -i --autosquash origin HEAD"
 alias grbiob="git rebase -i --autosquash origin/$(git branch --show-current)"
 alias grba="git rebase --abort"
 alias grbc="git rebase --continue"
-alias rebom="git checkout master && git pull && git checkout - && git rebase master"
 # git submodule
 alias gsuir="git submodule update --init --recursive"
 alias gsu="git submodule update"
 # git push
 alias gpu="git push"
 alias gpuoh="git push -u origin HEAD"
+function gpucob {
+    git push origin $1:$(git branch --show-current)
+}
 # git pull
 alias gpl="git pull"
 alias gplom="git pull origin master"
@@ -62,6 +64,8 @@ alias gdfom="git diff origin/master"
 alias gdfoh="git diff origin/HEAD"
 # git cherry-pick
 alias gcp="git cherry-pick"
+alias gcpa="git cherry-pick --abort"
+alias gcpc="git cherry-pick --continue"
 # git reflog
 alias grfl="git reflog"
 # git stash
