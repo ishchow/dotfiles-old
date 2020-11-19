@@ -1,4 +1,4 @@
-Personal dotfiles. Assumes openSUSE Tumbleweed installation. Dotfils managed using yadm.
+Personal dotfiles. Assumes openSUSE Tumbleweed installation. Dotfils managed using [yadm](https://yadm.io/).
 
 # Install yadm
 
