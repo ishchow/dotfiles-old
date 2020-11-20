@@ -78,8 +78,7 @@ if [ $(find ~/.ssh -name "id*" | wc -l) -eq 0 ]; then
     bw logout
 
     echo "Adding key to ssh config..."
-    printf 'Host github.com\n\tIdentityFile ~/.ssh/id_ed25519\n' >> ~/.ssh/config
-    echo "IdentityFile /home/$USER/.ssh/id_ed25519" >> ~/ssh/config
+    echo "IdentityFile /home/$USER/.ssh/id_ed25519" >> ~/.ssh/config
 
     echo "Cloning dotfiles..."
     if [ $status_code -eq 201 ]; then
