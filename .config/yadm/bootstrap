@@ -4,6 +4,7 @@ gh_email=${gh_email:-ishaat@ualberta.ca}
 gh_username=${gh_username:-ishchow}
 gh_key_name=${gh_key_name:-$hostname}
 gh_access_token_name=${gh_access_token_name:-access-token-jeos-setup-script}
+yadm_class=${yadm_class:-Personal} # Set to Work for work profile
 
 # parse args
 # taken from: https://brianchildress.co/named-parameters-in-bash/
@@ -88,6 +89,9 @@ if [[ $(find ~/.ssh -name "id*" | wc -l) -eq 0 ]]; then
     else
         yadm clone https://github.com/ishchow/dotfiles.git --no-bootstrap
     fi
+
+    echo "Setting yadm class..."
+    yadm config local.class $yadm_class
 fi
 
 if [ ! command -v dotnet &> /dev/null ]; then

@@ -1,22 +1,18 @@
 Personal dotfiles. Assumes openSUSE Tumbleweed installation. Dotfils managed using [yadm](https://yadm.io/).
 
-# Install yadm
+# Run bootstrap script
 
-```
-zypper addrepo https://download.opensuse.org/repositories/home:TheLocehiliosan:yadm/openSUSE_Tumbleweed/home:TheLocehiliosan:yadm.repo
-zypper refresh
-zypper install yadm
-```
+Run with default arguments:
 
-# Clone dotfiles repo
+`curl https://raw.githubusercontent.com/ishchow/dotfiles/master/.config/yadm/bootstrap | sudo bash -s`
 
-```
-yadm clone git@github.com:ishchow/dotfiles.git
-```
+Run with arguments:
 
-When prompted to, run the bootstrap script.
+`curl https://raw.githubusercontent.com/ishchow/dotfiles/master/.config/yadm/bootstrap | sudo bash -s -- -yadm_class Work`
 
-# Set yadm class (for alternate files)
+Note: see bootstrap script for all possible arguments.
+
+# Update yadm class (for alternate files)
 
 ```
 yadm config local.class Personal # Use Work for work profile
