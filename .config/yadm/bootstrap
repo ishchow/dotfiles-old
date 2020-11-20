@@ -54,14 +54,14 @@ if [ ! command -v yadm &> /dev/null ]; then
     sudo zypper in -y yadm
 fi
 
-if [ ! command -v bw &> /dev/null ]; then
+if [ ! npm list --depth 1 --global bw &> /dev/null ]; then
     echo "Installing bitwarden cli..."
     sudo npm install -g @bitwarden/cli
 fi
 
-if [[ $(find ~/.ssh -name "id*" | wc -l) -eq 0 ]]; then
+if [ $(find ~/.ssh -name "id*" | wc -l) -eq 0 ]; then
     echo "Generating ssh key..."
-    ssh-keygen -t ed25519 -C "gh_email" -f ~/.ssh/id_ed25519 -N NULL
+    ssh-keygen -t ed25519 -C "$gh_email" -f ~/.ssh/id_ed25519 -N NULL
 
     echo "Logging into bitwarden..."
     bw login | tee session.txt
