@@ -1,12 +1,31 @@
 #/bin/bash
 
+gh_email=${gh_email:-ishaat@ualberta.ca}
+gh_username=${gh_username:-ishchow}
+gh_key_name=${gh_key_name:-$hostname}
+gh_access_token_name=${gh_access_token_name:-access-token-jeos-setup-script}
+
+# parse args
+# taken from: https://brianchildress.co/named-parameters-in-bash/
+while [ $# -gt 0 ]; do
+    if [[ $1 == *"--"* ]]; then
+        param="${1/--/}"
+        declare $param="$2"
+        # echo $1 $2 // Optional to see the parameter:value result
+    fi
+    shift
+done
+
 echo "Updating system"
 sudo zypper ref && sudo zypper dup -y
 
-echo "Installing core dev tools"
+echo "Installing core packages"
 sudo zypper in -y -t pattern devel_basis
 sudo zypper in -y \
     wget \
+    tree \
+    curl \
+    jq \
     fuse \
     ripgrep \
     ripgrep-bash-completion \
@@ -22,11 +41,56 @@ sudo zypper in -y \
     python3-pip \
     python3-virtualenvwrapper \
     git \
+    gpg2 \
     hub \
     tig \
     tmux
 
-if ! command -v dotnet &> /dev/null; then
+if [ ! command -v yadm &> /dev/null ]; then
+    echo "Installing yadm"
+    sudo zypper ar https://download.opensuse.org/repositories/home:TheLocehiliosan:yadm/openSUSE_Tumbleweed/home:TheLocehiliosan:yadm.repo
+    sudo zypper ref
+    sudo zypper in -y yadm
+fi
+
+if [ ! command -v bw &> /dev/null ]; then
+    echo "Installing bitwarden cli..."
+    sudo npm install -g @bitwarden/cli
+fi
+
+if [[ $(find ~/.ssh -name "id*" | wc -l) -eq 0 ]]; then
+    echo "Generating ssh key..."
+    ssh-keygen -t ed25519 -C "gh_email" -f ~/.ssh/id_ed25519 -N NULL
+
+    echo "Logging into bitwarden..."
+    bw login | tee session.txt
+    $(cat session.txt | grep export | sed 's/\$//g')
+
+    echo "Uploading ssh key to Github..."
+    access_token=$(bw list items --search github \
+        | jq --arg ghuser "$gh_username" 'map(select(.object == "item" and .login.username == $ghuser))[0]' \
+        | jq --arg atn "$gh_access_token_name" '.fields | map(select(.name == $atn))[0].value' \
+        | sed 's/"//g')
+    payload=$(jq --indent 0 -n --arg pubkey "$pubkey" --arg title "$gh_key_name" '{title: $title, key: $pubkey}')
+    status_code=$(curl -s -o /dev/null -L -w "%{http_code}\\n" -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token $access_token" -d "$payload" https://api.github.com/user/keys)
+
+    echo "Logging out of bitwarden..."
+    rm session.txt
+    bw logout
+
+    echo "Adding key to ssh config..."
+    printf 'Host github.com\n\tIdentityFile ~/.ssh/id_ed25519\n' >> ~/.ssh/config
+    echo "IdentityFile /home/$USER/.ssh/id_ed25519" >> ~/ssh/config
+
+    echo "Cloning dotfiles..."
+    if [ $status_code -eq 201 ]; then
+        yadm clone git@github.com:ishchow/dotfiles.git --no-bootstrap
+    else
+        yadm clone https://github.com/ishchow/dotfiles.git --no-bootstrap
+    fi
+fi
+
+if [ ! command -v dotnet &> /dev/null ]; then
     echo "Installing dotnet"
     sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
     wget https://packages.microsoft.com/config/opensuse/15/prod.repo
@@ -35,8 +99,8 @@ if ! command -v dotnet &> /dev/null; then
     sudo zypper in -y libicu67 aspnetcore-runtime-3.1
 fi
 
-if ! command -v nvim &> /dev/null; then
-    if [[ ! -z "$WSL_DISTRO_NAME" ]]; then
+if [ ! command -v nvim &> /dev/null ]; then
+    if [ ! -z "$WSL_DISTRO_NAME" ]; then
         echo "Installing Neovim"
         sudo zypper in -y neovim python3-neovim
     else
@@ -47,12 +111,12 @@ if ! command -v nvim &> /dev/null; then
     fi
 fi
 
-if ! python3 -c "import pynvim" &> /dev/null; then
+if [ ! python3 -c "import pynvim" &> /dev/null ]; then
     echo "Installing NeoVim python remote plugin"
     sudo pip3 install pynvim
 fi
 
-if ! command -v fzf &> /dev/null; then
+if [ ! command -v fzf &> /dev/null ]; then
     echo "Installing fzf"
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     ~/.fzf/install --all
@@ -63,18 +127,18 @@ if [ ! -d ~/.tmux/plugins/tpm ]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
-if ! command -v fff &> /dev/null; then
+if [ ! command -v fff &> /dev/null ]; then
     echo "Installing fast file finder (fff)"
     git clone https://github.com/dylanaraps/fff ~/.fff
     sudo make -C ~/.fff install
 fi
 
-if ! npm list --depth 1 --global neovim &> /dev/null; then
+if [ ! npm list --depth 1 --global neovim &> /dev/null ]; then
     echo "Installing neovim npm remote plugin"
     sudo npm install -g neovim
 fi
 
-if ! command -v lazygit &> /dev/null; then
+if [ ! command -v lazygit &> /dev/null ]; then
     echo "Installing lazygit"
     sudo zypper ar https://download.opensuse.org/repositories/home:Dead_Mozay/openSUSE_Tumbleweed/home:Dead_Mozay.repo
     sudo zypper ref
@@ -86,10 +150,8 @@ if [ ! -d ~/projects ]; then
     mkdir -p ~/projects
 fi
 
-if [ ! -d ~/notes ]; then
-    echo "Creating notes folder"
-    mkdir -p ~/notes
-
+if [ ! -d ~/notes/personal ]; then
     echo "Cloning personal notes"
+    mkdir -p ~/notes/personal
     git clone git@github.com:ishchow/notes-personal.git ~/notes/personal
 fi
