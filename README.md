@@ -1,4 +1,4 @@
-Personal dotfiles. Assumes openSUSE Tumbleweed installation. Dotfils managed using [yadm](https://yadm.io/).
+Personal dotfiles. Assumes openSUSE Tumbleweed installation. Dotfiles managed using [yadm](https://yadm.io/).
 
 # Run bootstrap script
 
@@ -8,7 +8,7 @@ Run with default arguments:
 
 Run with arguments:
 
-`curl https://raw.githubusercontent.com/ishchow/dotfiles/master/.config/yadm/bootstrap | sudo bash -s -- -yadm_class Work`
+`curl https://raw.githubusercontent.com/ishchow/dotfiles/master/.config/yadm/bootstrap | sudo bash -s -- -yadm_class Work -gh_key_name personal-t480-hyperv-tw-jeos`
 
 Note: see bootstrap script for all possible arguments.
 
