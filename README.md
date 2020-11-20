@@ -4,11 +4,11 @@ Personal dotfiles. Assumes openSUSE Tumbleweed installation. Dotfiles managed us
 
 Run with default arguments:
 
-`curl https://raw.githubusercontent.com/ishchow/dotfiles/master/.config/yadm/bootstrap | sudo bash -s`
+`curl -s https://raw.githubusercontent.com/ishchow/dotfiles/master/.config/yadm/bootstrap | sudo bash -s`
 
 Run with arguments:
 
-`curl https://raw.githubusercontent.com/ishchow/dotfiles/master/.config/yadm/bootstrap | sudo bash -s -- -yadm_class Work -gh_key_name personal-t480-hyperv-tw-jeos`
+`curl -s https://raw.githubusercontent.com/ishchow/dotfiles/master/.config/yadm/bootstrap | sudo bash -s -- -yadm_class Work -gh_key_name personal-t480-hyperv-tw-jeos`
 
 Note: see bootstrap script for all possible arguments.
 
