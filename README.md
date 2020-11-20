@@ -18,7 +18,9 @@ Run with arguments:
 
 `./bootstrap -yadm_class Personal -gh_key_name personal-t480-hyperv-tw-jeos`
 
-Note: see bootstrap script for all possible arguments.
+Delete downloaded setup script:
+
+`rm bootstrap`
 
 # Update yadm class (for alternate files)
 
