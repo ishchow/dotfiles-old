@@ -67,13 +67,16 @@ if [[ $(find ~/.ssh -name "id*" | wc -l) -eq 0 ]]; then
     bw login | tee session.txt
     $(cat session.txt | grep export | sed 's/\$//g')
 
-    echo "Uploading ssh key to Github..."
+    echo "Getting GitHub access token..."
     access_token=$(bw list items --search github \
         | jq --arg ghuser "$gh_username" 'map(select(.object == "item" and .login.username == $ghuser))[0]' \
         | jq --arg atn "$gh_access_token_name" '.fields | map(select(.name == $atn))[0].value' \
         | sed 's/"//g')
+        
+    echo "Uploading ssh key..."
     payload=$(jq --indent 0 -n --arg pubkey "$pubkey" --arg title "$gh_key_name" '{title: $title, key: $pubkey}')
     status_code=$(curl -s -o /dev/null -L -w "%{http_code}\\n" -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token $access_token" -d "$payload" https://api.github.com/user/keys)
+    echo "Uploading ssh key completed with status code $status_code..."
 
     echo "Logging out of bitwarden..."
     rm session.txt
