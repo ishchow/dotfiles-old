@@ -61,7 +61,7 @@ fi
 
 if [[ $(find ~/.ssh -name "id*" | wc -l) -eq 0 ]]; then
     echo "Generating ssh key..."
-    ssh-keygen -t ed25519 -C "$gh_email" -f ~/.ssh/id_ed25519 -N NULL
+    ssh-keygen -t ed25519 -C "$gh_email" -f ~/.ssh/id_ed25519 -N ""
 
     echo "Logging into bitwarden..."
     session_id=$(bw login --raw)
@@ -82,7 +82,7 @@ if [[ $(find ~/.ssh -name "id*" | wc -l) -eq 0 ]]; then
     bw logout
 
     echo "Adding key to ssh config..."
-    echo "IdentityFile /home/$USER/.ssh/id_ed25519" >> ~/.ssh/config
+    printf 'Host *\n\tIdentityFile ~/.ssh/id_ed25519\n' >> config
 
     echo "Cloning dotfiles..."
     if [ $status_code -eq 201 ]; then
