@@ -85,6 +85,33 @@ let g:fzterm_height_ration = "0.85"
 let g:grepper={}
 let g:grepper.tools=["rg"]
 
+" .............................................................................
+" vimwiki/vimwiki
+" .............................................................................
+
+" Don't treat all *.md files as a vimwiki
+let g:vimwiki_global_ext = 0
+" Disable url shortening
+let g:vimwiki_url_maxsave=0
+
+let g:vimwiki_list = [
+    \ {'path': '~/wikis/dev', 'syntax': 'markdown', 'ext': '.md'},
+    \ {'path': '~/wikis/personal', 'syntax': 'markdown', 'ext': '.md'},
+    \ {'path': '~/wikis/work', 'syntax': 'markdown', 'ext': '.md'},
+    \ {'path': '~/wikis/music', 'syntax': 'markdown', 'ext': '.md'},
+    \ {'path': '~/wikis/writing', 'syntax': 'markdown', 'ext': '.md'},
+    \ ]
+
+augroup vimwikigroup
+    autocmd!
+    " automatically update links on read diary
+    autocmd BufRead,BufNewFile diary.md VimwikiDiaryGenerateLinks
+
+    au BufNewFile */diary/[0-9]*.md 0r !~/.config/nvim/bin/create-vimwiki-diary-entry '%'
+augroup end
+
+" let g:vimwiki_list = [wiki_1]
+
 " After searching for text, press this mapping to do a project wide find and
 " replace. It's similar to <leader>r except this one applies to all matches
 " across all files instead of just the current file.
@@ -99,4 +126,4 @@ xmap <Leader>R
     \ "sy
     \ gvgr
     \ :cfdo %s/<C-r>s//g \| update
-     \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+    \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>

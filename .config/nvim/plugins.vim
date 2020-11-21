@@ -51,4 +51,7 @@ call plug#begin(stdpath('data') . '/plugged')
 
     " Create floating terminals
     Plug 'voldikss/vim-floaterm'
+
+    " Note taking and wiki
+    Plug 'vimwiki/vimwiki'
 call plug#end()
