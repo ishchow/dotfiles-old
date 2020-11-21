@@ -2,7 +2,7 @@
 
 gh_email=${gh_email:-ishaat@ualberta.ca}
 gh_username=${gh_username:-ishchow}
-gh_key_name=${gh_key_name:-$hostname}
+gh_key_name=${gh_key_name:-$HOSTNAME}
 gh_access_token_name=${gh_access_token_name:-access-token-jeos-setup-script}
 yadm_class=${yadm_class:-Personal} # Set to Work for work profile
 
@@ -17,10 +17,10 @@ while [ $# -gt 0 ]; do
     shift
 done
 
-echo "Updating system"
+echo "Updating system..."
 sudo zypper ref && sudo zypper dup -y
 
-echo "Installing core packages"
+echo "Installing core packages..."
 sudo zypper in -y -t pattern devel_basis
 sudo zypper in -y \
     wget \
@@ -48,7 +48,7 @@ sudo zypper in -y \
     tmux
 
 if ! command -v yadm &> /dev/null; then
-    echo "Installing yadm"
+    echo "Installing yadm..."
     sudo zypper ar https://download.opensuse.org/repositories/home:TheLocehiliosan:yadm/openSUSE_Tumbleweed/home:TheLocehiliosan:yadm.repo
     sudo zypper ref
     sudo zypper in -y yadm
@@ -126,30 +126,30 @@ if ! command -v fzf &> /dev/null; then
 fi
 
 if [ ! -d ~/.tmux/plugins/tpm ]; then
-    echo "Installing tmux plugin manager (tpm)"
+    echo "Installing tmux plugin manager (tpm)..."
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
 if ! command -v fff &> /dev/null; then
-    echo "Installing fast file finder (fff)"
+    echo "Installing fast file finder (fff)..."
     git clone https://github.com/dylanaraps/fff ~/.fff
     sudo make -C ~/.fff install
 fi
 
 if ! npm list --depth 1 --global neovim &> /dev/null; then
-    echo "Installing neovim npm remote plugin"
+    echo "Installing neovim npm remote plugin..."
     sudo npm install -g neovim
 fi
 
 if ! command -v lazygit &> /dev/null; then
-    echo "Installing lazygit"
+    echo "Installing lazygit..."
     sudo zypper ar https://download.opensuse.org/repositories/home:Dead_Mozay/openSUSE_Tumbleweed/home:Dead_Mozay.repo
     sudo zypper ref
     sudo zypper in -y lazygit
 fi
 
 if [ ! -d ~/projects ]; then
-    echo "Creating projects folder"
+    echo "Creating projects folder..."
     mkdir -p ~/projects
 fi
 
