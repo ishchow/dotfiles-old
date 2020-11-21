@@ -1,6 +1,6 @@
 local diagnostic = require('diagnostic')
 local completion = require('completion')
-local nvim_lsp = require('nvim_lsp')
+local lspconfig = require('lspconfig')
 
 local on_attach = function(client, bufnr)
   diagnostic.on_attach(client, bufnr)
@@ -19,14 +19,14 @@ local on_attach = function(client, bufnr)
 end
 
 -- Language server setup
-nvim_lsp.pyls_ms.setup{
+lspconfig.pyls_ms.setup{
   on_attach = on_attach
 }
 
-nvim_lsp.vimls.setup{
+lspconfig.vimls.setup{
   on_attach = on_attach
 }
 
-nvim_lsp.html.setup{
+lspconfig.html.setup{
   on_attach = on_attach
 }
