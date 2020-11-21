@@ -154,7 +154,7 @@ if [ ! -d ~/notes/personal ]; then
     echo "Cloning personal notes"
     mkdir -p ~/notes/personal
     git clone git@github.com:ishchow/notes-personal.git ~/notes/personal
-    if [! $? -eq 0]; then
+    if [ ! $? -eq 0 ]; then
         git clone https://github.com/ishchow/notes-personal.git ~/notes/personal
     fi
 fi
