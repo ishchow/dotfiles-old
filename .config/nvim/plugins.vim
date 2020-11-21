@@ -38,23 +38,14 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'mhinz/vim-grepper'
 
     " Fzf
-    Plug '~/.fzf'
+    " Plug '~/.fzf'
 
-    " Preview fzf search results in floating window
-    Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'master', 'do': ':UpdateRemotePlugins' }
-
-    " #### Other ####
-    " Allow vim to open file at specific line
-    " Needed by fzf-preview
-    Plug 'wsdjeg/vim-fetch'
+    " Open fzf in floating window
+    Plug 'https://github.com/LoricAndre/fzterm.nvim'
 
     " Comments
     Plug 'tomtom/tcomment_vim'
 
-    " Jump to line on quickfix window
-    " Needed by fzf-preview
-    Plug 'rbtnn/vim-jumptoline'
-    "
     " Quotes/Paranthesizing
     Plug 'tpope/vim-surround'
 
@@ -64,4 +55,3 @@ call plug#begin(stdpath('data') . '/plugged')
     " Create floating terminals
     Plug 'voldikss/vim-floaterm'
 call plug#end()
-

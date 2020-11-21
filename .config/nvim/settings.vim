@@ -68,18 +68,16 @@ set list lcs=tab:\|\ " (here is a space)
 " .............................................................................
 " voldikss/vim-floaterm
 " .............................................................................
-nnoremap <C-n> :FloatermNew fff<CR>
+nnoremap <Leader>n :FloatermNew fff<CR>
 
 " .............................................................................
-" fzf-preview
+" fzterm.nvim
 " .............................................................................
-nmap <C-p> :FzfPreviewDirectoryFiles<CR>
-nmap <C-b> :FzfPreviewBuffers<CR>
+nmap <Leader>f :Files<CR>
+nmap <Leader>b :Buffers<CR>
 
-" Use vim-devicons
-let g:fzf_preview_use_dev_icons = 0
-let g:fzf_preview_command = 'cat'
-" let g:fzf_preview_command = 'bat --color=always --plain {-1}'
+let g:fzterm_width_ratio = "0.85"
+let g:fzterm_height_ration = "0.85"
 
 " .............................................................................
 " mhinz/vim-grepper

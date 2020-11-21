@@ -23,10 +23,6 @@ lspconfig.pyls_ms.setup{
   on_attach = on_attach
 }
 
-lspconfig.vimls.setup{
-  on_attach = on_attach
-}
-
 lspconfig.html.setup{
   on_attach = on_attach
 }
