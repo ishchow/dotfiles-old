@@ -104,15 +104,11 @@ if ! command -v dotnet &> /dev/null; then
 fi
 
 if ! command -v nvim &> /dev/null; then
-    if [ ! -z "$WSL_DISTRO_NAME" ]; then
-        echo "Installing Neovim"
-        sudo zypper in -y neovim python3-neovim
-    else
-        echo "Installing neovim nightly"
-        mkdir -p ~/bin
-        wget -O ~/bin/nvim https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
-        sudo chmod u+x ~/bin/nvim
-    fi
+    echo "Installing neovim from source..."
+    sudo zypper in -y ninja libtool autoconf automake cmake gcc-c++ gettext-tools
+    git clone https://github.com/neovim/neovim.git ~/.nvim
+    make CMAKE_BUILD_TYPE=RelWithDebInfo -C ~/.nvim
+    sudo make -C ~/.nvim install
 fi
 
 if ! python3 -c "import pynvim" &> /dev/null; then
