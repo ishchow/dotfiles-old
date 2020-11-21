@@ -37,17 +37,14 @@ call plug#begin(stdpath('data') . '/plugged')
     " Handle multi-file find and replace.
     Plug 'mhinz/vim-grepper'
 
-    " Fzf
-    " Plug '~/.fzf'
-
     " Open fzf in floating window
-    Plug 'https://github.com/LoricAndre/fzterm.nvim'
+    Plug 'LoricAndre/fzterm.nvim'
 
     " Comments
     Plug 'tomtom/tcomment_vim'
 
     " Quotes/Paranthesizing
-    Plug 'tpope/vim-surround'
+    Plug 'machakann/vim-sandwich'
 
     " Todo txt plugin 
     Plug 'https://gitlab.com/dbeniamine/todo.txt-vim.git'

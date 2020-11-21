@@ -45,7 +45,10 @@ sudo zypper in -y \
     gpg2 \
     hub \
     tig \
-    tmux
+    tmux \
+    fzf \
+    fzf-bash-completion \
+    fzf-tmux
 
 if ! command -v bw &> /dev/null; then
     echo "Installing bitwarden cli..."
@@ -114,12 +117,6 @@ fi
 if ! python3 -c "import pynvim" &> /dev/null; then
     echo "Installing NeoVim python remote plugin"
     sudo pip3 install pynvim
-fi
-
-if ! command -v fzf &> /dev/null; then
-    echo "Installing fzf"
-    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    ~/.fzf/install --all
 fi
 
 if [ ! -d ~/.tmux/plugins/tpm ]; then

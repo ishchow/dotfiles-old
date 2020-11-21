@@ -119,8 +119,8 @@ fi
 export GPG_TTY=$(tty)
 # source <(gopass completion bash)
 
-# FZF
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# Enable fzf keybindings
+source /usr/share/bash-completion/completions/fzf-key-bindings
 
 export VISUAL=nvim
 export EDITOR="$VISUAL"
@@ -144,3 +144,4 @@ if [[ ! -z "$WSL_DISTRO_NAME" ]]; then
         fi
     }
 fi
+
