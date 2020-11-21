@@ -73,7 +73,7 @@ if [[ $(find ~/.ssh -name "id*" | wc -l) -eq 0 ]]; then
         | sed 's/"//g')
         
     echo "Uploading ssh key..."
-    pubkey=$(cat ~/.ssh/~/.ssh/id_ed25519.pub)
+    pubkey=$(cat ~/.ssh/id_ed25519.pub)
     payload=$(jq --indent 0 -n --arg pubkey "$pubkey" --arg title "$gh_key_name" '{title: $title, key: $pubkey}')
     status_code=$(curl -s -o /dev/null -L -w "%{http_code}\\n" -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token $access_token" -d "$payload" https://api.github.com/user/keys)
     echo "Upload of ssh key completed with status code $status_code..."
