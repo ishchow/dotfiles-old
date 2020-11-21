@@ -16,7 +16,7 @@ Run with default arguments:
 
 Run with arguments:
 
-`./bootstrap -yadm_class Personal -gh_key_name personal-t480-hyperv-tw-jeos`
+`./bootstrap --yadm_class Personal --gh_key_name personal-t480-hyperv-tw-jeos`
 
 Delete downloaded setup script:
 
