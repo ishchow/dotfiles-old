@@ -84,14 +84,14 @@ if ! command -v yadm &> /dev/null; then
     sudo zypper --gpg-auto-import-keys ref
     sudo zypper in -y yadm
     
-    echo "Setting yadm class..."
-    yadm config local.class $yadm_class
-    
     echo "Cloning dotfiles..."
     yadm clone git@github.com:ishchow/dotfiles.git --no-bootstrap
     if [ ! $? -eq 0 ]; then
         yadm clone https://github.com/ishchow/dotfiles.git --no-bootstrap
     fi
+    
+    echo "Setting yadm class..."
+    yadm config local.class $yadm_class
 fi
 
 if ! command -v dotnet &> /dev/null; then
