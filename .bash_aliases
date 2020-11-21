@@ -1,12 +1,17 @@
 #### sudo ####
 alias sudo='sudo '
 
+
 #### git ####
 # git fetch
 alias gf='git fetch'
 # git status
 alias gs='git status'
 # git branch
+function gbrdef() {
+    origin_name=${1:-origin}
+    git remote show $origin_name | grep "HEAD branch" | sed 's/.* //'
+}
 alias gbr='git branch'
 alias gbrd='git branch -d'
 alias gbrD='git branch -D'
@@ -20,7 +25,7 @@ alias gco='git checkout'
 alias gcob='git checkout -b'
 # git rebase
 alias grb='git rebase'
-alias grbom='git fetch && git rebase origin/master'
+alias grbom='git fetch && git rebase origin/$(gbrdef)'
 alias grbi='git rebase -i --autosquash'
 alias grbioh='git rebase -i --autosquash origin HEAD'
 alias grbiob='git rebase -i --autosquash origin/$(git branch --show-current)'
@@ -37,7 +42,7 @@ function gpucob {
 }
 # git pull
 alias gpl='git pull'
-alias gplom='git pull origin master'
+alias gplom='git pull origin $(gbrdef)'
 # git add
 alias ga='git add'
 alias gau='git add -u'
@@ -60,7 +65,7 @@ alias gclf='git clean -f'
 # git diff
 alias gdf='git diff'
 alias gdfh='git diff HEAD'
-alias gdfom='git diff origin/master'
+alias gdfom='git diff origin/$(gbrdef)'
 alias gdfoh='git diff origin/HEAD'
 # git cherry-pick
 alias gcp='git cherry-pick'
@@ -78,6 +83,7 @@ alias gstd='git stash drop'
 alias groot='git rev-parse --show-toplevel'
 alias cdgroot='cd $(git rev-parse --show-toplevel)'
 
+
 ##### zypper ####
 alias zin='zypper in'
 alias zrm='zypper rm'
@@ -87,8 +93,10 @@ alias zar='zypper ar'
 alias zrr='zypper rr'
 alias zref='zypper ref'
 
+
 #### cat ####
 alias cat='bat'
+
 
 #### lazygit ####
 alias lg='lazygit'
