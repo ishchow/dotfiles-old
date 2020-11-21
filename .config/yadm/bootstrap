@@ -47,13 +47,6 @@ sudo zypper in -y \
     tig \
     tmux
 
-if ! command -v yadm &> /dev/null; then
-    echo "Installing yadm..."
-    sudo zypper ar https://download.opensuse.org/repositories/home:TheLocehiliosan:yadm/openSUSE_Tumbleweed/home:TheLocehiliosan:yadm.repo
-    sudo zypper --gpg-auto-import-keys ref
-    sudo zypper in -y yadm
-fi
-
 if ! command -v bw &> /dev/null; then
     echo "Installing bitwarden cli..."
     sudo npm install -g @bitwarden/cli
@@ -83,16 +76,22 @@ if [[ $(find ~/.ssh -name "id*" | wc -l) -eq 0 ]]; then
 
     echo "Adding key to ssh config..."
     printf 'Host *\n\tIdentityFile ~/.ssh/id_ed25519\n' >> config
+fi
 
-    echo "Cloning dotfiles..."
-    if [ $status_code -eq 201 ]; then
-        yadm clone git@github.com:ishchow/dotfiles.git --no-bootstrap
-    else
-        yadm clone https://github.com/ishchow/dotfiles.git --no-bootstrap
-    fi
-
+if ! command -v yadm &> /dev/null; then
+    echo "Installing yadm..."
+    sudo zypper ar https://download.opensuse.org/repositories/home:TheLocehiliosan:yadm/openSUSE_Tumbleweed/home:TheLocehiliosan:yadm.repo
+    sudo zypper --gpg-auto-import-keys ref
+    sudo zypper in -y yadm
+    
     echo "Setting yadm class..."
     yadm config local.class $yadm_class
+    
+    echo "Cloning dotfiles..."
+    yadm clone git@github.com:ishchow/dotfiles.git --no-bootstrap
+    if [ ! $? -eq 0 ]; then
+        yadm clone https://github.com/ishchow/dotfiles.git --no-bootstrap
+    fi
 fi
 
 if ! command -v dotnet &> /dev/null; then
@@ -155,4 +154,7 @@ if [ ! -d ~/notes/personal ]; then
     echo "Cloning personal notes"
     mkdir -p ~/notes/personal
     git clone git@github.com:ishchow/notes-personal.git ~/notes/personal
+    if [! $? -eq 0]; then
+        git clone https://github.com/ishchow/notes-personal.git ~/notes/personal
+    fi
 fi
