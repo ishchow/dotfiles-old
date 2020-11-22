@@ -113,10 +113,10 @@ let g:vimwiki_url_maxsave=0
 let g:vimwiki_folding= ''
 
 let g:vimwiki_list = [
-    \ {'path': '~/wikis/dev', 'syntax': 'markdown', 'ext': '.md'},
-    \ {'path': '~/wikis/personal', 'syntax': 'markdown', 'ext': '.md'},
-    \ {'path': '~/wikis/music', 'syntax': 'markdown', 'ext': '.md'},
-    \ {'path': '~/wikis/writing', 'syntax': 'markdown', 'ext': '.md'},
+    \ {'path': '~/wikis/default/dev', 'syntax': 'markdown', 'ext': '.md'},
+    \ {'path': '~/wikis/default/personal', 'syntax': 'markdown', 'ext': '.md'},
+    \ {'path': '~/wikis/default/music', 'syntax': 'markdown', 'ext': '.md'},
+    \ {'path': '~/wikis/default/writing', 'syntax': 'markdown', 'ext': '.md'},
     \ ]
 
 augroup vimwikigroup

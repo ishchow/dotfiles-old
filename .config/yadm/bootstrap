@@ -147,11 +147,17 @@ if [ ! -d ~/projects ]; then
     mkdir -p ~/projects
 fi
 
-if [ ! -d ~/notes/personal ]; then
-    echo "Cloning personal notes"
-    mkdir -p ~/notes/personal
-    git clone git@github.com:ishchow/notes-personal.git ~/notes/personal
-    if [ ! $? -eq 0 ]; then
-        git clone https://github.com/ishchow/notes-personal.git ~/notes/personal
+if [ ! -d ~/.git-sync ]; then
+    echo "Downloading git-sync..."
+    git clone https://github.com/simonthum/git-sync.git ~/.git-sync
+
+fi
+
+if [ ! -d ~/wikis/default ]; then
+    echo "Cloning personal wikis..."
+    if git clone git@github.com:ishchow/wikis.git ~/wikis/default ; then
+        echo "Starting systemd services/timers for personal wikis..."
+        systemctl --user --now enable git-sync@$(systemd-escape "$HOME/wikis/default").service
+        systemctl --user --now enable git-sync@$(systemd-escape "$HOME/wikis/default").timer
     fi
 fi
