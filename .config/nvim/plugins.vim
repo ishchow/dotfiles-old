@@ -16,17 +16,23 @@ call plug#begin(stdpath('data') . '/plugged')
     " #### Colorschemes ####
     Plug 'morhetz/gruvbox'
     Plug 'arcticicestudio/nord-vim'
-    
+    " #### Colorschemes ####
+
+    " #### Editing ####
+    " Comments
+    Plug 'tomtom/tcomment_vim'
+    " Quotes/Paranthesizing
+    Plug 'machakann/vim-sandwich'
+    " #### Editing ####
+
     " #### Cosmetic Stuff ####
     " Display thin vertical lines for indents
     Plug 'Yggdroot/indentLine'
     
     " Status bar
     Plug 'itchyny/lightline.vim'
+    " #### Cosmetic Stuff ####
     
-    " Jinja/Nunjucks Template Highlighting
-    Plug 'lepture/vim-jinja'
-
     " #### Search ####
     " Automatically clear search highlight after cursor moves
     Plug 'haya14busa/is.vim'
@@ -39,13 +45,9 @@ call plug#begin(stdpath('data') . '/plugged')
 
     " Open fzf in floating window
     Plug 'LoricAndre/fzterm.nvim'
-
-    " Comments
-    Plug 'tomtom/tcomment_vim'
-
-    " Quotes/Paranthesizing
-    Plug 'machakann/vim-sandwich'
-
+    " #### Search ####
+ 
+    " #### Misc ####"
     " Todo txt plugin 
     Plug 'https://gitlab.com/dbeniamine/todo.txt-vim.git'
 
@@ -54,4 +56,10 @@ call plug#begin(stdpath('data') . '/plugged')
 
     " Note taking and wiki
     Plug 'vimwiki/vimwiki'
+    " #### Misc ####"
+
+    " #### Syntax Highlighting ####
+    " Jinja/Nunjucks Template Highlighting
+    Plug 'lepture/vim-jinja'
+    " #### Syntax Highlighting ####
 call plug#end()
