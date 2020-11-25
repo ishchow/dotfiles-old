@@ -50,6 +50,14 @@ sudo zypper in -y \
     fzf-bash-completion \
     fzf-tmux
 
+if ! command -v nmblookup &> /dev/null; then
+    echo "Setting up Samba..."
+    sudo zypper in -y samba samba-client samba-winbind
+    sudo systemctl disable --now firewalld 
+    sudo systemctl enable --now nmb
+    sudo systemctl enable --now winbind
+fi
+
 if ! command -v bw &> /dev/null; then
     echo "Installing bitwarden cli..."
     sudo npm install -g @bitwarden/cli
