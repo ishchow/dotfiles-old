@@ -23,12 +23,15 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'tomtom/tcomment_vim'
     " Quotes/Paranthesizing
     Plug 'machakann/vim-sandwich'
+    " Automatically add pairs for code punctuation
+    Plug 'jiangmiao/auto-pairs'
+    " Git gutter
+    Plug 'airblade/vim-gitgutter'
     " #### Editing ####
 
     " #### Cosmetic Stuff ####
     " Display thin vertical lines for indents
     Plug 'Yggdroot/indentLine'
-    
     " Status bar
     Plug 'itchyny/lightline.vim'
     " #### Cosmetic Stuff ####
@@ -36,27 +39,33 @@ call plug#begin(stdpath('data') . '/plugged')
     " #### Search ####
     " Automatically clear search highlight after cursor moves
     Plug 'haya14busa/is.vim'
-
     " Modify * to also work with visual selections.
     Plug 'nelstrom/vim-visual-star-search'
-   
     " Handle multi-file find and replace.
     Plug 'mhinz/vim-grepper'
-
     " Open fzf in floating window
     Plug 'LoricAndre/fzterm.nvim'
     " #### Search ####
  
     " #### Misc ####"
     " Todo txt plugin 
-    Plug 'https://gitlab.com/dbeniamine/todo.txt-vim.git'
-
+    Plug 'https://gitlab.com/dbeniamine/todo.txt-vim'
     " Create floating terminals
     Plug 'voldikss/vim-floaterm'
-
     " Note taking and wiki
     Plug 'vimwiki/vimwiki'
     " #### Misc ####"
+
+    " #### Writing ####
+    " Line wrapping for prose
+    Plug 'reedes/vim-pencil' 
+    " Distraction free writing
+    Plug 'junegunn/goyo.vim'
+    " Focus only on current paragraph
+    Plug 'junegunn/limelight.vim'
+    " Two pane outliner for markup/markdown files
+    Plug 'vim-voom/VOoM'
+    " #### Writing ####
 
     " #### Syntax Highlighting ####
     " Jinja/Nunjucks Template Highlighting

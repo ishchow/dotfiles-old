@@ -5,6 +5,7 @@ set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab " Set tab to spaces,
 let mapleader=","              " Sets <Leader> to ,
 let maplocalleader = "\\"      " Sets <LocalLeader> to \
 set autoread                   " Automatically refreshes files
+set conceallevel=0             " Prevents * and _ from being concealed in Markdown
 
 " Press * to search for the term under the cursor or a visual selection and
 " then press a key below to replace all instances of it in the current file.
@@ -48,11 +49,6 @@ endif
 syntax on
 " set background=dark
 colorscheme nord
-
-" Lightline configuration
-function! CocCurrentFunction()
-    return get(b:, 'coc_current_function', '')
-endfunction
 
 let g:lightline = {
       \ 'colorscheme': 'nord',
@@ -126,3 +122,57 @@ augroup vimwikigroup
 
     au BufNewFile */diary/[0-9]*.md 0r !~/.config/nvim/bin/create-vimwiki-diary-entry '%'
 augroup end
+
+" .............................................................................
+" reedes/vim-pencil
+" .............................................................................
+let g:pencil#autoformat_config = {
+      \   'markdown': {
+      \     'black': [
+      \       'htmlH[0-9]',
+      \       'markdown(Code|H[0-9]|Url|IdDeclaration|Link|Rule|Highlight[A-Za-z0-9]+)',
+      \       'markdown(FencedCodeBlock|InlineCode)',
+      \       'mkd(Code|Rule|Delimiter|Link|ListItem|IndentCode)',
+      \       'mmdTable[A-Za-z0-9]*',
+      \     ],
+      \     'white': [
+      \      'markdown(Code|Link)',
+      \     ],
+      \   },
+      \   'vimwiki': {
+      \     'black': [
+      \       'htmlH[0-9]',
+      \       'markdown(Code|H[0-9]|Url|IdDeclaration|Link|Rule|Highlight[A-Za-z0-9]+)',
+      \       'markdown(FencedCodeBlock|InlineCode)',
+      \       'mkd(Code|Rule|Delimiter|Link|ListItem|IndentCode)',
+      \       'mmdTable[A-Za-z0-9]*',
+      \     ],
+      \     'white': [
+      \      'markdown(Code|Link)',
+      \     ],
+      \   },
+      \ }
+
+function SetPencilOptions()
+    call pencil#init({ 'wrap': 'soft' })
+    set textwidth=80
+    set colorcolumn=80
+endfunction
+
+augroup pencil
+    autocmd!
+    autocmd FileType markdown,mkd,vimwiki call SetPencilOptions()
+    autocmd FileType text         call pencil#init()
+    " autocmd FileType markdown,mkd,vimwiki call pencil#init()
+augroup END
+
+" .............................................................................
+" vim-voom/voom
+" .............................................................................
+let g:voom_ft_modes = {'markdown': 'markdown', 'vimwiki': 'markdown'}
+let g:voom_default_mode = 'markdown'
+
+" .............................................................................
+" airblade/vim-gitgutter
+" .............................................................................
+set updatetime=100

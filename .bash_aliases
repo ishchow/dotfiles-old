@@ -92,6 +92,7 @@ alias zdup='zypper dup'
 alias zar='zypper ar'
 alias zrr='zypper rr'
 alias zref='zypper ref'
+alias zsysup='sudo zypper ref && sudo zypper dup'
 
 
 #### cat ####
