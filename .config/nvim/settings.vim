@@ -50,6 +50,10 @@ syntax on
 " set background=dark
 colorscheme nord
 
+" .............................................................................
+" tchyny/lightline.vim
+" .............................................................................
+
 let g:lightline = {
       \ 'colorscheme': 'nord',
       \ 'active': {
@@ -60,6 +64,60 @@ let g:lightline = {
 
 " Show vertical line for code indented with tabs
 set list lcs=tab:\|\ " (here is a space)
+
+" .............................................................................
+" spellcheck (built-in)
+" .............................................................................
+
+" Don't mark URL-like things as spelling errors
+syn match UrlNoSpell '\w\+:\/\/[^[:space:]]\+' contains=@NoSpell
+
+" Don't count acronyms / abbreviations as spelling errors
+" (all upper-case letters, at least three characters)
+" Also will not count acronym with 's' at the end a spelling error
+" Also will not count numbers that are part of this
+" Recognizes the following as correct:
+syn match AcronymNoSpell '\<\(\u\|\d\)\{3,}s\?\>' contains=@NoSpell
+
+" Spellcheck
+set spelllang=en_us
+set spellfile=~/.config/nvim/spell/en.utf-8.add
+
+autocmd FileType gitcommit setlocal spell
+autocmd FileType markdown setlocal spell
+autocmd FileType vimwiki setlocal spell
+
+" Spell check dictionary and complete
+set dictionary+=/usr/share/dict/american
+set complete+=k
+set complete+=kspell
+
+" .............................................................................
+" nvim-lua/completion-nvim
+" .............................................................................
+" Use completion-nvim in every buffer
+autocmd BufEnter * lua require'completion'.on_attach()
+
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
+
+" Avoid showing message extra message when using completion
+set shortmess+=c"
+
+" Chain completion list
+let g:completion_chain_complete_list = [
+    \{'complete_items': ['lsp', 'snippet']},
+    \{'mode': '<c-p>'},
+    \{'mode': '<c-n>'}
+\]
+
+" Automatically change completion source when current source has no
+" completions available
+let g:completion_auto_change_source = 1
 
 " .............................................................................
 " voldikss/vim-floaterm
@@ -113,7 +171,7 @@ let g:vimwiki_list = [
     \ {'path': '~/wikis/default/personal', 'syntax': 'markdown', 'ext': '.md'},
     \ {'path': '~/wikis/default/music', 'syntax': 'markdown', 'ext': '.md'},
     \ {'path': '~/wikis/default/writing', 'syntax': 'markdown', 'ext': '.md'},
-    \ ]
+\ ]
 
 augroup vimwikigroup
     autocmd!
@@ -164,7 +222,7 @@ augroup pencil
     autocmd FileType markdown,mkd,vimwiki call SetPencilOptions()
     autocmd FileType text         call pencil#init()
     " autocmd FileType markdown,mkd,vimwiki call pencil#init()
-augroup END
+augroup end
 
 " .............................................................................
 " vim-voom/voom
