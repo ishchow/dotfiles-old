@@ -31,7 +31,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 )
 
 -- Language server setup
-lspconfig.pyls_ms.setup {
+lspconfig.pyright.setup {
   on_attach = on_attach
 }
 

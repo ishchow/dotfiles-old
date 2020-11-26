@@ -52,10 +52,18 @@ sudo zypper in -y \
     clang
 
 echo "Installing global node packages"
-sudo npm install -g @bitwarden/cli vim-language-server vscode-json-languageserver bash-language-server vscode-html-languageserver-bin
+sudo npm install -g \
+    @bitwarden/cli \
+    vim-language-server \
+    vscode-json-languageserver \
+    bash-language-server \
+    vscode-html-languageserver-bin \
+    pyright
 
 echo "Installing global python packages"
-sudo pip3 install pynvim neovim-remote
+sudo pip3 install \
+    pynvim \
+    neovim-remote
 
 if [[ $(find ~/.ssh -name "id*" | wc -l) -eq 0 ]]; then
     echo "Generating ssh key..."
@@ -99,15 +107,6 @@ if ! command -v yadm &> /dev/null; then
     yadm config local.class $yadm_class
 fi
 
-if ! command -v dotnet &> /dev/null; then
-    echo "Installing dotnet"
-    sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-    wget https://packages.microsoft.com/config/opensuse/15/prod.repo
-    sudo mv prod.repo /etc/zypp/repos.d/microsoft-prod.repo
-    sudo chown root:root /etc/zypp/repos.d/microsoft-prod.repo
-    sudo zypper in -y libicu67 aspnetcore-runtime-3.1
-fi
-
 if ! command -v nvim &> /dev/null; then
     echo "Installing neovim from source..."
     sudo zypper in -y ninja libtool autoconf automake cmake gcc-c++ gettext-tools
@@ -125,14 +124,6 @@ if ! command -v fff &> /dev/null; then
     echo "Installing fast file finder (fff)..."
     git clone https://github.com/dylanaraps/fff ~/.fff
     sudo make -C ~/.fff install
-fi
-
-if ! command -v nmblookup &> /dev/null; then
-    echo "Setting up Samba..."
-    sudo zypper in -y samba samba-client samba-winbind
-    sudo systemctl disable --now firewalld 
-    sudo systemctl enable --now nmb
-    sudo systemctl enable --now winbind
 fi
 
 if ! command -v lazygit &> /dev/null; then
@@ -159,4 +150,12 @@ if [ ! -d ~/wikis/default ]; then
         systemctl --user --now enable git-sync@$(systemd-escape "$HOME/wikis/default").service
         systemctl --user --now enable git-sync@$(systemd-escape "$HOME/wikis/default").timer
     fi
+fi
+
+if ! command -v nmblookup &> /dev/null; then
+    echo "Setting up Samba..."
+    sudo zypper in -y samba samba-client samba-winbind
+    sudo systemctl disable --now firewalld 
+    sudo systemctl enable --now nmb
+    sudo systemctl enable --now winbind
 fi
