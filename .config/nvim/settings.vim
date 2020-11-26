@@ -6,8 +6,9 @@ let mapleader=","              " Sets <Leader> to ,
 let maplocalleader = "\\"      " Sets <LocalLeader> to \
 set autoread                   " Automatically refreshes files
 set conceallevel=0             " Prevents * and _ from being concealed in Markdown
+set updatetime=750             " Mostly for vim-gitgutter
 
-" Press * to search for the term under the cursor or a visual selection and
+"Press * to search for the term under the cursor or a visual selection and
 " then press a key below to replace all instances of it in the current file.
 nnoremap <Leader>r :%s///g<Left><Left>
 nnoremap <Leader>rc :%s///gc<Left><Left><Left>
@@ -53,7 +54,6 @@ colorscheme nord
 " .............................................................................
 " tchyny/lightline.vim
 " .............................................................................
-
 let g:lightline = {
       \ 'colorscheme': 'nord',
       \ 'active': {
@@ -64,33 +64,6 @@ let g:lightline = {
 
 " Show vertical line for code indented with tabs
 set list lcs=tab:\|\ " (here is a space)
-
-" .............................................................................
-" spellcheck (built-in)
-" .............................................................................
-
-" Don't mark URL-like things as spelling errors
-syn match UrlNoSpell '\w\+:\/\/[^[:space:]]\+' contains=@NoSpell
-
-" Don't count acronyms / abbreviations as spelling errors
-" (all upper-case letters, at least three characters)
-" Also will not count acronym with 's' at the end a spelling error
-" Also will not count numbers that are part of this
-" Recognizes the following as correct:
-syn match AcronymNoSpell '\<\(\u\|\d\)\{3,}s\?\>' contains=@NoSpell
-
-" Spellcheck
-set spelllang=en_us
-set spellfile=~/.config/nvim/spell/en.utf-8.add
-
-autocmd FileType gitcommit setlocal spell
-autocmd FileType markdown setlocal spell
-autocmd FileType vimwiki setlocal spell
-
-" Spell check dictionary and complete
-set dictionary+=/usr/share/dict/american
-set complete+=k
-set complete+=kspell
 
 " .............................................................................
 " nvim-lua/completion-nvim
@@ -105,6 +78,10 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " Use tab as completion trigger key
 imap <tab> <Plug>(completion_smart_tab)
 imap <s-tab> <Plug>(completion_smart_s_tab)
+
+" Change completion source
+imap <c-j> <Plug>(completion_next_source)
+imap <c-k> <Plug>(completion_prev_source)
 
 " Automatically change completion source when current source has no
 " completions available
@@ -121,24 +98,12 @@ let g:completion_trigger_keyword_length = 3
 
 " Chain completion list
 let g:completion_chain_complete_list = {
-    \ 'markdown': [
-    \    {'mode': '<c-p>'},
-    \    {'mode': '<c-n>'}
-    \],
-    \ 'vimwiki': [
-    \    {'mode': '<c-p>'},
-    \    {'mode': '<c-n>'}
-    \],
     \ 'default': [
-    \    {'complete_items': ['lsp', 'snippet']},
+    \    {'complete_items': ['lsp', 'snippet, path']},
     \    {'mode': '<c-p>'},
     \    {'mode': '<c-n>'}
     \]
 \}
-
-" .............................................................................
-" NeoVim Diagnostics
-" .............................................................................
 
 " .............................................................................
 " voldikss/vim-floaterm
@@ -203,6 +168,30 @@ augroup vimwikigroup
 augroup end
 
 " .............................................................................
+" reedes/vim-lexical
+" .............................................................................
+" Don't mark URL-like things as spelling errors
+syn match UrlNoSpell '\w\+:\/\/[^[:space:]]\+' contains=@NoSpell
+
+" Don't count acronyms / abbreviations as spelling errors
+" (all upper-case letters, at least three characters)
+" Also will not count acronym with 's' at the end a spelling error
+" Also will not count numbers that are part of this
+" Recognizes the following as correct:
+syn match AcronymNoSpell '\<\(\u\|\d\)\{3,}s\?\>' contains=@NoSpell
+
+let g:lexical#spell = 1 
+let g:lexical#spelllang = ['en_us']
+let g:lexical#dictionary = ['/usr/share/dict/american']
+let g:lexical#spellfile = ['~/.config/nvim/spell/en.utf-8.add',]
+" let g:lexical#thesaurus = ['~/.config/nvim/thesaurus/moby.txt']
+
+augroup lexical
+    autocmd!
+    autocmd FileType markdown,vimwiki,text,gitcommit call lexical#init()
+augroup end
+
+" .............................................................................
 " reedes/vim-pencil
 " .............................................................................
 let g:pencil#autoformat_config = {
@@ -240,9 +229,8 @@ endfunction
 
 augroup pencil
     autocmd!
-    autocmd FileType markdown,mkd,vimwiki call SetPencilOptions()
+    autocmd FileType markdown,vimwiki call SetPencilOptions()
     autocmd FileType text         call pencil#init()
-    " autocmd FileType markdown,mkd,vimwiki call pencil#init()
 augroup end
 
 " .............................................................................
@@ -252,11 +240,6 @@ let g:voom_ft_modes = {'markdown': 'markdown', 'vimwiki': 'markdown'}
 let g:voom_default_mode = 'markdown'
 
 " .............................................................................
-" airblade/vim-gitgutter
-" .............................................................................
-set updatetime=750
-
-" .............................................................................
 " junegunn/goyo.vim
 " .............................................................................
 function! s:goyo_enter()
@@ -264,10 +247,13 @@ function! s:goyo_enter()
         silent !tmux set status off
         silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
     endif
-    set noshowmode
-    set noshowcmd
+    " set noshowmode
+    " set noshowcmd
     " set scrolloff=999
-    let g:completion_enable_auto_popup = 0
+    
+    " Effectively disable autocomplete as you type
+    let g:completion_trigger_keyword_length = 999
+    let g:lexical#thesaurus = '~/.config/nvim/thesaurus/moby.txt'
     Limelight
 endfunction
                       "
@@ -276,10 +262,13 @@ function! s:goyo_leave()
         silent !tmux set status on
         silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
     endif
-    set showmode
-    set showcmd
+    " set showmode
+    " set showcmd
     " set scrolloff=5
-    let g:completion_enable_auto_popup = 1
+    
+    " Renable autocomplete as type
+    let g:completion_trigger_keyword_length = 3
+    let g:lexical#thesaurus = ''
     Limelight!
 endfunction
 

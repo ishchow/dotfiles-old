@@ -10,7 +10,6 @@ call plug#begin(stdpath('data') . '/plugged')
         " ### LSP ###
         Plug 'neovim/nvim-lspconfig'
         Plug 'nvim-lua/completion-nvim'
-        Plug 'nvim-lua/diagnostic-nvim'
     endif
 
     " #### Colorschemes ####
@@ -59,6 +58,8 @@ call plug#begin(stdpath('data') . '/plugged')
     " #### Writing ####
     " Line wrapping for prose
     Plug 'reedes/vim-pencil' 
+    " Convenience plugin over built-in vim completion 
+    Plug 'reedes/vim-lexical'
     " Distraction free writing
     Plug 'junegunn/goyo.vim'
     " Focus only on current paragraph
