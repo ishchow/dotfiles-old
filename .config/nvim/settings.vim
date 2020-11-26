@@ -102,22 +102,39 @@ autocmd BufEnter * lua require'completion'.on_attach()
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+" Use tab as completion trigger key
+imap <tab> <Plug>(completion_smart_tab)
+imap <s-tab> <Plug>(completion_smart_s_tab)
+
+" Automatically change completion source when current source has no
+" completions available
+let g:completion_auto_change_source = 1
+
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
 
 " Avoid showing message extra message when using completion
 set shortmess+=c"
 
-" Chain completion list
-let g:completion_chain_complete_list = [
-    \{'complete_items': ['lsp', 'snippet']},
-    \{'mode': '<c-p>'},
-    \{'mode': '<c-n>'}
-\]
+" Don't trigger completion for short words
+let g:completion_trigger_keyword_length = 3
 
-" Automatically change completion source when current source has no
-" completions available
-let g:completion_auto_change_source = 1
+" Chain completion list
+let g:completion_chain_complete_list = {
+    \ 'markdown': [
+    \    {'mode': '<c-p>'},
+    \    {'mode': '<c-n>'}
+    \],
+    \ 'vimwiki': [
+    \    {'mode': '<c-p>'},
+    \    {'mode': '<c-n>'}
+    \],
+    \ 'default': [
+    \    {'complete_items': ['lsp', 'snippet']},
+    \    {'mode': '<c-p>'},
+    \    {'mode': '<c-n>'}
+    \]
+\}
 
 " .............................................................................
 " voldikss/vim-floaterm
@@ -233,4 +250,34 @@ let g:voom_default_mode = 'markdown'
 " .............................................................................
 " airblade/vim-gitgutter
 " .............................................................................
-set updatetime=100
+set updatetime=750
+
+" .............................................................................
+" junegunn/goyo.vim
+" .............................................................................
+function! s:goyo_enter()
+    if executable('tmux') && strlen($TMUX)
+        silent !tmux set status off
+        silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+    endif
+    set noshowmode
+    set noshowcmd
+    " set scrolloff=999
+    let g:completion_enable_auto_popup = 0
+    Limelight
+endfunction
+                      "
+function! s:goyo_leave()
+    if executable('tmux') && strlen($TMUX)
+        silent !tmux set status on
+        silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+    endif
+    set showmode
+    set showcmd
+    " set scrolloff=5
+    let g:completion_enable_auto_popup = 1
+    Limelight!
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()

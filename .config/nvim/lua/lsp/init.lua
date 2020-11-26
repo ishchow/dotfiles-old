@@ -3,7 +3,6 @@ local completion = require('completion')
 local lspconfig = require('lspconfig')
 
 local on_attach = function(client, bufnr)
-  diagnostic.on_attach(client, bufnr)
   completion.on_attach(client, bufnr)
 
   -- Keybindings for LSPs
@@ -19,10 +18,22 @@ local on_attach = function(client, bufnr)
 end
 
 -- Language server setup
-lspconfig.pyls_ms.setup{
+lspconfig.pyls_ms.setup {
   on_attach = on_attach
 }
 
-lspconfig.html.setup{
-  on_attach = on_attach
+lspconfig.bashls.setup {
+    on_attach = on_attach
+}
+
+lspconfig.jsonls.setup {
+    on_attach = on_attach
+}
+
+lspconfig.sumneko_lua.setup {
+    on_attach = on_attach
+}
+
+lspconfig.vimls.setup {
+    on_attach = on_attach
 }
