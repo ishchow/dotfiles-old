@@ -48,20 +48,14 @@ sudo zypper in -y \
     tmux \
     fzf \
     fzf-bash-completion \
-    fzf-tmux
+    fzf-tmux \
+    clang
 
-if ! command -v nmblookup &> /dev/null; then
-    echo "Setting up Samba..."
-    sudo zypper in -y samba samba-client samba-winbind
-    sudo systemctl disable --now firewalld 
-    sudo systemctl enable --now nmb
-    sudo systemctl enable --now winbind
-fi
+echo "Installing global node packages"
+sudo npm install -g @bitwarden/cli vim-language-server vscode-json-languageserver bash-language-server vscode-html-languageserver-bin
 
-if ! command -v bw &> /dev/null; then
-    echo "Installing bitwarden cli..."
-    sudo npm install -g @bitwarden/cli
-fi
+echo "Installing global python packages"
+sudo pip3 install pynvim neovim-remote
 
 if [[ $(find ~/.ssh -name "id*" | wc -l) -eq 0 ]]; then
     echo "Generating ssh key..."
@@ -122,11 +116,6 @@ if ! command -v nvim &> /dev/null; then
     sudo make -C ~/.nvim install
 fi
 
-if ! python3 -c "import pynvim" &> /dev/null; then
-    echo "Installing NeoVim python remote plugin"
-    sudo pip3 install pynvim
-fi
-
 if [ ! -d ~/.tmux/plugins/tpm ]; then
     echo "Installing tmux plugin manager (tpm)..."
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -138,9 +127,12 @@ if ! command -v fff &> /dev/null; then
     sudo make -C ~/.fff install
 fi
 
-if ! npm list --depth 1 --global neovim &> /dev/null; then
-    echo "Installing neovim npm remote plugin..."
-    sudo npm install -g neovim
+if ! command -v nmblookup &> /dev/null; then
+    echo "Setting up Samba..."
+    sudo zypper in -y samba samba-client samba-winbind
+    sudo systemctl disable --now firewalld 
+    sudo systemctl enable --now nmb
+    sudo systemctl enable --now winbind
 fi
 
 if ! command -v lazygit &> /dev/null; then
@@ -158,7 +150,6 @@ fi
 if [ ! -d ~/.git-sync ]; then
     echo "Downloading git-sync..."
     git clone https://github.com/simonthum/git-sync.git ~/.git-sync
-
 fi
 
 if [ ! -d ~/wikis/default ]; then
