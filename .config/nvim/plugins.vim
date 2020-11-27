@@ -10,11 +10,21 @@ call plug#begin(stdpath('data') . '/plugged')
         " ### LSP ###
         Plug 'neovim/nvim-lspconfig'
         Plug 'nvim-lua/completion-nvim'
+        " ### LSP ###
+
+        " ### Treesitter ###
+        Plug 'nvim-treesitter/nvim-treesitter'
+        " ### Treesitter ###
     endif
 
     " #### Colorschemes ####
-    Plug 'morhetz/gruvbox'
-    Plug 'arcticicestudio/nord-vim'
+    " Plug 'morhetz/gruvbox'
+    " Plug 'arcticicestudio/nord-vim'
+    " Plug 'mhartington/oceanic-next'
+    Plug 'sainnhe/sonokai'
+    " Plug 'sainnhe/edge'
+    " Plug 'glepnir/zephyr-nvim'
+    " Plug 'ChristianChiarulli/nvcode-color-schemes.vim'
     " #### Colorschemes ####
 
     " #### Editing ####
@@ -24,8 +34,6 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'machakann/vim-sandwich'
     " Automatically add pairs for code punctuation
     Plug 'jiangmiao/auto-pairs'
-    " Git gutter
-    Plug 'airblade/vim-gitgutter'
     " #### Editing ####
 
     " #### Cosmetic Stuff ####
@@ -33,6 +41,8 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'Yggdroot/indentLine'
     " Status bar
     Plug 'itchyny/lightline.vim'
+    " Git gutter
+    Plug 'airblade/vim-gitgutter'
     " #### Cosmetic Stuff ####
     
     " #### Search ####

@@ -39,6 +39,9 @@ au filetype todo imap <buffer> @ @<C-X><C-O>
 call tcomment#type#Define('nunjucks', '{# %s#}')
 au BufNewFile,BufRead *.njk setf nunjucks
 
+" .............................................................................
+" colorscheme 
+" .............................................................................
 " Set true colors
 if (has("termguicolors"))
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -48,14 +51,14 @@ endif
 
 " Set Colorscheme
 syntax on
-" set background=dark
-colorscheme nord
+syntax enable
+colorscheme sonokai
 
 " .............................................................................
 " tchyny/lightline.vim
 " .............................................................................
 let g:lightline = {
-      \ 'colorscheme': 'nord',
+      \ 'colorscheme': 'sonokai',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'readonly', 'filename', 'modified' ] ]
@@ -230,7 +233,7 @@ endfunction
 augroup pencil
     autocmd!
     autocmd FileType markdown,vimwiki call SetPencilOptions()
-    autocmd FileType text         call pencil#init()
+    autocmd FileType text call pencil#init()
 augroup end
 
 " .............................................................................
@@ -253,7 +256,7 @@ function! s:goyo_enter()
     
     " Effectively disable autocomplete as you type
     let g:completion_trigger_keyword_length = 999
-    let g:lexical#thesaurus = '~/.config/nvim/thesaurus/moby.txt'
+    call lexical#init({'thesaurus': ['~/.config/nvim/thesaurus/moby.txt']})
     Limelight
 endfunction
                       "
@@ -268,7 +271,7 @@ function! s:goyo_leave()
     
     " Renable autocomplete as type
     let g:completion_trigger_keyword_length = 3
-    let g:lexical#thesaurus = ''
+    call lexical#init()
     Limelight!
 endfunction
 

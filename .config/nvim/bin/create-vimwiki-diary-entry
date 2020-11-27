@@ -7,7 +7,12 @@ date = (datetime.date.today() if len(sys.argv) < 2
     # Expecting filename in YYYY-MM-DD.foo format
     else pathlib.Path(sys.argv[1]).stem)
 
-contents = f"""# {date}"""
+contents = f"""# {date}
+
+
+
+
+"""
 
 print(contents)
 
