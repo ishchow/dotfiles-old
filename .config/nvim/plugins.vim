@@ -7,14 +7,20 @@ endif
 
 call plug#begin(stdpath('data') . '/plugged')
     if has('nvim-0.5')
-        " ### LSP ###
+        " #### LSP ####
         Plug 'neovim/nvim-lspconfig'
         Plug 'nvim-lua/completion-nvim'
-        " ### LSP ###
+        " #### LSP ####
 
-        " ### Treesitter ###
+        " #### Treesitter ####
         Plug 'nvim-treesitter/nvim-treesitter'
-        " ### Treesitter ###
+        " #### Treesitter ####
+        
+        " #### DAP ####
+        Plug 'mfussenegger/nvim-dap'
+        Plug 'theHamsta/nvim-dap-virtual-text'
+        Plug 'mfussenegger/nvim-dap-python'
+        " #### DAP ####
     endif
 
     " #### Colorschemes ####

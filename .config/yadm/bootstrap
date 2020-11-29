@@ -49,7 +49,8 @@ sudo zypper in -y \
     fzf \
     fzf-bash-completion \
     fzf-tmux \
-    clang
+    clang \
+    lldb
 
 echo "Installing global node packages"
 sudo npm install -g \
@@ -63,7 +64,8 @@ sudo npm install -g \
 echo "Installing global python packages"
 sudo pip3 install \
     pynvim \
-    neovim-remote
+    neovim-remote \
+    debugpy
 
 if [[ $(find ~/.ssh -name "id*" | wc -l) -eq 0 ]]; then
     echo "Generating ssh key..."
