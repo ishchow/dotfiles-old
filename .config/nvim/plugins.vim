@@ -41,7 +41,7 @@ call plug#begin(stdpath('data') . '/plugged')
     " Automatically add pairs for code punctuation
     Plug 'jiangmiao/auto-pairs'
     " Jumping to location specified by two characters
-    Plug 'justinmk/vim-sneak'
+    " Plug 'justinmk/vim-sneak'
     " #### Editing ####
 
     " #### Cosmetic Stuff ####

@@ -125,7 +125,7 @@ nmap <Leader>f :Files<CR>
 nmap <Leader>b :Buffers<CR>
 
 let g:fzterm_width_ratio = "0.85"
-let g:fzterm_height_ration = "0.85"
+let g:fzterm_height_ratio = "0.85"
 
 " .............................................................................
 " mhinz/vim-grepper
@@ -156,9 +156,11 @@ xmap <Leader>R
 " Don't treat all *.md files as a vimwiki
 let g:vimwiki_global_ext = 0
 " Disable url shortening
-let g:vimwiki_url_maxsave=0
+let g:vimwiki_url_maxsave = 0
 " Disable folding
-let g:vimwiki_folding= ''
+let g:vimwiki_folding = ''
+" Disable conceal
+let g:vimwiki_conceallevel = 0
 
 let g:vimwiki_list = [
     \ {'path': '~/wikis/default/dev', 'syntax': 'markdown', 'ext': '.md'},
@@ -174,6 +176,8 @@ augroup vimwikigroup
 
     au BufNewFile */diary/[0-9]*.md 0r !~/.config/nvim/bin/create-vimwiki-diary-entry '%'
 augroup end
+
+nnoremap <Leader>x :VimwikiToggleListItem<CR>
 
 " .............................................................................
 " reedes/vim-lexical
