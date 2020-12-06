@@ -7,7 +7,11 @@ return require('packer').startup(function()
     if vim.fn.has('nvim-0.5') then
         -- #### LSP ####
         use 'neovim/nvim-lspconfig'
-        use 'nvim-lua/completion-nvim'
+
+        use {
+            'nvim-lua/completion-nvim',
+            requires = {{'hrsh7th/vim-vsnip'}, {'hrsh7th/vim-vsnip-integ'}}
+        }
         -- #### LSP ####
 
         -- #### Treesitter ####
