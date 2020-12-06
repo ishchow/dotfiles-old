@@ -1,9 +1,15 @@
+let s:is_packer_not_installed = empty(glob('~/.local/share/nvim/site/pack/packer/opt/packer.nvim'))
+
 " Auto-install packer
-if empty(glob('~/.local/share/nvim/site/pack/packer/opt/packer.nvim'))
+if s:is_packer_not_installed 
     silent !git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/opt/packer.nvim
-    autocmd VimEnter * PackerInstall
 endif
 
 packadd packer.nvim
 luafile ~/.config/nvim/lua/plugins.lua
-autocmd BufWritePost plugins.lua PackerCompile
+autocmd BufWritePost plugins.lua PackemCompile
+
+" Auto-install plugins
+if s:is_packer_not_installed 
+    autocmd VimEnter * PackerInstall
+endif
