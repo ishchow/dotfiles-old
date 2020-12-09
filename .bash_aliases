@@ -9,12 +9,16 @@ alias gf='git fetch'
 alias gs='git status'
 # git branch
 function gbrdef() {
+    # Get default branch for remote
     origin_name=${1:-origin}
     git remote show $origin_name | grep "HEAD branch" | sed 's/.* //'
 }
 alias gbr='git branch'
 alias gbrd='git branch -d'
 alias gbrD='git branch -D'
+function gbrp() {
+    git fetch -p && for branch in $(git for-each-ref --format '%(refname) %(upstream:track)' refs/heads | awk '$2 == "[gone]" {sub("refs/heads/", "", $1); print $1}'); do git branch -D $branch; done
+}
 # git commit 
 alias gc='git commit'
 alias gcm='git commit -m'
