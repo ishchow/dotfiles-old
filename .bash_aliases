@@ -31,19 +31,25 @@ alias gcob='git checkout -b'
 alias grb='git rebase'
 alias grbom='git fetch && git rebase origin/$(gbrdef)'
 alias grbi='git rebase -i --autosquash'
-alias grbioh='git rebase -i --autosquash origin HEAD'
-alias grbiob='git rebase -i --autosquash origin/$(git branch --show-current)'
+alias grbioh='grbi origin HEAD'
+alias grbiob='grbi origin/$(git branch --show-current)'
+alias grbimbom='grbi $(gmbom)'
 alias grba='git rebase --abort'
 alias grbc='git rebase --continue'
 # git submodule
-alias gsuir='git submodule update --init --recursive'
 alias gsu='git submodule update'
+alias gsuir='git submodule update --init --recursive'
 # git push
 alias gpu='git push'
 alias gpuoh='git push -u origin HEAD'
 function gpucob {
     git push origin $1:$(git branch --show-current)
 }
+# git merge
+alias gm='git merge'
+# git merge-base
+alias gmb='git merge-base'
+alias gmbom='gmb HEAD origin/$(gbrdef)' 
 # git pull
 alias gpl='git pull'
 alias gplom='git pull origin $(gbrdef)'
