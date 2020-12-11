@@ -63,6 +63,9 @@ alias grsh='git reset --hard'
 alias grshoh='git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)'
 # git log
 alias gl='git log --oneline --decorate'
+# git restore
+alias gro='git restore'
+alias gros='git restore --staged'
 # git revert
 alias grv='git revert'
 alias grvnc='git revert --no-commit'
