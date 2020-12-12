@@ -7,7 +7,7 @@ endif
 
 packadd packer.nvim
 luafile ~/.config/nvim/lua/plugins.lua
-autocmd BufWritePost plugins.lua PackemCompile
+autocmd BufWritePost plugins.lua PackerCompile
 
 " Auto-install plugins
 if s:is_packer_not_installed 

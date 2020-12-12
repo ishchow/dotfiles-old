@@ -11,7 +11,8 @@ local on_attach = function(client, bufnr)
   vim.fn.nvim_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", {noremap = true, silent = true})
   vim.fn.nvim_set_keymap("n", "gk", "<cmd>lua vim.lsp.buf.signature_help()<CR>", {noremap = true, silent = true})
   vim.fn.nvim_set_keymap("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", {noremap = true, silent = true})
-  vim.fn.nvim_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", {noremap = true, silent = true})
+  vim.fn.nvim_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.rename()<CR>", {noremap = true, silent = true})
+  vim.fn.nvim_set_keymap("n", "gx", "<cmd>lua vim.lsp.buf.references()<CR>", {noremap = true, silent = true})
   vim.fn.nvim_set_keymap("n", "gn", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", {noremap = true, silent = true})
   vim.fn.nvim_set_keymap("n", "gp", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", {noremap = true, silent = true})
 end
@@ -54,8 +55,8 @@ lspconfig.sumneko_lua.setup {
                 path = vim.split(package.path, ';'),
             },
             diagnostics = {
-            -- Get the language server to recognize the `vim` global
-                globals = {'vim'},
+                -- Get the language server to recognize the `vim` global
+                globals = {'vim', 'describe', 'it'},
             },
             workspace = {
                 -- Make the server aware of Neovim runtime files

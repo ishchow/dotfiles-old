@@ -43,7 +43,8 @@ return require('packer').startup(function()
     -- Automatically add pairs for code punctuation
     use 'jiangmiao/auto-pairs'
     -- Jumping to location specified by two characters
-    -- use 'justinmk/vim-sneak'
+    -- use {'justinmk/vim-sneak', disable = true}
+    use 'unblevable/quick-scope'
     -- #### Editing ####
 
     -- #### Cosmetic Stuff ####

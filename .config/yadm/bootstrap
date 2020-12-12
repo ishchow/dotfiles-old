@@ -65,7 +65,8 @@ echo "Installing global python packages"
 sudo pip3 install \
     pynvim \
     neovim-remote \
-    debugpy
+    debugpy \
+    hererocks
 
 if [[ $(find ~/.ssh -name "id*" | wc -l) -eq 0 ]]; then
     echo "Generating ssh key..."

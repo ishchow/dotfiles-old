@@ -124,6 +124,7 @@ source /usr/share/bash-completion/completions/fzf-key-bindings
 
 export VISUAL=nvim
 export EDITOR="$VISUAL"
+# export VIMRUNTIME=~/.nvim/runtime
 
 if [[ ! -z "$WSL_DISTRO_NAME" ]]; then
     # checks to see if we are in a windows or linux dir
