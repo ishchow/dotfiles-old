@@ -94,7 +94,7 @@ alias gstp='git stash pop'
 alias gstd='git stash drop'
 # move to root
 alias groot='git rev-parse --show-toplevel'
-alias cdgroot='cd $(git rev-parse --show-toplevel)'
+alias cdgroot='cd $(groot)'
 
 
 ##### zypper ####
@@ -106,6 +106,11 @@ alias zar='zypper ar'
 alias zrr='zypper rr'
 alias zref='zypper ref'
 alias zsysup='sudo zypper ref && sudo zypper dup'
+
+
+#### tmux ####
+alias tls='tmux ls'
+alias tas='tmux attach-session -t'
 
 
 #### cat ####

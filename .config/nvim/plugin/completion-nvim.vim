@@ -1,6 +1,6 @@
 if has('nvim-0.5')
     lua require("lsp")
-
+    
     " .............................................................................
     " nvim-lua/completion-nvim
     " .............................................................................
@@ -12,8 +12,8 @@ if has('nvim-0.5')
     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
     " Use tab as completion trigger key
-    imap <tab> <Plug>(completion_smart_tab)
-    imap <s-tab> <Plug>(completion_smart_s_tab)
+    imap <Tab> <Plug>(completion_smart_tab)
+    imap <S-Tab> <Plug>(completion_smart_s_tab)
 
     " Change completion source
     imap <c-j> <Plug>(completion_next_source)

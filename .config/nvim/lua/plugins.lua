@@ -52,9 +52,14 @@ return require('packer').startup(function()
     use 'Yggdroot/indentLine'
     -- Status bar
     use 'itchyny/lightline.vim'
+    -- #### Cosmetic Stuff ####
+
+    -- #### Git ####
+    -- Async control of git repos (similar to vim-fugitive)
+    use 'lambdalisue/gina.vim'
     -- Git gutter
     use 'airblade/vim-gitgutter'
-    -- #### Cosmetic Stuff ####
+    -- #### Git ####
 
     -- #### Search ####
     -- Automatically clear search highlight after cursor moves
@@ -74,6 +79,8 @@ return require('packer').startup(function()
     use 'voldikss/vim-floaterm'
     -- Note taking and wiki
     use 'vimwiki/vimwiki'
+    -- Journal Plugin
+    use '~/projects/deardiary'
     -- #### Misc ####--
 
     -- #### Writing ####

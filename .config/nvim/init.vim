@@ -10,6 +10,8 @@ let maplocalleader = "\\"      " Sets <LocalLeader> to \
 set autoread                   " Automatically refreshes files
 set conceallevel=0             " Prevents * and _ from being concealed in Markdown
 set updatetime=750             " Mostly for vim-gitgutter
+set diffopt=vertical           " Always make diff split vertically
+set hidden                     " Prevent having to safe buffer when switching between buffers
 
 " Press * to search for the term under the cursor or a visual selection and
 " then press a key below to replace all instances of it in the current file.
