@@ -77,8 +77,6 @@ return require('packer').startup(function()
     use 'https://gitlab.com/dbeniamine/todo.txt-vim'
     -- Create floating terminals
     use 'voldikss/vim-floaterm'
-    -- Note taking and wiki
-    use 'vimwiki/vimwiki'
     -- Journal Plugin
     use '~/projects/deardiary'
     -- #### Misc ####--

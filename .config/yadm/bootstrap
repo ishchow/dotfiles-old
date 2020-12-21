@@ -146,12 +146,12 @@ if [ ! -d ~/.git-sync ]; then
     git clone https://github.com/simonthum/git-sync.git ~/.git-sync
 fi
 
-if [ ! -d ~/wikis/default ]; then
-    echo "Cloning personal wikis..."
-    if git clone git@github.com:ishchow/wikis.git ~/wikis/default ; then
-        echo "Starting systemd services/timers for personal wikis..."
-        systemctl --user --now enable git-sync@$(systemd-escape "$HOME/wikis/default").service
-        systemctl --user --now enable git-sync@$(systemd-escape "$HOME/wikis/default").timer
+if [ ! -d ~/notes ]; then
+    echo "Cloning notes..."
+    if git clone git@github.com:ishchow/notes.git ~/notes ; then
+        echo "Starting systemd services/timers for notes..."
+        systemctl --user --now enable git-sync@$(systemd-escape "$HOME/notes").service
+        systemctl --user --now enable git-sync@$(systemd-escape "$HOME/notes").timer
     fi
 fi
 
