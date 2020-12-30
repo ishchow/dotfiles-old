@@ -43,7 +43,7 @@ alias gsuir='git submodule update --init --recursive'
 alias gpu='git push'
 alias gpuoh='git push -u origin HEAD'
 function gpucob {
-    git push origin $1:$(git branch --show-current)
+    git push origin $1:refs/heads/$(git branch --show-current)
 }
 # git merge
 alias gm='git merge'
