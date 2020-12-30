@@ -43,7 +43,18 @@ alias gsuir='git submodule update --init --recursive'
 alias gpu='git push'
 alias gpuoh='git push -u origin HEAD'
 function gpucob {
+    if [[ $# -eq 0 ]]; then
+        echo "No arguments passed"
+        return
+    fi
     git push origin $1:refs/heads/$(git branch --show-current)
+}
+function gpufcob {
+    if [[ $# -eq 0 ]]; then
+        echo "No arguments passed"
+        return
+    fi
+    git push --force origin $1:refs/heads/$(git branch --show-current)
 }
 # git merge
 alias gm='git merge'
