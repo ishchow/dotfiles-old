@@ -86,6 +86,7 @@ alias gclnfd='git clean -nfd'
 alias gclfd='git clean -fd'
 alias gclnf='git clean -nf'
 alias gclf='git clean -f'
+alias gclfdx='git clean -fdx'
 # git diff
 alias gdf='git diff'
 alias gdfh='git diff HEAD'
