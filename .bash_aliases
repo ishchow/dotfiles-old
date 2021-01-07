@@ -66,6 +66,7 @@ alias gpl='git pull'
 alias gplom='git pull origin $(gbrdef)'
 # git add
 alias ga='git add'
+alias gaa='git add -A'
 alias gau='git add -u'
 alias gad='git add .'
 # git reset
