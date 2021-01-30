@@ -1,9 +1,6 @@
-local completion = require('completion')
 local lspconfig = require('lspconfig')
 
 local on_attach = function(client, bufnr)
-  completion.on_attach(client, bufnr)
-
   -- Keybindings for LSPs
   -- Note these are in on_attach so that they don't override bindings in a non-LSP setting
   vim.fn.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", {noremap = true, silent = true})
@@ -19,7 +16,7 @@ end
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
-    -- This will disable virtual text
+    -- Enable/disable virtual text
     virtual_text = true,
 
     -- To configure sign display,
