@@ -58,7 +58,6 @@ return require('packer').startup(function()
 
     -- #### Lua Rocks ####
     use_rocks 'penlight' -- Useful lua modules
-    use_rocks 'lustache' -- Mustace templates
     -- #### Lua Rocks ####
 
     -- #### Snippets ####
