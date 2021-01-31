@@ -9,6 +9,11 @@ set conceallevel=0             " Prevents * and _ from being concealed in Markdo
 set updatetime=750             " Mostly for vim-gitgutter
 set diffopt=vertical           " Always make diff split vertically
 set hidden                     " Prevent having to safe buffer when switching between buffers
+set completeopt=menu,menuone,noselect " Use popup menu, show menu even if only one element, force user to select match
+
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Press * to search for the term under the cursor or a visual selection and
 " then press a key below to replace all instances of it in the current file.

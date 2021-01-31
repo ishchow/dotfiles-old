@@ -61,8 +61,7 @@ return require('packer').startup(function()
     -- #### Lua Rocks ####
 
     -- #### Snippets ####
-    use {'hrsh7th/vim-vsnip'} -- LSP snippets
-    use {'hrsh7th/vim-vsnip-integ'} -- vim-vsnip integration with other plugins
+    use 'hrsh7th/vim-vsnip' -- LSP snippets
     -- #### Snippets ####
 
     if vim.fn.has('nvim-0.5') then
@@ -79,9 +78,9 @@ return require('packer').startup(function()
         -- #### Treesitter ####
 
         -- #### DAP ####
-        -- use {'mfussenegger/nvim-dap', disable = true }
-        -- use {'theHamsta/nvim-dap-virtual-text', disable = true}
-        -- use {'mfussenegger/nvim-dap-python', disable = true}
+        -- use 'mfussenegger/nvim-dap'
+        -- use 'theHamsta/nvim-dap-virtual-text'
+        -- use 'mfussenegger/nvim-dap-python'
         -- #### DAP ####
     end
 end)
