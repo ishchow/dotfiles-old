@@ -141,16 +141,19 @@ if [ ! -d ~/projects ]; then
     mkdir -p ~/projects
 fi
 
-if command -v systemctl &> /dev/null; then
-    if ! command -v onedrive &> /dev/null; then
-        echo "Installing onedrive..."
-        sudo zypper in -y onedrive
-        onedrive --synchronize --download-only 
-        sudo systemctl enable onedrive@${USER}.service
-    fi
+if [ ! -d ~/.git-sync ]; then
+    echo "Downloading git-sync..."
+    git clone https://github.com/simonthum/git-sync.git ~/.git-sync
+fi
 
-    if [ ! -d ~/.git-sync ]; then
-        echo "Downloading git-sync..."
-        git clone https://github.com/simonthum/git-sync.git ~/.git-sync
+if command -v systemctl &> /dev/null; then
+    if ! command -v syncthing &> /dev/null; then
+        echo "Installing syncthing..."
+        sudo zypper in -y syncthing
+        sudo firewall-cmd --permanent --zone=public --add-service=http
+        sudo firewall-cmd --permanent --zone=public --add-service=https
+        sudo firewall-cmd --permanent --zone=public --add-port=8384/tcp
+        sudo firewall-cmd --reload
+        sudo systemctl enable --now syncthing@${USER}.service
     fi
 fi
