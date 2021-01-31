@@ -141,24 +141,16 @@ if [ ! -d ~/projects ]; then
     mkdir -p ~/projects
 fi
 
-if [ ! -d ~/.git-sync ]; then
-    echo "Downloading git-sync..."
-    git clone https://github.com/simonthum/git-sync.git ~/.git-sync
-fi
-
-if [ ! -d ~/notes ]; then
-    echo "Cloning notes..."
-    if git clone git@github.com:ishchow/notes.git ~/notes ; then
-        echo "Starting systemd services/timers for notes..."
-        systemctl --user --now enable git-sync@$(systemd-escape "$HOME/notes").service
-        systemctl --user --now enable git-sync@$(systemd-escape "$HOME/notes").timer
+if command -v systemctl &> /dev/null; then
+    if ! command -v onedrive &> /dev/null; then
+        echo "Installing onedrive..."
+        sudo zypper in -y onedrive
+        onedrive --synchronize --download-only 
+        sudo systemctl enable onedrive@${USER}.service
     fi
-fi
 
-if ! command -v nmblookup &> /dev/null; then
-    echo "Setting up Samba..."
-    sudo zypper in -y samba samba-client samba-winbind
-    sudo systemctl disable --now firewalld 
-    sudo systemctl enable --now nmb
-    sudo systemctl enable --now winbind
+    if [ ! -d ~/.git-sync ]; then
+        echo "Downloading git-sync..."
+        git clone https://github.com/simonthum/git-sync.git ~/.git-sync
+    fi
 fi
