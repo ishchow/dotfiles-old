@@ -124,6 +124,7 @@ alias zsysup='sudo zypper ref && sudo zypper dup'
 #### tmux ####
 alias tls='tmux ls'
 alias tas='tmux attach-session -t'
+alias tks='tmux kill-session -t'
 
 
 #### cat ####
