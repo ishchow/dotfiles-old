@@ -161,10 +161,17 @@ if [ ! -d ~/projects/personal-site ]; then
     sudo firewall-cmd --reload
 fi
 
+if ! command -v todo.sh &> /dev/null; then
+    echo "Installing todo.sh..."
+    git clone https://github.com/todotxt/todo.txt-cli ~/.todotxtcli
+    sudo make -C ~/.todotxtcli install
+fi
+
 if command -v systemctl &> /dev/null; then
     if ! command -v syncthing &> /dev/null; then
         echo "Installing syncthing..."
         sudo zypper in -y syncthing
+        sudo firewall-cmd --zone=public --add-service=syncthing --permanent
         sudo firewall-cmd --permanent --zone=public --add-service=http
         sudo firewall-cmd --permanent --zone=public --add-service=https
         sudo firewall-cmd --permanent --zone=public --add-port=8384/tcp
