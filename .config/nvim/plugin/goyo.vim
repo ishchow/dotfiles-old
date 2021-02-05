@@ -10,7 +10,10 @@ function! s:goyo_enter()
     " set noshowcmd
     " set scrolloff=999
     
-    let g:compe.enabled = v:false
+    if has_key(g:, 'compe')
+        let g:compe.autocomplete = v:false
+        call compe#setup(g:compe)
+    endif
     Limelight
 endfunction
                       "
@@ -23,7 +26,11 @@ function! s:goyo_leave()
     " set showcmd
     " set scrolloff=5
     
-    let g:compe.enabled = v:true
+    if has_key(g:, 'compe')
+        let g:compe.autocomplete = v:true
+        call compe#setup(g:compe)
+    endif
+    call compe#setup(g:compe)
     Limelight!
 endfunction
 
