@@ -123,6 +123,19 @@ if [ ! -d ~/.tmux/plugins/tpm ]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
+if [ ! -d ~/.lua-language-server ]; then
+    echo "Installing lua-language-server..."
+    (
+    git clone https://github.com/sumneko/lua-language-server ~/.lua-language-server
+    cd ~/.lua-language-server
+    git submodule update --init --recursive
+    cd 3rd/luamake
+    ninja -f ninja/linux.ninja
+    cd ../..
+    ./3rd/luamake/luamake rebuild
+    )
+fi
+
 if ! command -v fff &> /dev/null; then
     echo "Installing fast file finder (fff)..."
     git clone https://github.com/dylanaraps/fff ~/.fff
@@ -134,6 +147,18 @@ if ! command -v lazygit &> /dev/null; then
     sudo zypper ar https://download.opensuse.org/repositories/home:Dead_Mozay/openSUSE_Tumbleweed/home:Dead_Mozay.repo
     sudo zypper --gpg-auto-import-keys ref
     sudo zypper in -y lazygit
+fi
+
+if ! command -v rustup &> /dev/null; then
+    echo "Installing rustup..."
+    curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
+fi
+
+if ! command -v rust-analuzer %> /dev/null; then
+    echo "Installing rust-analyzer..."
+    mkdir -p ~/.local/bin
+    curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-linux -o ~/.local/bin/rust-analyzer
+    chmod +x ~/.local/bin/rust-analyzer
 fi
 
 if [ ! -d ~/projects ]; then

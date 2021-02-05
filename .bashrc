@@ -146,3 +146,5 @@ if [[ ! -z "$WSL_DISTRO_NAME" ]]; then
     }
 fi
 
+source "$HOME/.cargo/env"
+export PATH="$PATH:~/.local/bin"
