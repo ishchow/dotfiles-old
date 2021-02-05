@@ -2,6 +2,10 @@ local lspconfig = require('lspconfig')
 local lspkind = require('lspkind')
 local saga = require('lspsaga')
 
+-- Enable snippet support
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 local on_attach = function(client, bufnr)
   -- Keybindings for LSPs
   -- Note these are in on_attach so that they don't override bindings in a non-LSP setting
@@ -37,19 +41,28 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 
 -- Language server setup
 lspconfig.pyright.setup {
-  on_attach = on_attach
+    on_attach = on_attach,
+    capabilities = capabilities,
 }
 
 lspconfig.bashls.setup {
-    on_attach = on_attach
+    on_attach = on_attach,
+    capabilities = capabilities,
 }
 
 lspconfig.jsonls.setup {
-    on_attach = on_attach
+    on_attach = on_attach,
+    capabilities = capabilities
+}
+
+lspconfig.vimls.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
 }
 
 lspconfig.sumneko_lua.setup {
     on_attach = on_attach,
+    capabilities = capabilities,
     settings = {
         Lua = {
             runtime = {
@@ -84,8 +97,4 @@ lspconfig.sumneko_lua.setup {
             },
         },
     },
-}
-
-lspconfig.vimls.setup {
-    on_attach = on_attach
 }

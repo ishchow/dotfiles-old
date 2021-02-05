@@ -15,7 +15,7 @@ let g:lexical#spell = 1
 let g:lexical#spelllang = ['en_us']
 let g:lexical#dictionary = ['/usr/share/dict/american']
 let g:lexical#spellfile = ['~/.config/nvim/spell/en.utf-8.add',]
-" let g:lexical#thesaurus = ['~/.config/nvim/thesaurus/moby.txt']
+let g:lexical#thesaurus = ['~/.config/nvim/thesaurus/moby.txt']
 
 augroup lexical
     autocmd!

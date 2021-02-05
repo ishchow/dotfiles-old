@@ -10,7 +10,7 @@ function! s:goyo_enter()
     " set noshowcmd
     " set scrolloff=999
     
-    let g:compe.autocomplete = v:false
+    let g:compe.enabled = v:false
     call lexical#init({'thesaurus': ['~/.config/nvim/thesaurus/moby.txt']})
     Limelight
 endfunction
@@ -24,7 +24,7 @@ function! s:goyo_leave()
     " set showcmd
     " set scrolloff=5
     
-    let g:compe.autocomplete = v:true
+    let g:compe.enabled = v:true
     call lexical#init()
     Limelight!
 endfunction

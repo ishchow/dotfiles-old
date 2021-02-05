@@ -17,5 +17,5 @@ if has("nvim-0.5")
     let g:compe.source.nvim_lsp = v:true
     let g:compe.source.nvim_lua = v:true
     let g:compe.source.spell = v:true
-    let g:compe.source.snippets_nvim = v:false
+    let g:compe.source.treesitter = v:true
 endif
