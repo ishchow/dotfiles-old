@@ -16,7 +16,7 @@ function! s:goyo_enter()
     endif
     Limelight
 endfunction
-                      "
+
 function! s:goyo_leave()
     if executable('tmux') && strlen($TMUX)
         silent !tmux set status on
