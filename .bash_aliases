@@ -3,6 +3,8 @@ alias sudo='sudo '
 
 
 #### git ####
+# git
+alias g='git'
 # git fetch
 alias gf='git fetch'
 # git status
@@ -122,9 +124,23 @@ alias zsysup='sudo zypper ref && sudo zypper dup'
 
 
 #### tmux ####
-alias tls='tmux ls'
-alias tas='tmux attach-session -t'
-alias tks='tmux kill-session -t'
+alias tmls='tmux ls'
+alias tmas='tmux attach-session -t'
+alias tmks='tmux kill-session -t'
+
+
+#### todo ####
+alias t='todo.sh'
+alias td='todo.sh do'
+alias ta='todo.sh a'
+alias tap='todo.sh append'
+alias tav='todo.sh archive'
+alias tls='todo.sh ls'
+alias tlsa='todo.sh lsa'
+alias tlsc='todo.sh lsc'
+alias tlsp='todo.sh lsp'
+alias tlsprj='todo.sh lsprj'
+alias trm='todo.sh rm'
 
 
 #### cat ####
