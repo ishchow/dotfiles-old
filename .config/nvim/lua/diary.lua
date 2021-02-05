@@ -10,7 +10,7 @@ local personal_weekly_template = [[
 - Lunch:
 - Dinner:
 
-### Todo:
+### Todo
 - [ ] Task 1
 - [ ] Task 2
 
@@ -21,7 +21,7 @@ local music_weekly_template = [[
 # $(entry_date:fmt("# Week %W of %Y: ") .. dates[1]:fmt("%A, %B %d, %Y - ") .. dates[7]:fmt("%A, %B %d, %Y"))
 > for i = 1, #dates do
 ## $(dates[i]:fmt("## %A, %B %d, %Y")) 
-### Practice:
+### Practice
 - [ ] Category 1 (15 min)
     - [ ] Item 1 (7.5 min)
     - [ ] Item 2 (7.5 min)

@@ -56,17 +56,20 @@ return require('packer').startup(function()
     use 'lepture/vim-jinja' -- Jinja/Nunjucks Template Highlighting
     -- #### Syntax Highlighting ####
 
-    -- #### Lua Rocks ####
-    use_rocks 'penlight' -- Useful lua modules
-    -- #### Lua Rocks ####
-
     -- #### Snippets ####
     use 'hrsh7th/vim-vsnip' -- LSP snippets
     -- #### Snippets ####
 
+    -- #### Lua Rocks ####
+    use_rocks 'penlight' -- Useful lua modules
+    -- #### Lua Rocks ####
+
     if vim.fn.has('nvim-0.5') then
         -- #### LSP ####
         use 'neovim/nvim-lspconfig' -- Configs for lsp servers
+        use 'onsails/lspkind-nvim' -- Add icons for lspkind to lsp completion items
+        use 'glepnir/lspsaga.nvim' -- Improve LSP UI
+        use 'kosayoda/nvim-lightbulb' -- Show lightbulb in sign column if code action available at cursor
         -- #### LSP ####
 
         -- #### Autocomplete ####
