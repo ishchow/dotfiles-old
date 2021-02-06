@@ -1,5 +1,4 @@
 local lspconfig = require('lspconfig')
-local lspkind = require('lspkind')
 local saga = require('lspsaga')
 
 -- Enable snippet support
@@ -20,6 +19,8 @@ local on_attach = function(client, bufnr)
     vim.fn.nvim_set_keymap("n", "gp", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", {noremap = true, silent = true})
     vim.fn.nvim_set_keymap("n", "<leader>ca", "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", {noremap = true, silent = true})
     vim.fn.nvim_set_keymap("v", "<leader>ca", "<cmd>'<,'>lua require('lspsaga.codeaction').range_code_action()<CR>", {noremap = true, silent = true})
+
+    saga.init_lsp_saga()
 end
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
