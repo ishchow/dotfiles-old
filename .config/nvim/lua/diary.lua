@@ -1,10 +1,18 @@
 local config = require("deardiary.config")
 local substitute = require('pl.template').substitute
 
+local personal_daily_template = [[
+# $(entry_date:fmt("%A, %B %d, %Y"))
+## Notes
+
+## Journal
+
+]]
+
 local personal_weekly_template = [[
-# $(entry_date:fmt("# Week %W of %Y: ") .. dates[1]:fmt("%A, %B %d, %Y - ") .. dates[7]:fmt("%A, %B %d, %Y"))
+# $(entry_date:fmt("Week %W of %Y: ") .. dates[1]:fmt("%A, %B %d, %Y - ") .. dates[7]:fmt("%A, %B %d, %Y"))
 > for i = 1, #dates do
-## $(dates[i]:fmt("## %A, %B %d, %Y")) 
+## $(dates[i]:fmt("%A, %B %d, %Y"))
 ### Meal Plan
 - Breakfast:
 - Lunch:
@@ -17,10 +25,16 @@ local personal_weekly_template = [[
 
 > end]]
 
+local dev_daily_template = [[
+# $(entry_date:fmt("%A, %B %d, %Y"))
+## Notes
+
+]]
+
 local music_weekly_template = [[
-# $(entry_date:fmt("# Week %W of %Y: ") .. dates[1]:fmt("%A, %B %d, %Y - ") .. dates[7]:fmt("%A, %B %d, %Y"))
+# $(entry_date:fmt("Week %W of %Y: ") .. dates[1]:fmt("%A, %B %d, %Y - ") .. dates[7]:fmt("%A, %B %d, %Y"))
 > for i = 1, #dates do
-## $(dates[i]:fmt("## %A, %B %d, %Y")) 
+## $(dates[i]:fmt("%A, %B %d, %Y"))
 ### Practice
 - [ ] Category 1 (15 min)
     - [ ] Item 1 (7.5 min)
@@ -35,12 +49,20 @@ local music_weekly_template = [[
 
 > end]]
 
-local template = function(entry_date, template_str)
+local template_daily = function(entry_date, daily_template_str)
+    local res, _ = substitute(daily_template_str, {
+        _escape = ">",
+        entry_date = entry_date,
+    })
+    return res
+end
+
+local template_weekly = function(entry_date, weekly_template_str)
     local dates = {}
     for i = 0, 6 do
         table.insert(dates, entry_date:copy():adddays(i))
     end
-    local res, _ = substitute(template_str, {
+    local res, _ = substitute(weekly_template_str, {
         _escape = ">",
         entry_date = entry_date,
         dates = dates,
@@ -52,17 +74,28 @@ config.journals = {
     {
         path = "~/notes/personal/journal",
         frequencies = {
-            "daily",
+            daily = {
+                template = function(entry_date)
+                    return template_daily(entry_date, personal_daily_template)
+                end,
+            },
             weekly = {
                 template = function(entry_date)
-                    return template(entry_date, personal_weekly_template)
+                    return template_weekly(entry_date, personal_weekly_template)
                 end,
             },
         },
     },
     {
         path = "~/notes/dev/journal",
-        frequencies = {"daily", "weekly"},
+        frequencies = {
+            daily = {
+                template = function(entry_date)
+                    return template_daily(entry_date, dev_daily_template)
+                end,
+            },
+            "weekly",
+        },
     },
     {
         path = "~/notes/music/journal",
@@ -70,13 +103,16 @@ config.journals = {
             "daily",
             weekly = {
                 template = function(entry_date)
-                    return template(entry_date, music_weekly_template)
+                    return template_weekly(entry_date, music_weekly_template)
                 end,
             },
         },
     },
     {
         path = "~/notes/writing/journal",
-        frequencies = {"daily", "weekly"},
+        frequencies = {
+            "daily",
+            "weekly",
+        },
     },
 }
