@@ -47,3 +47,14 @@ syntax on
 syntax enable
 colorscheme sonokai
 
+" .............................................................................
+" Trim trailing whitespace
+" .............................................................................
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+
+command! TrimWhitespace call TrimWhitespace()
+nnoremap <Leader>w :call TrimWhitespace()<CR>
