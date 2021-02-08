@@ -1,7 +1,7 @@
 " .............................................................................
 " fzterm.nvim
 " .............................................................................
-nmap <Leader>f :FilesOrGFiles<CR>
+nmap <Leader>f :Files<CR>
 nmap <Leader>b :Buffers<CR>
 nmap <Leader>g :Rg<CR>
 nmap <Leader>d :DocumentSymbols<CR>

@@ -9,6 +9,14 @@ local personal_daily_template = [[
 
 ]]
 
+local default_weekly_template = [[
+# $(entry_date:fmt("Week %W of %Y: ") .. dates[1]:fmt("%A, %B %d, %Y - ") .. dates[7]:fmt("%A, %B %d, %Y"))
+> for i = 1, #dates do
+## $(dates[i]:fmt("%A, %B %d, %Y"))
+
+
+> end]]
+
 local personal_weekly_template = [[
 # $(entry_date:fmt("Week %W of %Y: ") .. dates[1]:fmt("%A, %B %d, %Y - ") .. dates[7]:fmt("%A, %B %d, %Y"))
 > for i = 1, #dates do
@@ -68,6 +76,10 @@ local template_weekly = function(entry_date, weekly_template_str)
         dates = dates,
     })
     return res
+end
+
+config.frequencies.weekly.template = function(entry_date)
+    return template_weekly(entry_date, default_weekly_template)
 end
 
 config.journals = {

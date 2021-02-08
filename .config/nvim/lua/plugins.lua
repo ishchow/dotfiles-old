@@ -41,7 +41,7 @@ return require('packer').startup(function()
     -- #### Misc ####
     use 'https://gitlab.com/dbeniamine/todo.txt-vim' -- Todo txt plugin
     use 'voldikss/vim-floaterm' -- Create floating terminals
-    use '~/projects/deardiary' -- Journal Plugin
+    use '~/projects/nvim-deardiary' -- Journal Plugin
     -- #### Misc ####
 
     -- #### Writing ####

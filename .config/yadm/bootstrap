@@ -166,11 +166,11 @@ if [ ! -d ~/projects ]; then
     mkdir -p ~/projects
 fi
 
-if [ ! -d ~/projects/deardiary ]; then
+if [ ! -d ~/projects/nvim-deardiary ]; then
     echo "Cloning diary plugin..."
-    git clone git@github.com:ishchow/deardiary.git ~/projects/deardiary
+    git clone git@github.com:ishchow/nvim-deardiary.git ~/projects/nvim-deardiary
     if [ ! $? -eq 0 ]; then
-        git clone https://github.com/ishchow/deardiary.git ~/projects/deardiary
+        git clone https://github.com/ishchow/nvim-deardiary.git ~/projects/nvim-deardiary
     fi
 fi
 

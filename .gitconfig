@@ -9,3 +9,5 @@
 	root = rev-parse --show-toplevel
 [include]
     path = .gitconfig.local
+[pull]
+	rebase = true
