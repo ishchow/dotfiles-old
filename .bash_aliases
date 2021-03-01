@@ -32,6 +32,7 @@ alias gcob='git checkout -b'
 # git rebase
 alias grb='git rebase'
 alias grbom='git fetch && git rebase origin/$(gbrdef)'
+alias grbob='git fetch && git rebase origin/$(git branch --show-current)'
 alias grbi='git rebase -i --autosquash'
 alias grbioh='grbi origin HEAD'
 alias grbiob='grbi origin/$(git branch --show-current)'
