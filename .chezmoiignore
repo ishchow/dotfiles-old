@@ -6,4 +6,5 @@
 .bashrc
 .profile
 .tmux.conf
+bootstrap/bootstrap.sh
 {{ end  }}
