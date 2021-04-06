@@ -1,3 +1,9 @@
+{{ if ne .chezmoi.os "windows" }}
+bootstrap/bootstrap.ps1
+bootstrap/features.config
+bootstrap/packages.config
+{{ end }}
+
 {{ if ne .chezmoi.os "linux"  }}
 .bash_aliases
 .bash_completion
