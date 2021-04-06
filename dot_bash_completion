@@ -1,0 +1,9 @@
+for bcfile in ~/.bash_completion.d/* ; do
+    . $bcfile
+done
+
+# Complete all aliases
+for a in $(grep -oP "(?<=alias ).*(?=\=)" ~/.bash_aliases)
+do
+    complete -F _complete_alias ${a}
+done
