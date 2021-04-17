@@ -3,6 +3,8 @@ local substitute = require('pl.template').substitute
 
 local personal_daily_template = [[
 # $(entry_date:fmt("%A, %B %d, %Y"))
+## Todo
+
 ## Notes
 
 ## Journal
@@ -27,8 +29,8 @@ local personal_weekly_template = [[
 - Dinner:
 
 ### Todo
-- [ ] Task 1
-- [ ] Task 2
+[ ] Task 1
+[ ] Task 2
 
 
 > end]]
@@ -44,15 +46,15 @@ local music_weekly_template = [[
 > for i = 1, #dates do
 ## $(dates[i]:fmt("%A, %B %d, %Y"))
 ### Practice
-- [ ] Category 1 (15 min)
-    - [ ] Item 1 (7.5 min)
-    - [ ] Item 2 (7.5 min)
-- [ ] Category 2 (15 min)
-    - [ ] Item 1 (7.5 min)
-    - [ ] Item 2 (7.5 min)
-- [ ] Category 3 (15 min)
-    - [ ] Item 1 (7.5 min)
-    - [ ] Item 2 (7.5 min)
+[ ] Category 1 (15 min)
+    [ ] Item 1 (7.5 min)
+    [ ] Item 2 (7.5 min)
+[ ] Category 2 (15 min)
+    [ ] Item 1 (7.5 min)
+    [ ] Item 2 (7.5 min)
+[ ] Category 3 (15 min)
+    [ ] Item 1 (7.5 min)
+    [ ] Item 2 (7.5 min)
 
 
 > end]]
