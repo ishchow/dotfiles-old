@@ -48,9 +48,9 @@ return require('packer').startup(function()
 
     -- Journal plougin
     if empty(glob(expand('~/projects/nvim-deardiary'))) then
-        use '~/projects/nvim-deardiary'
-    else
         use 'ishchow/nvim-deardiary'
+    else
+        use '~/projects/nvim-deardiary'
     end
     -- #### Misc ####
 
