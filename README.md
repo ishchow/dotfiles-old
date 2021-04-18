@@ -1,14 +1,19 @@
-Personal dotfiles. Assumes openSUSE Tumbleweed installation. Dotfiles managed using [yadm](https://yadm.io/).
+Personal dotfiles for Windows and Linux. Dotfiles managed using [chezmoi](https://www.chezmoi.io/).
 
-# Run bootstrap script
+# Install chezmoi
 
-Download bootstrap script:
+[Install chezmoi](https://www.chezmoi.io/docs/install/)
 
-```
-curl -s https://raw.githubusercontent.com/ishchow/dotfiles/master/.config/yadm/bootstrap > bootstrap
-chmod a+x bootstrap
-```
+# Initialize dotfiles
 
+`chezmoi init --apply username`
+
+# Bootstrap new system
+## Linux (OpenSUSE Tumbleweed)
+
+Enter bootstrap directory:
+
+`cd ~/.config/bootstrap`
 
 Run with default arguments:
 
@@ -18,12 +23,14 @@ Run with arguments:
 
 `./bootstrap --yadm_class Personal --gh_key_name personal-t480-hyperv-tw-jeos`
 
-Delete downloaded setup script:
+## Windows
 
-`rm bootstrap`
+Open powershell as admin.
 
-# Update yadm class (for alternate files)
+Enter bootstrap directory:
 
-```
-yadm config local.class Personal # Use Work for work profile
-```
+`cd ~/.config/bootstrap`
+
+Run bootstrap script:
+
+`./bootstrap.ps1`
