@@ -1,4 +1,7 @@
 local use = require('packer').use
+local empty = vim.fn.empty
+local glob = vim.fn.glob
+local expand = vim.fn.expand
 
 return require('packer').startup(function()
     -- Packer can manage itself as an optional plugin
@@ -41,8 +44,14 @@ return require('packer').startup(function()
     -- #### Misc ####
     use 'https://gitlab.com/dbeniamine/todo.txt-vim' -- Todo txt plugin
     use 'voldikss/vim-floaterm' -- Create floating terminals
-    use '~/projects/nvim-deardiary' -- Journal Plugin
     use 'vitalk/vim-simple-todo' -- Work with markdown lists
+
+    -- Journal plougin
+    if empty(glob(expand('~/projects/nvim-deardiary'))) then
+        use '~/projects/nvim-deardiary'
+    else
+        use 'ishchow/nvim-deardiary'
+    end
     -- #### Misc ####
 
     -- #### Writing ####
