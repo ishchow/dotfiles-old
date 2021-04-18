@@ -52,6 +52,7 @@ return require('packer').startup(function()
     else
         use '~/projects/nvim-deardiary'
     end
+    use 'ekickx/clipboard-image.nvim' -- Clipboard image paste
     -- #### Misc ####
 
     -- #### Writing ####
