@@ -2,14 +2,24 @@ set number                     " Show current line number
 set relativenumber             " Show relative line numbers
 set clipboard+=unnamedplus     " Yank to system clipboard
 set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab " Set tab to spaces, tab width 4
-let mapleader=","              " Sets <Leader> to ,
-let maplocalleader = "\\"      " Sets <LocalLeader> to \
+let mapleader=" "            " Sets <Leader> to spacebar
+let maplocalleader="\\"      " Sets <LocalLeader> to \
 set autoread                   " Automatically refreshes files
 set conceallevel=0             " Prevents * and _ from being concealed in Markdown
 set updatetime=750             " Mostly for vim-gitgutter
 set diffopt=vertical           " Always make diff split vertically
 set hidden                     " Prevent having to safe buffer when switching between buffers
 set completeopt=menu,menuone,noselect " Use popup menu, show menu even if only one element, force user to select match
+set exrc                       " Project specific vimrc
+set nohlsearch                 " Don't keep search term highlighted after searching is done
+set noerrorbells               " Don't beep or flash screen for error messages
+set noswapfile                 " Disable swapfile
+set nobackup                   " Don't use backups
+let &undodir=stdpath('data') . '/undodir' " Set undo directory
+set undofile                   " Use undofile
+set incsearch                  " Incrementally highlight terms when searching
+set scrolloff=8                " Scroll before hitting bottom/stop of screen
+set colorcolumn=80,120         " Set colorcolumns at 80 and 120 characters
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
