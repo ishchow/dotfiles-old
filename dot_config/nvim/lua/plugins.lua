@@ -39,6 +39,10 @@ return require('packer').startup(function()
     use 'nelstrom/vim-visual-star-search' -- Modify * to also work with visual selections.
     use 'mhinz/vim-grepper' -- Handle multi-file find and replace.
     use 'LoricAndre/fzterm.nvim' -- Open fzf in floating window
+    use {
+        'nvim-telescope/telescope.nvim', -- Fuzzy finder
+        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+    }
     -- #### Search ####
 
     -- #### Misc ####
