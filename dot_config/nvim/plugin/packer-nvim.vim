@@ -3,7 +3,7 @@ let s:is_packer_not_installed = empty(glob(packer_opt_path))
 
 " Auto-install packer
 if s:is_packer_not_installed 
-    system('git clone https://github.com/wbthomason/packer.nvim ' . packer_opt_path)
+    silent execute '!git clone https://github.com/wbthomason/packer.nvim ' . packer_opt_path
 endif
 
 packadd packer.nvim
