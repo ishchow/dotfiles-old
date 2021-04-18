@@ -1,8 +1,9 @@
-let s:is_packer_not_installed = empty(glob('~/.local/share/nvim/site/pack/packer/opt/packer.nvim'))
+let packer_opt_path = stdpath('data') . '/site/pack/packer/opt/packer.nvim'
+let s:is_packer_not_installed = empty(glob(packer_opt_path))
 
 " Auto-install packer
 if s:is_packer_not_installed 
-    silent !git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/opt/packer.nvim
+    system('git clone https://github.com/wbthomason/packer.nvim ' . packer_opt_path)
 endif
 
 packadd packer.nvim
