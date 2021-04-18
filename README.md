@@ -19,10 +19,6 @@ Run with default arguments:
 
 `./bootstrap`
 
-Run with arguments:
-
-`./bootstrap --yadm_class Personal --gh_key_name personal-t480-hyperv-tw-jeos`
-
 ## Windows
 
 Open powershell as admin.
