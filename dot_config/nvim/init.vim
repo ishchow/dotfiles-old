@@ -2,8 +2,8 @@ set number                     " Show current line number
 set relativenumber             " Show relative line numbers
 set clipboard+=unnamedplus     " Yank to system clipboard
 set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab " Set tab to spaces, tab width 4
-let mapleader=" "            " Sets <Leader> to spacebar
-let maplocalleader="\\"      " Sets <LocalLeader> to \
+let mapleader=","            " Sets <Leader>
+let maplocalleader="\\"      " Sets <LocalLeader>
 set autoread                   " Automatically refreshes files
 set conceallevel=0             " Prevents * and _ from being concealed in Markdown
 set updatetime=750             " Mostly for vim-gitgutter
