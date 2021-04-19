@@ -11,7 +11,6 @@ set diffopt=vertical           " Always make diff split vertically
 set hidden                     " Prevent having to safe buffer when switching between buffers
 set completeopt=menu,menuone,noselect " Use popup menu, show menu even if only one element, force user to select match
 set exrc                       " Project specific vimrc
-set nohlsearch                 " Don't keep search term highlighted after searching is done
 set noerrorbells               " Don't beep or flash screen for error messages
 set noswapfile                 " Disable swapfile
 set nobackup                   " Don't use backups
