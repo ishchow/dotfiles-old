@@ -74,10 +74,6 @@ return require('packer').startup(function()
     use 'hrsh7th/vim-vsnip' -- LSP snippets
     -- #### Snippets ####
 
-    -- #### Lua Rocks ####
-    use_rocks 'penlight' -- Useful lua modules
-    -- #### Lua Rocks ####
-
     if vim.fn.has('nvim-0.5') then
         -- #### LSP ####
         use 'neovim/nvim-lspconfig' -- Configs for lsp servers

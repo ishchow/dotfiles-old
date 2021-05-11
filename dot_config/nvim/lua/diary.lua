@@ -1,8 +1,8 @@
 local config = require("deardiary.config")
-local substitute = require('pl.template').substitute
+local lustache = require('lustache')
 
 local personal_daily_template = [[
-# $(entry_date:fmt("%A, %B %d, %Y"))
+# {{ date }}
 ## Todo
 
 ## Notes
@@ -12,17 +12,18 @@ local personal_daily_template = [[
 ]]
 
 local default_weekly_template = [[
-# $(entry_date:fmt("Week %W of %Y: ") .. dates[1]:fmt("%A, %B %d, %Y - ") .. dates[7]:fmt("%A, %B %d, %Y"))
-> for i = 1, #dates do
-## $(dates[i]:fmt("%A, %B %d, %Y"))
+# {{ header }} 
+{{ #dates }}
+## {{ . }}
 
 
-> end]]
+{{ /dates }}
+]]
 
 local personal_weekly_template = [[
-# $(entry_date:fmt("Week %W of %Y: ") .. dates[1]:fmt("%A, %B %d, %Y - ") .. dates[7]:fmt("%A, %B %d, %Y"))
-> for i = 1, #dates do
-## $(dates[i]:fmt("%A, %B %d, %Y"))
+# {{ header }} 
+{{ #dates }}
+## {{ . }}
 ### Meal Plan
 - Breakfast:
 - Lunch:
@@ -33,18 +34,19 @@ local personal_weekly_template = [[
 [ ] Task 2
 
 
-> end]]
+{{ /dates }}
+]]
 
 local dev_daily_template = [[
-# $(entry_date:fmt("%A, %B %d, %Y"))
+# {{ date }} 
 ## Notes
 
 ]]
 
 local music_weekly_template = [[
-# $(entry_date:fmt("Week %W of %Y: ") .. dates[1]:fmt("%A, %B %d, %Y - ") .. dates[7]:fmt("%A, %B %d, %Y"))
-> for i = 1, #dates do
-## $(dates[i]:fmt("%A, %B %d, %Y"))
+# {{ header }} 
+{{ #dates }}
+## {{ . }}
 ### Practice
 [ ] Category 1 (15 min)
     [ ] Item 1 (7.5 min)
@@ -57,27 +59,29 @@ local music_weekly_template = [[
     [ ] Item 2 (7.5 min)
 
 
-> end]]
+{{ /dates }}
+]]
 
 local template_daily = function(entry_date, daily_template_str)
-    local res, _ = substitute(daily_template_str, {
-        _escape = ">",
-        entry_date = entry_date,
-    })
-    return res
+    local view_model = {
+      date = entry_date:fmt("%A, %B %d, %Y"),
+    }
+    return lustache:render(daily_template_str, view_model)
 end
 
 local template_weekly = function(entry_date, weekly_template_str)
     local dates = {}
     for i = 0, 6 do
-        table.insert(dates, entry_date:copy():adddays(i))
+        local d = entry_date:copy():adddays(i)
+        table.insert(dates, d:fmt("%A, %B %d, %Y"))
     end
-    local res, _ = substitute(weekly_template_str, {
-        _escape = ">",
-        entry_date = entry_date,
+    local header = 
+        entry_date:fmt("Week %W of %Y: ") .. dates[1] .. " - " .. dates[7]
+    local view_model = {
         dates = dates,
-    })
-    return res
+        header = header,
+    }
+    return lustache:render(weekly_template_str, view_model)
 end
 
 config.frequencies.weekly.template = function(entry_date)
