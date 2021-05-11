@@ -1,5 +1,5 @@
 local config = require("deardiary.config")
-local lustache = require('lustache')
+local lustache = require('lib.lustache')
 
 local personal_daily_template = [[
 # {{ date }}
