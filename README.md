@@ -13,7 +13,7 @@ Personal dotfiles for Windows and Linux. Dotfiles managed using [chezmoi](https:
 
 Enter bootstrap directory:
 
-`cd ~/.config/bootstrap`
+`cd ~/bootstrap`
 
 Run with default arguments:
 
@@ -25,7 +25,7 @@ Open powershell as admin.
 
 Enter bootstrap directory:
 
-`cd ~/.config/bootstrap`
+`cd ~/bootstrap`
 
 Run bootstrap script:
 
