@@ -38,16 +38,13 @@ return require('packer').startup(function()
     use 'haya14busa/is.vim' -- Automatically clear search highlight after cursor moves
     use 'nelstrom/vim-visual-star-search' -- Modify * to also work with visual selections.
     use 'mhinz/vim-grepper' -- Handle multi-file find and replace.
-    use {
-        'nvim-telescope/telescope.nvim', -- Fuzzy finder
-        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
-    }
     -- #### Search ####
 
     -- #### Misc ####
     use 'https://gitlab.com/dbeniamine/todo.txt-vim' -- Todo txt plugin
     use 'voldikss/vim-floaterm' -- Create floating terminals
     use 'vitalk/vim-simple-todo' -- Work with markdown lists
+    use 'ekickx/clipboard-image.nvim' -- Clipboard image paste
 
     -- Journal plougin
     if empty(glob(expand('~/projects/nvim-deardiary'))) then
@@ -55,7 +52,6 @@ return require('packer').startup(function()
     else
         use '~/projects/nvim-deardiary'
     end
-    use 'ekickx/clipboard-image.nvim' -- Clipboard image paste
     -- #### Misc ####
 
     -- #### Writing ####
@@ -74,15 +70,27 @@ return require('packer').startup(function()
     use 'hrsh7th/vim-vsnip' -- LSP snippets
     -- #### Snippets ####
 
+    -- #### LSP ####
+    use {'neoclide/coc.nvim', branch = 'release'}
+    -- #### LSP ####
+
     if vim.fn.has('nvim-0.5') then
         -- #### LSP ####
-        use 'neovim/nvim-lspconfig' -- Configs for lsp servers
-        use 'glepnir/lspsaga.nvim' -- Improve LSP UI
-        use 'kosayoda/nvim-lightbulb' -- Show lightbulb in sign column if code action available at cursor
+        -- use 'neovim/nvim-lspconfig' -- Configs for lsp servers
+        -- use 'glepnir/lspsaga.nvim' -- Improve LSP UI
+        -- use 'kosayoda/nvim-lightbulb' -- Show lightbulb in sign column if code action available at cursor
         -- #### LSP ####
 
+        -- #### Telescope ####
+        use {
+            'nvim-telescope/telescope.nvim', -- Fuzzy finder
+            requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+        }
+        use {'fannheyward/telescope-coc.nvim'}
+        -- #### Telescope ####
+
         -- #### Autocomplete ####
-        use 'hrsh7th/nvim-compe' -- Completion engine
+        -- use 'hrsh7th/nvim-compe' -- Completion engine
         -- #### Autocomplete ####
 
         -- #### Treesitter ####

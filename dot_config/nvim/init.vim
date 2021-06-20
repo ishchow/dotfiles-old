@@ -6,7 +6,7 @@ let mapleader=","            " Sets <Leader>
 let maplocalleader="\\"      " Sets <LocalLeader>
 set autoread                   " Automatically refreshes files
 set conceallevel=0             " Prevents * and _ from being concealed in Markdown
-set updatetime=750             " Mostly for vim-gitgutter
+set updatetime=300             " Mostly for vim-gitgutter
 set diffopt=vertical           " Always make diff split vertically
 set hidden                     " Prevent having to safe buffer when switching between buffers
 set completeopt=menu,menuone,noselect " Use popup menu, show menu even if only one element, force user to select match
@@ -19,10 +19,20 @@ set undofile                   " Use undofile
 set incsearch                  " Incrementally highlight terms when searching
 set scrolloff=8                " Scroll before hitting bottom/stop of screen
 set colorcolumn=80,120         " Set colorcolumns at 80 and 120 characters
+set cmdheight=2                " Give more space for displaying messages
 
-" Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("nvim-0.5.0") || has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
+" " Use <Tab> and <S-Tab> to navigate through popup menu
+" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Press * to search for the term under the cursor or a visual selection and
 " then press a key below to replace all instances of it in the current file.
@@ -42,7 +52,7 @@ nnoremap <silent> s* :let @/='\<'.expand('<cword>').'\>'<CR>cgn
 xnoremap <silent> s* "sy:let @/=@s<CR>cgn
 
 " .............................................................................
-" colorscheme 
+" colorscheme
 " .............................................................................
 " Set true colors
 if (has("termguicolors"))
