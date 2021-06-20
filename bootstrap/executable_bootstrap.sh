@@ -55,11 +55,6 @@ sudo zypper in -y \
 echo "Installing global node packages"
 sudo npm install -g \
     @bitwarden/cli \
-    vim-language-server \
-    vscode-json-languageserver \
-    bash-language-server \
-    vscode-html-languageserver-bin \
-    pyright
 
 echo "Installing global python packages"
 sudo pip3 install \
@@ -94,6 +89,7 @@ if [[ $(find ~/.ssh -name "id*" | wc -l) -eq 0 ]]; then
     printf 'Host *\n\tIdentityFile ~/.ssh/id_ed25519\n' >> config
 fi
 
+
 if ! command -v yadm &> /dev/null; then
     echo "Installing yadm..."
     sudo zypper ar https://download.opensuse.org/repositories/home:TheLocehiliosan:yadm/openSUSE_Tumbleweed/home:TheLocehiliosan:yadm.repo
@@ -121,19 +117,6 @@ fi
 if [ ! -d ~/.tmux/plugins/tpm ]; then
     echo "Installing tmux plugin manager (tpm)..."
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-fi
-
-if [ ! -d ~/.lua-language-server ]; then
-    echo "Installing lua-language-server..."
-    (
-    git clone https://github.com/sumneko/lua-language-server ~/.lua-language-server
-    cd ~/.lua-language-server
-    git submodule update --init --recursive
-    cd 3rd/luamake
-    ninja -f ninja/linux.ninja
-    cd ../..
-    ./3rd/luamake/luamake rebuild
-    )
 fi
 
 if ! command -v fff &> /dev/null; then
@@ -193,17 +176,6 @@ if ! command -v todo.sh &> /dev/null; then
 fi
 
 if command -v systemctl &> /dev/null; then
-    if ! command -v syncthing &> /dev/null; then
-        echo "Installing syncthing..."
-        sudo zypper in -y syncthing
-        sudo firewall-cmd --zone=public --add-service=syncthing --permanent
-        sudo firewall-cmd --permanent --zone=public --add-service=http
-        sudo firewall-cmd --permanent --zone=public --add-service=https
-        sudo firewall-cmd --permanent --zone=public --add-port=8384/tcp
-        sudo firewall-cmd --reload
-        sudo systemctl enable --now syncthing@${USER}.service
-    fi
-
     if [ ! -d ~/.git-sync ]; then
         echo "Downloading git-sync..."
         git clone https://github.com/simonthum/git-sync.git ~/.git-sync
