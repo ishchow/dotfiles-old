@@ -1,11 +1,5 @@
 #/bin/bash
 
-gh_email=${gh_email:-ishaat@ualberta.ca}
-gh_username=${gh_username:-ishchow}
-gh_key_name=${gh_key_name:-$HOSTNAME}
-gh_access_token_name=${gh_access_token_name:-access-token-jeos-setup-script}
-yadm_class=${yadm_class:-Personal} # Set to Work for work profile
-
 # parse args
 # taken from: https://brianchildress.co/named-parameters-in-bash/
 while [ $# -gt 0 ]; do
@@ -59,59 +53,10 @@ sudo npm install -g \
 echo "Installing global python packages"
 sudo pip3 install \
     pynvim \
-    neovim-remote \
-    debugpy \
-    hererocks
-
-if [[ $(find ~/.ssh -name "id*" | wc -l) -eq 0 ]]; then
-    echo "Generating ssh key..."
-    ssh-keygen -t ed25519 -C "$gh_email" -f ~/.ssh/id_ed25519 -N ""
-
-    echo "Logging into bitwarden..."
-    session_id=$(bw login --raw)
-
-    echo "Getting GitHub access token..."
-    access_token=$(bw list items --search github --session $session_id \
-        | jq --arg ghuser "$gh_username" 'map(select(.object == "item" and .login.username == $ghuser))[0]' \
-        | jq --arg atn "$gh_access_token_name" '.fields | map(select(.name == $atn))[0].value' \
-        | sed 's/"//g')
-        
-    echo "Uploading ssh key..."
-    pubkey=$(cat ~/.ssh/id_ed25519.pub)
-    payload=$(jq --indent 0 -n --arg pubkey "$pubkey" --arg title "$gh_key_name" '{title: $title, key: $pubkey}')
-    status_code=$(curl -s -o /dev/null -L -w "%{http_code}\\n" -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token $access_token" -d "$payload" https://api.github.com/user/keys)
-    echo "Upload of ssh key completed with status code $status_code..."
-
-    echo "Logging out of bitwarden..."
-    bw logout
-
-    echo "Adding key to ssh config..."
-    printf 'Host *\n\tIdentityFile ~/.ssh/id_ed25519\n' >> config
-fi
-
-
-if ! command -v yadm &> /dev/null; then
-    echo "Installing yadm..."
-    sudo zypper ar https://download.opensuse.org/repositories/home:TheLocehiliosan:yadm/openSUSE_Tumbleweed/home:TheLocehiliosan:yadm.repo
-    sudo zypper --gpg-auto-import-keys ref
-    sudo zypper in -y yadm
-    
-    echo "Cloning dotfiles..."
-    yadm clone git@github.com:ishchow/dotfiles.git --no-bootstrap
-    if [ ! $? -eq 0 ]; then
-        yadm clone https://github.com/ishchow/dotfiles.git --no-bootstrap
-    fi
-    
-    echo "Setting yadm class..."
-    yadm config local.class $yadm_class
-fi
+    neovim-remote
 
 if ! command -v nvim &> /dev/null; then
-    echo "Installing neovim from source..."
-    sudo zypper in -y ninja libtool autoconf automake cmake gcc-c++ gettext-tools
-    git clone https://github.com/neovim/neovim.git ~/.nvim
-    make CMAKE_BUILD_TYPE=RelWithDebInfo -C ~/.nvim
-    sudo make -C ~/.nvim install
+    sudo zypper in nvim
 fi
 
 if [ ! -d ~/.tmux/plugins/tpm ]; then
@@ -147,14 +92,6 @@ fi
 if [ ! -d ~/projects ]; then
     echo "Creating projects folder..."
     mkdir -p ~/projects
-fi
-
-if [ ! -d ~/projects/nvim-deardiary ]; then
-    echo "Cloning diary plugin..."
-    git clone git@github.com:ishchow/nvim-deardiary.git ~/projects/nvim-deardiary
-    if [ ! $? -eq 0 ]; then
-        git clone https://github.com/ishchow/nvim-deardiary.git ~/projects/nvim-deardiary
-    fi
 fi
 
 if [ ! -d ~/projects/personal-site ]; then
