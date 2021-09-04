@@ -56,7 +56,7 @@ sudo pip3 install \
     neovim-remote
 
 if ! command -v nvim &> /dev/null; then
-    sudo zypper in nvim
+    sudo zypper in neovim
 fi
 
 if [ ! -d ~/.tmux/plugins/tpm ]; then
