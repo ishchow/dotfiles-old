@@ -6,7 +6,7 @@ Personal dotfiles for Windows and Linux. Dotfiles managed using [chezmoi](https:
 
 # Initialize dotfiles
 
-`chezmoi init --apply username`
+`chezmoi init --apply ischow`
 
 # Bootstrap new system
 ## Linux (OpenSUSE Tumbleweed)
