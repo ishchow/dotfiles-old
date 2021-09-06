@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Assumes caps lock is already set to additional ctrl in KDE plasma settings
+xcape -e 'Caps_Lock=Escape'
