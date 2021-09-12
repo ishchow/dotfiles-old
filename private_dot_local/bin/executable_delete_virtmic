@@ -1,0 +1,5 @@
+#!/bin/sh
+
+if pactl list short modules | grep virtmic &> /dev/null; then
+    pactl unload-module $(pactl list short modules | grep virtmic | awk '{print $1}')
+fi

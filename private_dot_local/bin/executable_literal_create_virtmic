@@ -1,0 +1,5 @@
+#!/bin/sh
+
+if ! pactl list short modules | grep virtmic &> /dev/null; then
+    pactl load-module module-remap-source source_name=virtmic source_properties=device.description=virtmic
+fi
