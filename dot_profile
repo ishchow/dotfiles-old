@@ -28,3 +28,4 @@ fi
 
 export GPG_TTY=$(tty)
 source "$HOME/.cargo/env"
+export MANGOHUD=1
