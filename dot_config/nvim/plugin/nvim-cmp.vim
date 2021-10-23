@@ -13,7 +13,6 @@ lua <<EOF
       ['<C-Space>'] = cmp.mapping.complete(),
       ['<C-e>'] = cmp.mapping.close(),
       ['<CR>'] = cmp.mapping.confirm({
-        behaviour = cmp.ConfirmBehaviour.Insert,
         select = true,
       }),
     },
