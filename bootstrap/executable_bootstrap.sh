@@ -56,7 +56,11 @@ sudo pip3 install \
     neovim-remote
 
 if ! command -v nvim &> /dev/null; then
-    sudo zypper in neovim
+    echo "Installing neovim from source..."
+    sudo zypper in -y ninja libtool autoconf automake cmake gcc-c++ gettext-tools
+    git clone https://github.com/neovim/neovim.git ~/.nvim
+    make CMAKE_BUILD_TYPE=RelWithDebInfo -C ~/.nvim
+    sudo make -C ~/.nvim install
 fi
 
 if [ ! -d ~/.tmux/plugins/tpm ]; then
