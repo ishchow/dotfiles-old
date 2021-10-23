@@ -54,7 +54,6 @@ return require('packer').startup(function()
     -- #### Snippets ####
 
     -- #### LSP ####
-    use {'neoclide/coc.nvim', branch = 'release'}
     -- #### LSP ####
 
     if vim.fn.has('nvim-0.5') then
