@@ -58,8 +58,8 @@ return require('packer').startup(function()
 
     if vim.fn.has('nvim-0.5') then
         -- #### LSP ####
-        -- use 'neovim/nvim-lspconfig' -- Configs for lsp servers
-        -- use 'kosayoda/nvim-lightbulb' -- Show lightbulb in sign column if code action available at cursor
+        use 'neovim/nvim-lspconfig' -- Configs for lsp servers
+        use 'kosayoda/nvim-lightbulb' -- Show lightbulb in sign column if code action available at cursor
         -- #### LSP ####
 
         -- #### Telescope ####
