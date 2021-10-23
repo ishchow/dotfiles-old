@@ -41,26 +41,9 @@ return require('packer').startup(function()
     -- #### Search ####
 
     -- #### Misc ####
-    use 'https://gitlab.com/dbeniamine/todo.txt-vim' -- Todo txt plugin
     use 'voldikss/vim-floaterm' -- Create floating terminals
     use 'vitalk/vim-simple-todo' -- Work with markdown lists
-    use 'ekickx/clipboard-image.nvim' -- Clipboard image paste
-
-    -- Journal plougin
-    if empty(glob(expand('~/projects/nvim-deardiary'))) then
-        use 'ishchow/nvim-deardiary'
-    else
-        use '~/projects/nvim-deardiary'
-    end
     -- #### Misc ####
-
-    -- #### Writing ####
-    use 'reedes/vim-pencil' -- Line wrapping for prose
-    use 'reedes/vim-lexical' -- Convenience plugin over built-in vim completion
-    use 'junegunn/goyo.vim' -- Distraction free writing
-    use 'junegunn/limelight.vim' -- Focus only on current paragraph
-    use 'vim-voom/VOoM' -- Two pane outliner for markup/markdown files
-    -- #### Writing ####
 
     -- #### Syntax Highlighting ####
     use 'lepture/vim-jinja' -- Jinja/Nunjucks Template Highlighting
@@ -77,7 +60,6 @@ return require('packer').startup(function()
     if vim.fn.has('nvim-0.5') then
         -- #### LSP ####
         -- use 'neovim/nvim-lspconfig' -- Configs for lsp servers
-        -- use 'glepnir/lspsaga.nvim' -- Improve LSP UI
         -- use 'kosayoda/nvim-lightbulb' -- Show lightbulb in sign column if code action available at cursor
         -- #### LSP ####
 
