@@ -50,7 +50,6 @@ return require('packer').startup(function()
     -- #### Syntax Highlighting ####
 
     -- #### Snippets ####
-    use 'hrsh7th/vim-vsnip' -- LSP snippets
     -- #### Snippets ####
 
     -- #### LSP ####
