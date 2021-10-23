@@ -51,7 +51,6 @@ return require('packer').startup(function()
 
     -- #### Snippets ####
     use 'L3MON4D3/LuaSnip'
-    use 'saadparwaiz1/cmp_luasnip'
     -- #### Snippets ####
 
     if vim.fn.has('nvim-0.5') then
@@ -60,6 +59,15 @@ return require('packer').startup(function()
         use 'kosayoda/nvim-lightbulb' -- Show lightbulb in sign column if code action available at cursor
         -- #### LSP ####
 
+        -- #### Completion ####
+        use "hrsh7th/nvim-cmp"
+        use "hrsh7th/cmp-buffer"
+        use "hrsh7th/cmp-path"
+        use "hrsh7th/cmp-nvim-lua"
+        use "hrsh7th/cmp-nvim-lsp"
+        use "saadparwaiz1/cmp_luasnip"
+        -- #### Completion ####
+
         -- #### Telescope ####
         use {
             'nvim-telescope/telescope.nvim', -- Fuzzy finder
@@ -67,10 +75,6 @@ return require('packer').startup(function()
         }
         use {'fannheyward/telescope-coc.nvim'}
         -- #### Telescope ####
-
-        -- #### Autocomplete ####
-        -- use 'hrsh7th/nvim-compe' -- Completion engine
-        -- #### Autocomplete ####
 
         -- #### Treesitter ####
         use 'nvim-treesitter/nvim-treesitter' -- Treesitter highlighting and config
