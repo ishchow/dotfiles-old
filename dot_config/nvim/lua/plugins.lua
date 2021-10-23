@@ -50,10 +50,9 @@ return require('packer').startup(function()
     -- #### Syntax Highlighting ####
 
     -- #### Snippets ####
+    use 'L3MON4D3/LuaSnip'
+    use 'saadparwaiz1/cmp_luasnip'
     -- #### Snippets ####
-
-    -- #### LSP ####
-    -- #### LSP ####
 
     if vim.fn.has('nvim-0.5') then
         -- #### LSP ####
