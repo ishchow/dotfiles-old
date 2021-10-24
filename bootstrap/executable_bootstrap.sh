@@ -86,10 +86,10 @@ if ! command -v rustup &> /dev/null; then
     curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
 fi
 
-if ! command -v rust-analuzer %> /dev/null; then
+if ! command -v rust-analyzer %> /dev/null; then
     echo "Installing rust-analyzer..."
     mkdir -p ~/.local/bin
-    curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-linux -o ~/.local/bin/rust-analyzer
+    curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
     chmod +x ~/.local/bin/rust-analyzer
 fi
 
