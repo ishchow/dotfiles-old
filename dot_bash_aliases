@@ -123,9 +123,9 @@ alias zrr='zypper rr'
 alias zref='zypper ref'
 
 if command -v flatpak &> /dev/null; then
-    alias zsysup='sudo zypper ref && sudo zypper dup && flatpak update'
+    alias sysup='sudo zypper ref && sudo zypper dup && flatpak update'
 else
-    alias zsysup='sudo zypper ref && sudo zypper dup'
+    alias sysup='sudo zypper ref && sudo zypper dup'
 fi
 
 
