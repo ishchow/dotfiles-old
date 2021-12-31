@@ -18,6 +18,7 @@ function gbrdef() {
 alias gbr='git branch'
 alias gbrd='git branch -d'
 alias gbrD='git branch -D'
+alias gbrsc='git branch --show-current'
 function gbrp() {
     git fetch -p && for branch in $(git for-each-ref --format '%(refname) %(upstream:track)' refs/heads | awk '$2 == "[gone]" {sub("refs/heads/", "", $1); print $1}'); do git branch -D $branch; done
 }
@@ -32,10 +33,10 @@ alias gcob='git checkout -b'
 # git rebase
 alias grb='git rebase'
 alias grbom='git fetch && git rebase origin/$(gbrdef)'
-alias grbob='git fetch && git rebase origin/$(git branch --show-current)'
+alias grbob='git fetch && git rebase origin/$(gbrsc)'
 alias grbi='git rebase -i --autosquash'
 alias grbioh='grbi origin HEAD'
-alias grbiob='grbi origin/$(git branch --show-current)'
+alias grbiob='grbi origin/$(gbrsc)'
 alias grbimbom='grbi $(gmbom)'
 alias grba='git rebase --abort'
 alias grbc='git rebase --continue'
@@ -66,6 +67,7 @@ alias gmb='git merge-base'
 alias gmbom='gmb HEAD origin/$(gbrdef)' 
 # git pull
 alias gpl='git pull'
+alias gplrb='git pull --rebase'
 alias gplom='git pull origin $(gbrdef)'
 # git add
 alias ga='git add'
@@ -76,6 +78,7 @@ alias gad='git add .'
 alias grs='git reset'
 alias grsh='git reset --hard'
 alias grshoh='git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)'
+alias grshob='git reset --hard origin/$(gbrsc)'
 # git log
 alias gl='git log --oneline --decorate'
 # git restore
@@ -96,6 +99,7 @@ alias gdf='git diff'
 alias gdfh='git diff HEAD'
 alias gdfom='git diff origin/$(gbrdef)'
 alias gdfoh='git diff origin/HEAD'
+alias gdfob='git diff origin/$(gbrsc)'
 # git cherry-pick
 alias gcp='git cherry-pick'
 alias gcpa='git cherry-pick --abort'
@@ -147,10 +151,6 @@ alias tlsc='todo.sh lsc'
 alias tlsp='todo.sh lsp'
 alias tlsprj='todo.sh lsprj'
 alias trm='todo.sh rm'
-
-
-#### cat ####
-alias cat='bat'
 
 
 #### lazygit ####
