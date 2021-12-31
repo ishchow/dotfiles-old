@@ -14,6 +14,7 @@ run_setup_nvim_dir.ps1
 .profile
 .tmux.conf
 bootstrap/bootstrap.sh
+default.knsv
 {{ end  }}
 
 README.md
