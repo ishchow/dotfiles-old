@@ -24,10 +24,7 @@ Install bw cli:
 
 `npm install -g @bitwarden/cli`
 
-# Init dotfiles
-chezmoi init --apply ishchow
-
-# Setup dependencies (Linux - OpenSUSE Tumbleweed)
+## Linux (OpenSUSE Tumbleweed)
 
 [Install chezmoi](https://www.chezmoi.io/docs/install/)
 
@@ -35,6 +32,10 @@ chezmoi init --apply ishchow
 sudo zypper in -y npm yarn
 sudo npm install -g @bitwarden/cli
 ```
+
+# Init dotfiles
+chezmoi init --apply ishchow
+
 
 # Initialize dotfiles
 
