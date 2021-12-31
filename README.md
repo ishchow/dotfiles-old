@@ -1,12 +1,44 @@
 Personal dotfiles for Windows and Linux. Dotfiles managed using [chezmoi](https://www.chezmoi.io/).
 
-# Install chezmoi
+# Setup dependencies
+
+## Windows
+
+Open Powershell as admin:
+
+Set execution policy to bypass so we can run bw cli. I generally find the defaults to be annoying anyways:
+
+`Set-ExecutionPolicy -ExecutionPolicy Bypass`
+
+Install chocolatey:
+
+```
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+```
+
+Install chezmoi and nodejs (needed for bw cli):
+
+`choco install -y chezmoi nodejs`
+
+Install bw cli:
+
+`npm install -g @bitwarden/cli`
+
+# Init dotfiles
+chezmoi init --apply ishchow
+
+# Setup dependencies (Linux - OpenSUSE Tumbleweed)
 
 [Install chezmoi](https://www.chezmoi.io/docs/install/)
 
+```
+sudo zypper in -y npm yarn
+sudo npm install -g @bitwarden/cli
+```
+
 # Initialize dotfiles
 
-`chezmoi init --apply ischow`
+`chezmoi init --apply ishchow`
 
 # Bootstrap new system
 ## Linux (OpenSUSE Tumbleweed)
@@ -21,12 +53,12 @@ Run with default arguments:
 
 ## Windows
 
-Open powershell as admin.
+Open Powershell as admin.
 
 Enter bootstrap directory:
 
-`cd ~/bootstrap`
+`cd ~\bootstrap`
 
 Run bootstrap script:
 
-`./bootstrap.ps1`
+`.\bootstrap.ps1`
