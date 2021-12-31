@@ -18,7 +18,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 
 Install chezmoi and nodejs (needed for bw cli):
 
-`choco install -y chezmoi nodejs`
+`choco install -y git chezmoi nodejs`
 
 Install bw cli:
 
@@ -29,7 +29,7 @@ Install bw cli:
 [Install chezmoi](https://www.chezmoi.io/docs/install/)
 
 ```
-sudo zypper in -y npm
+sudo zypper in -y npm nodejs-default git
 sudo npm install -g @bitwarden/cli
 ```
 
