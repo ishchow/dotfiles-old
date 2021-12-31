@@ -29,7 +29,7 @@ Install bw cli:
 [Install chezmoi](https://www.chezmoi.io/docs/install/)
 
 ```
-sudo zypper in -y npm yarn
+sudo zypper in -y npm
 sudo npm install -g @bitwarden/cli
 ```
 
