@@ -79,6 +79,7 @@ alias grs='git reset'
 alias grsh='git reset --hard'
 alias grshoh='git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)'
 alias grshob='git reset --hard origin/$(gbrsc)'
+alias grshom='git reset --hard origin/$(gbrdef)'
 # git log
 alias gl='git log --oneline --decorate'
 # git restore
