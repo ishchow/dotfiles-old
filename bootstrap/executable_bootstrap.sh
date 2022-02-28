@@ -1,6 +1,6 @@
 #/bin/bash
 
-. .\bootstrap-common.sh
+source ~\bootstrap\bootstrap-common.sh
 
 echo "Updating system..."
 sudo zypper ref && sudo zypper dup -y

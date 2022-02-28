@@ -1,4 +1,4 @@
-. .\bootstrap-common.sh
+source ~\bootstrap\bootstrap-common.sh
 
 echo "Installing basic dependencies for KDE desktop..."
 sudo zypper in -y \
