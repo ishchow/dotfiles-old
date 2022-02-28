@@ -16,7 +16,7 @@ sudo zypper in -y \
 echo "Starting systmed services..."
 sudo systemctl enable --now touchegg.service
 
-echo "Setting up flathub repo"
+echo "Setting up flathub repo..."
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 echo "Installing flatpak apps..."
@@ -30,8 +30,8 @@ flatpak install -y \
     com.github.wwmm.easyeffects \
     com.sindresorhus.Caprine \
     com.spotify.Client  \
-    com.valvesoftware.Steam \ 
-    com.visualstudio.code \ 
+    com.valvesoftware.Steam \
+    com.visualstudio.code \
     io.neovim.nvim \
     md.obsidian.Obsidian \
     org.gimp.GIMP \
