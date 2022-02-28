@@ -43,6 +43,8 @@ flatpak install -y \
     org.qbittorrent.qBittorrent \
     org.videolan.VLC
 
+flatpak override --user --env=MANGOHUD=1 com.valvesoftware.Steam
+
 echo "Installing konsave..."
 sudo python3 -m pip install konsave
 
