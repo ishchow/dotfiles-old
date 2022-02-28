@@ -11,9 +11,7 @@ sudo zypper in -y \
     ark \
     opi \
     neovim \
-    touchegg \
-    libvulkan_intel \
-    libvulkan_intel-32bit
+    touchegg
 
 echo "Starting systmed services..."
 sudo systemctl enable --now touchegg.service
@@ -48,6 +46,7 @@ flatpak install -y \
 
 flatpak override --user --env=MANGOHUD=1 com.valvesoftware.Steam
 flatpak override --user --env=GDK_SCALE=2 com.valvesoftware.Steam
+flatpak override --user --filesystem=xdg-config/MangoHud:ro com.valvesoftware.Steam
 sudo flatpak update
 
 echo "Installing konsave..."
