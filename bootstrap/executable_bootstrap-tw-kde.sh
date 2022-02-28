@@ -13,13 +13,13 @@ sudo zypper in -y \
     neovim \
     touchegg
 
-echo "Starting systmed services..."
+echo "Starting services..."
 sudo systemctl enable --now touchegg.service
 
 echo "Setting up flathub repo..."
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-echo "Installing flatpak apps..."
+echo "Installing flatpaks..."
 flatpak install -y \
     com.bitwarden.desktop \
     com.calibre_ebook.calibre \
