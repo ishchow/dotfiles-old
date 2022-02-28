@@ -30,7 +30,6 @@ flatpak install -y \
     com.github.wwmm.easyeffects \
     com.sindresorhus.Caprine \
     com.spotify.Client  \
-    com.valvesoftware.Steam \
     org.freedesktop.Platform.VulkanLayer.MangoHud \
     com.visualstudio.code \
     io.neovim.nvim \
@@ -43,6 +42,9 @@ flatpak install -y \
     org.mozilla.firefox \
     org.qbittorrent.qBittorrent \
     org.videolan.VLC
+
+sudo flatpak install -y \
+    com.valvesoftware.Steam
 
 flatpak override --user --env=MANGOHUD=1 com.valvesoftware.Steam
 flatpak override --user --env=GDK_SCALE=2 com.valvesoftware.Steam
