@@ -31,6 +31,7 @@ flatpak install -y \
     com.sindresorhus.Caprine \
     com.spotify.Client  \
     com.valvesoftware.Steam \
+    org.freedesktop.Platform.VulkanLayer.MangoHud \
     com.visualstudio.code \
     io.neovim.nvim \
     md.obsidian.Obsidian \
@@ -44,6 +45,7 @@ flatpak install -y \
     org.videolan.VLC
 
 flatpak override --user --env=MANGOHUD=1 com.valvesoftware.Steam
+flatpak override --user --env=GDK_SCALE=2 com.valvesoftware.Steam
 
 echo "Installing konsave..."
 sudo python3 -m pip install konsave
