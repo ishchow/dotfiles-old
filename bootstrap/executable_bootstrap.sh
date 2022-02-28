@@ -5,7 +5,8 @@ source ~\bootstrap\bootstrap-common.sh
 echo "Updating system..."
 sudo zypper ref && sudo zypper dup -y
 
-echo "Installing core packages..."
+echo "Installing packages..."
+sudo zypper in -y -t pattern devel_basis
 sudo zypper in -y \
     wget \
     tree \
@@ -63,10 +64,8 @@ if ! command -v rust-analyzer %> /dev/null; then
     chmod +x ~/.local/bin/rust-analyzer
 fi
 
-if [ ! -d ~/projects ]; then
-    echo "Creating projects folder..."
-    mkdir -p ~/projects
-fi
+echo "Creating projects folder..."
+mkdir -p ~/projects
 
 if [ ! -d ~/projects/personal-site ]; then
     echo "Cloning personal webiste..."
@@ -74,8 +73,6 @@ if [ ! -d ~/projects/personal-site ]; then
     if [ ! $? -eq 0 ]; then
         git clone https://github.com/ishchow/personal-site.git ~/projects/personal-site
     fi
-    sudo firewall-cmd --permanent --zone=public --add-service=http
-    sudo firewall-cmd --permanent --zone=public --add-service=https
     sudo firewall-cmd --permanent --zone=public --add-port=8080/tcp
     sudo firewall-cmd --reload
 fi

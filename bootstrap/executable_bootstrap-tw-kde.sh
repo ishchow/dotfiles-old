@@ -13,6 +13,11 @@ sudo zypper in -y \
     neovim \
     touchegg
 
+echo "Setting up firewall rules..."
+sudo firewall-cmd --permanent --zone=public --add-service=kdeconnect
+sudo firewall-cmd --permanent --zone=public --add-service=kdeconnect-kde
+sudo firewall-cmd --reload
+
 echo "Starting services..."
 sudo systemctl enable --now touchegg.service
 
