@@ -1,6 +1,6 @@
 source ~\bootstrap\bootstrap-common.sh
 
-echo "Installing basic dependencies for KDE desktop..."
+echo "Installing packages..."
 sudo zypper in -y \
     flatpak \
     discover \
@@ -11,7 +11,9 @@ sudo zypper in -y \
     ark \
     opi \
     neovim \
-    touchegg
+    touchegg \
+    libvulkan_intel \
+    libvulkan_intel-32bit
 
 echo "Starting systmed services..."
 sudo systemctl enable --now touchegg.service
