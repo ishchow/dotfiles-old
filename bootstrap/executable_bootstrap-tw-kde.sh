@@ -48,6 +48,7 @@ flatpak install -y \
 
 flatpak override --user --env=MANGOHUD=1 com.valvesoftware.Steam
 flatpak override --user --env=GDK_SCALE=2 com.valvesoftware.Steam
+sudo flatpak update
 
 echo "Installing konsave..."
 sudo python3 -m pip install konsave
