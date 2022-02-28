@@ -13,7 +13,9 @@ sudo zypper in -y \
     neovim \
     touchegg \
     libvulkan_intel \
-    libvulkan_intel-32bit
+    libvulkan_intel-32bit \
+    steam \
+    mangohud
 
 echo "Starting systmed services..."
 sudo systemctl enable --now touchegg.service
@@ -32,8 +34,6 @@ flatpak install -y \
     com.github.wwmm.easyeffects \
     com.sindresorhus.Caprine \
     com.spotify.Client  \
-    com.valvesoftware.Steam \
-    org.freedesktop.Platform.VulkanLayer.MangoHud \
     com.visualstudio.code \
     io.neovim.nvim \
     md.obsidian.Obsidian \
@@ -45,10 +45,6 @@ flatpak install -y \
     org.mozilla.firefox \
     org.qbittorrent.qBittorrent \
     org.videolan.VLC
-
-flatpak override --user --env=MANGOHUD=1 com.valvesoftware.Steam
-flatpak override --user --env=GDK_SCALE=2 com.valvesoftware.Steam
-sudo flatpak update
 
 echo "Installing konsave..."
 sudo python3 -m pip install konsave
