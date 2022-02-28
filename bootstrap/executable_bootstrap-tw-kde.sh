@@ -11,7 +11,8 @@ sudo zypper in -y \
     ark \
     opi \
     neovim \
-    touchegg
+    touchegg \
+    latte-dock
 
 echo "Setting up firewall rules..."
 sudo firewall-cmd --permanent --zone=public --add-service=kdeconnect
