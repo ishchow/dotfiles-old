@@ -9,7 +9,6 @@ add_home_repo () {
 }
 
 add_home_repo "home:rxmd"
-add_home_repo "home:dfaggioli:microos-desktop"
 
 echo "Installing packages..."
 sudo zypper ref
@@ -26,8 +25,17 @@ sudo zypper in -y \
     touchegg \
     latte-dock \
     kwin-script-tiling-bismuth \
-    distrobox \
-    docker
+    catatonit \
+    containerd \
+    criu \
+    docker \
+    docker-bash-completion \
+    libnet9 \
+    python38-protobuf \
+    runc
+
+echo "Installing distrobox..."
+curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/install | sh -s -- --prefix ~/.local
 
 echo "Starting services..."
 sudo systemctl enable --now touchegg.service
