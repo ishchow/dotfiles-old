@@ -1,6 +1,18 @@
 source ~\bootstrap\bootstrap-common.sh
 
+echo "Adding repositories"
+
+add_home_repo () {
+    if [ ! zypper lr | grep "$1" ]; then
+        sudo zypper ar -p 105 "https://download.opensuse.org/repositories/$1/openSUSE_Tumbleweed/$1.repo"
+    fi
+}
+
+add_home_repo "home:rxmd"
+add_home_repo "home:dfaggioli:microos-desktop"
+
 echo "Installing packages..."
+sudo zypper ref
 sudo zypper in -y \
     flatpak \
     discover \
@@ -12,7 +24,9 @@ sudo zypper in -y \
     opi \
     neovim \
     touchegg \
-    latte-dock
+    latte-dock \
+    kwin-script-tiling-bismuth \
+    distrobox
 
 echo "Setting up firewall rules..."
 sudo firewall-cmd --permanent --zone=public --add-service=kdeconnect
