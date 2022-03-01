@@ -90,6 +90,18 @@ sudo flatpak update
 
 xdg-settings set default-web-browser org.mozilla.firefox.desktop
 
+if flatpak list --app | grep "Firefox" &> /dev/null && ! zypper se -i firefox &> /dev/null; then
+    echo "Removing native firefox..."
+    sudo zypper rm --clean-deps firefox
+fi
+
+if [ ! getent group docker &> /dev/null ]; then
+    echo "Setting up docker group..."
+    getent group docker || sudo groupadd docker 
+    sudo usermod -aG docker $USER 
+    newgrp docker
+fi
+
 echo "Installing konsave..."
 sudo python3 -m pip install konsave
 
