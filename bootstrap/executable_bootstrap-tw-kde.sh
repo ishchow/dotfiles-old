@@ -26,15 +26,22 @@ sudo zypper in -y \
     touchegg \
     latte-dock \
     kwin-script-tiling-bismuth \
-    distrobox
+    distrobox \
+    docker
+
+echo "Starting services..."
+sudo systemctl enable --now touchegg.service
+sudo systemctl enable --now docker.service
+
+echo "Setting up docker group..."
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
 
 echo "Setting up firewall rules..."
 sudo firewall-cmd --permanent --zone=public --add-service=kdeconnect
 sudo firewall-cmd --permanent --zone=public --add-service=kdeconnect-kde
 sudo firewall-cmd --reload
-
-echo "Starting services..."
-sudo systemctl enable --now touchegg.service
 
 echo "Setting up flathub repo..."
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -70,6 +77,8 @@ flatpak override --user --env=MANGOHUD=1 com.valvesoftware.Steam
 flatpak override --user --env=GDK_SCALE=2 com.valvesoftware.Steam
 flatpak override --user --filesystem=xdg-config/MangoHud:ro com.valvesoftware.Steam
 sudo flatpak update
+
+xdg-settings set default-web-browser org.mozilla.firefox.desktop
 
 echo "Installing konsave..."
 sudo python3 -m pip install konsave
