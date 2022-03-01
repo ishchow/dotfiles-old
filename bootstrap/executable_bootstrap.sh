@@ -76,3 +76,8 @@ if [ ! -d ~/projects/personal-site ]; then
     sudo firewall-cmd --permanent --zone=public --add-port=8080/tcp
     sudo firewall-cmd --reload
 fi
+
+echo "Setting up firewall rules..."
+sudo firewall-cmd --permanent --zone=public --add-service=http
+sudo firewall-cmd --permanent --zone=public --add-service=https
+sudo firewall-cmd --reload

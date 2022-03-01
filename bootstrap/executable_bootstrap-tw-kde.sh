@@ -1,9 +1,9 @@
-source ~\bootstrap\bootstrap-common.sh
+source ./bootstrap-common.sh || source ./executable_bootstrap-common.sh
 
 echo "Adding repositories"
 
 add_home_repo () {
-    if [ ! zypper lr | grep "$1" ]; then
+    if ! $(zypper lr | grep "$1" &> /dev/null); then
         sudo zypper ar -p 105 "https://download.opensuse.org/repositories/$1/openSUSE_Tumbleweed/$1.repo"
     fi
 }
@@ -34,17 +34,21 @@ sudo zypper in -y \
     python38-protobuf \
     runc
 
-echo "Installing distrobox..."
-curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/install | sh -s -- --prefix ~/.local
+if ! command -v distrobox &> /dev/null; then
+    echo "Installing distrobox..."
+    curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/install | sh -s -- --prefix ~/.local
+fi
 
 echo "Starting services..."
 sudo systemctl enable --now touchegg.service
 sudo systemctl enable --now docker.service
 
-echo "Setting up docker group..."
-sudo groupadd docker
-sudo usermod -aG docker $USER
-newgrp docker
+if [ ! getent group docker &> /dev/null ]; then
+    echo "Setting up docker group..."
+    getent group docker || sudo groupadd docker 
+    sudo usermod -aG docker $USER 
+    newgrp docker
+fi
 
 echo "Setting up firewall rules..."
 sudo firewall-cmd --permanent --zone=public --add-service=kdeconnect
@@ -55,7 +59,7 @@ echo "Setting up flathub repo..."
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 echo "Installing flatpaks..."
-flatpak install -y \
+sudo flatpak install -y \
     com.bitwarden.desktop \
     com.calibre_ebook.calibre \
     com.discordapp.Discord \
@@ -76,9 +80,7 @@ flatpak install -y \
     org.libreoffice.LibreOffice \
     org.mozilla.firefox \
     org.qbittorrent.qBittorrent \
-    org.videolan.VLC
-
-sudo flatpak install -y \
+    org.videolan.VLC \
     com.valvesoftware.Steam
 
 flatpak override --user --env=MANGOHUD=1 com.valvesoftware.Steam
@@ -94,6 +96,6 @@ sudo python3 -m pip install konsave
 STR=$(konsave -l)
 if [[ "$STR" == *"No profile found"* ]]; then
     echo "Restoring plasma settings..."
-    konsave -i default.knsv
+    konsave -i ~/default.knsv
     konsave -a default
 fi
