@@ -1,7 +1,7 @@
 #/bin/bash
 
-echo "Installing basic developer tools..."
-sudo zypper in -y -t pattern devel_basis
+echo "Installing basic patterns..."
+sudo zypper in -t pattern base enhanced_base devel_basis
 sudo zypper in -y  \
     git \
     nodejs16 \
