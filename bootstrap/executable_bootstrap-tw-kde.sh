@@ -81,8 +81,10 @@ sudo flatpak install -y \
     org.mozilla.firefox \
     org.qbittorrent.qBittorrent \
     org.videolan.VLC \
-    com.valvesoftware.Steam
+    com.valvesoftware.Steam \
+    org.gtk.Gtk3theme.Breeze
 
+flatpak override --user --filesystem=xdg-config/gtk-3.0:ro
 flatpak override --user --env=MANGOHUD=1 com.valvesoftware.Steam
 flatpak override --user --env=GDK_SCALE=2 com.valvesoftware.Steam
 flatpak override --user --filesystem=xdg-config/MangoHud:ro com.valvesoftware.Steam
