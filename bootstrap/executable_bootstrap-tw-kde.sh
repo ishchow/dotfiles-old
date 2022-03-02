@@ -32,7 +32,8 @@ sudo zypper in -y \
     docker-bash-completion \
     libnet9 \
     python38-protobuf \
-    runc
+    runc \
+    gnome-keyring
 
 if ! command -v distrobox &> /dev/null; then
     echo "Installing distrobox..."
