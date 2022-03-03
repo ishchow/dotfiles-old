@@ -32,7 +32,8 @@ sudo zypper in -y \
     fzf-bash-completion \
     fzf-tmux \
     clang \
-    lldb
+    lldb \
+    neovim
 
 if [ ! -d ~/.tmux/plugins/tpm ]; then
     echo "Installing tmux plugin manager (tpm)..."
@@ -47,7 +48,7 @@ fi
 
 if ! command -v lazygit &> /dev/null; then
     echo "Installing lazygit..."
-    sudo zypper ar https://download.opensuse.org/repositories/home:Dead_Mozay/openSUSE_Tumbleweed/home:Dead_Mozay.repo
+    sudo zypper ar -p 105 https://download.opensuse.org/repositories/home:Dead_Mozay/openSUSE_Tumbleweed/home:Dead_Mozay.repo
     sudo zypper --gpg-auto-import-keys ref
     sudo zypper in -y lazygit
 fi
@@ -73,11 +74,17 @@ if [ ! -d ~/projects/personal-site ]; then
     if [ ! $? -eq 0 ]; then
         git clone https://github.com/ishchow/personal-site.git ~/projects/personal-site
     fi
-    sudo firewall-cmd --permanent --zone=public --add-port=8080/tcp
-    sudo firewall-cmd --reload
+
+    if comamnd -v firewall-cmd &> /dev/null; then
+        echo "Setting up firewall rules for personal website..."
+        sudo firewall-cmd --permanent --zone=public --add-port=8080/tcp
+        sudo firewall-cmd --reload
+    fi
 fi
 
-echo "Setting up firewall rules..."
-sudo firewall-cmd --permanent --zone=public --add-service=http
-sudo firewall-cmd --permanent --zone=public --add-service=https
-sudo firewall-cmd --reload
+if comamnd -v firewall-cmd &> /dev/null; then
+    echo "Setting up firewall rules..."
+    sudo firewall-cmd --permanent --zone=public --add-service=http
+    sudo firewall-cmd --permanent --zone=public --add-service=https
+    sudo firewall-cmd --reload
+fi
