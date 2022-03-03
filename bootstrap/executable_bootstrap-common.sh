@@ -6,6 +6,7 @@ sudo zypper in -y  \
     git \
     nodejs16 \
     npm \
+    neovim
 
-echo "Installing bitwarden-cli"
+echo "Installing bitwarden-cli..."
 sudo npm install -g @bitwarden/cli

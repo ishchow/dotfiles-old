@@ -1,13 +1,10 @@
-source ./bootstrap-common.sh || source ./executable_bootstrap-common.sh
-
-echo "Adding repositories"
-
 add_home_repo () {
     if ! $(zypper lr | grep "$1" &> /dev/null); then
         sudo zypper ar -p 105 "https://download.opensuse.org/repositories/$1/openSUSE_Tumbleweed/$1.repo"
     fi
 }
 
+echo "Adding repositories"
 add_home_repo "home:rxmd"
 
 echo "Installing packages..."
@@ -21,7 +18,6 @@ sudo zypper in -y \
     kate \
     ark \
     opi \
-    neovim \
     touchegg \
     latte-dock \
     kwin-script-tiling-bismuth \
