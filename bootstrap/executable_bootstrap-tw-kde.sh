@@ -6,6 +6,7 @@ add_home_repo () {
 
 echo "Adding repositories"
 add_home_repo "home:rxmd"
+add_home_repo "home:Dead_Mozay"
 
 echo "Installing packages..."
 sudo zypper ref
@@ -28,7 +29,8 @@ sudo zypper in -y \
     libnet9 \
     python38-protobuf \
     runc \
-    gnome-keyring
+    gnome-keyring \
+    virtual-desktop-bar
 
 if ! command -v distrobox &> /dev/null; then
     echo "Installing distrobox..."
