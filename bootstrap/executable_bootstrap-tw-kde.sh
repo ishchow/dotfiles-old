@@ -19,7 +19,6 @@ sudo zypper in -y \
     ark \
     opi \
     touchegg \
-    latte-dock \
     kwin-script-tiling-bismuth \
     catatonit \
     containerd \
@@ -113,3 +112,5 @@ if [[ "$STR" == *"No profile found"* ]]; then
     konsave -i ~/default.knsv
     konsave -a default
 fi
+
+kwriteconfig5 --file ~/.config/kwinrc --group ModifierOnlyShortcuts --key Meta "org.kde.kglobalaccel,/component/kwin,org.kde.kglobalaccel.Component,invokeShortcut,ExposeAll"
