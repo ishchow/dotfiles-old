@@ -4,9 +4,12 @@ add_home_repo () {
     fi
 }
 
-echo "Adding repositories"
+echo "Adding home repositories..."
 add_home_repo "home:rxmd"
 add_home_repo "home:Dead_Mozay"
+
+echo "Adding packman essentials repository..."
+sudo zypper ar -cfp 105 https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/Essentials packamn-essentials
 
 echo "Installing packages..."
 sudo zypper ref
@@ -35,7 +38,8 @@ sudo zypper in -y \
     onedrive-bash-completion \
     pipewire-alsa \
     pipewire-pulseaudio \
-    wireplumber
+    wireplumber \
+    pipewire-aptx
 
 if ! command -v distrobox &> /dev/null; then
     echo "Installing distrobox..."
