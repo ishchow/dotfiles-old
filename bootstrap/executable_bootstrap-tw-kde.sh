@@ -30,7 +30,12 @@ sudo zypper in -y \
     python38-protobuf \
     runc \
     gnome-keyring \
-    virtual-desktop-bar
+    virtual-desktop-bar \
+    onedrive \
+    onedrive-bash-completion \
+    pipewire-alsa \
+    pipewire-pulseaudio \
+    wireplumber
 
 if ! command -v distrobox &> /dev/null; then
     echo "Installing distrobox..."
@@ -40,6 +45,10 @@ fi
 echo "Starting services..."
 sudo systemctl enable --now touchegg.service
 sudo systemctl enable --now docker.service
+systemctl --user enable --now pipewire.service
+systemctl --user enable --now wireplumber.service
+systemctl --user enable --now pipewire-pulse.{service,socket}
+systemctl --user enable --now onedrive
 
 if [ ! getent group docker &> /dev/null ]; then
     echo "Setting up docker group..."
@@ -91,6 +100,8 @@ flatpak override --user --filesystem=xdg-config/MangoHud:ro com.valvesoftware.St
 flatpak override --user --filesystem=xdg-data/icons com.valvesoftware.Steam
 flatpak override --user --filesystem=xdg-data/applications com.valvesoftware.Steam
 flatpak override --user --filesystem=xdg-desktop com.valvesoftware.Steam
+
+# workaround for missing libs after steam installation
 sudo flatpak update
 
 xdg-settings set default-web-browser org.mozilla.firefox.desktop
