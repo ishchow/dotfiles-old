@@ -80,7 +80,9 @@ sudo flatpak install -y \
     org.qbittorrent.qBittorrent \
     org.videolan.VLC \
     com.valvesoftware.Steam \
-    org.gtk.Gtk3theme.Breeze
+    org.gtk.Gtk3theme.Breeze \
+    org.freedesktop.Platform.GStreamer.gstreamer-vaapi \
+    org.freedesktop.Platform.ffmpeg-full
 
 flatpak override --user --filesystem=xdg-config/gtk-3.0:ro
 flatpak override --user --env=MANGOHUD=1 com.valvesoftware.Steam
