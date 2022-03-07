@@ -108,7 +108,29 @@ flatpak override --user --filesystem=xdg-desktop com.valvesoftware.Steam
 # workaround for missing libs after steam installation
 sudo flatpak update
 
+echo "Updating xgg settings..."
 xdg-settings set default-web-browser org.mozilla.firefox.desktop
+
+echo "Updating xdg user dirs..."
+if test ~/OneDrive/; then
+    if ! ls -l ~/Music; then
+        rmdir ~/Music/
+        ln -s ~/OneDrive/Music/ ~/Music
+        xdg-user-dirs-update --set MUSIC ~/OneDrive/Music/
+    fi
+
+    if ! ls -l ~/Pictures; then
+        rmdir ~/Pictures
+        ln -s ~/OneDrive/Pictures/ ~/Pictures
+        xdg-user-dirs-update --set PICTURES ~/OneDrive/Pictures/
+    fi
+
+    if ! ls -l ~/Videos; then
+        rmdir ~/Videos
+        ln -s ~/OneDrive/Videos/ ~/Videos
+        xdg-user-dirs-update --set VIDEOS ~/OneDrive/Videos/
+    fi
+fi
 
 if flatpak list --app | grep "Firefox" &> /dev/null && ! zypper se -i firefox &> /dev/null; then
     echo "Removing native firefox..."
