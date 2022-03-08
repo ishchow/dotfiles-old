@@ -39,7 +39,8 @@ sudo zypper in -y \
     pipewire-alsa \
     pipewire-pulseaudio \
     wireplumber \
-    pipewire-aptx
+    pipewire-aptx \
+    thermald
 
 if ! command -v distrobox &> /dev/null; then
     echo "Installing distrobox..."
@@ -49,6 +50,7 @@ fi
 echo "Starting services..."
 sudo systemctl enable --now touchegg.service
 sudo systemctl enable --now docker.service
+sudo systemctl enable --now thermald.service
 systemctl --user enable --now pipewire.service
 systemctl --user enable --now wireplumber.service
 systemctl --user enable --now pipewire-pulse.{service,socket}
