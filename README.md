@@ -1,3 +1,7 @@
+Screwed up repo due to use of large, binary files. Moved to https://github.com/ishchow/dotfiles
+
+**Archived**
+
 Personal dotfiles for Windows and Linux. Dotfiles managed using [chezmoi](https://www.chezmoi.io/).
 
 # Setup dependencies
